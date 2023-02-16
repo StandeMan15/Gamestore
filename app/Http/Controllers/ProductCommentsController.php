@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 class PostCommentsController extends Controller
 {
-    public function store(Post $post)
+    public function store(Product $product)
     {
         request()->validate([
             'body' => 'required'
@@ -15,13 +15,13 @@ class PostCommentsController extends Controller
 
         // dd([
         //     'user_id' => auth()->user()->id,
-        //     'post_id' => $post->id
+        //     'post_id' => $product->id
         // ]);
 
 
-        $post->comments()->create([
+        $product->comments()->create([
             'user_id' => auth()->id(),
-            'post_id' => $post->id,
+            'post_id' => $product->id,
             'body' => request('body')
         ]);
 

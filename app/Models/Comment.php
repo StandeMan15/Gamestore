@@ -9,9 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function post()
+    public function product()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function author()
