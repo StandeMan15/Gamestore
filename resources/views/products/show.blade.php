@@ -1,28 +1,10 @@
+<?php $timeNow = Carbon\Carbon::now(); ?>
 <x-layout>
 
     <section class="px-6 py-8">
 
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
-                <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                    <img src="/images/illustration-1.png" alt="" class="rounded-xl">
-
-                    <p class="mt-4 block text-gray-400 text-xs">
-                        Published <time>{{ $product->created_at->diffForHumans() }}</time>
-                    </p>
-
-                    <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="/images/lary-avatar.svg" alt="Lary avatar">
-                        <div class="ml-3 text-left">
-                            <a href="/?author={{ $product->author->username }}">
-                                <h5 class="font-bold">
-                                    {{ $product->author->name }}
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-span-8">
                     <div class="hidden lg:flex justify-between mb-6">
                         <a href="/"
@@ -36,8 +18,7 @@
                                     </path>
                                 </g>
                             </svg>
-
-                            Back to Posts
+                            Terug naar alles van {{ $product->category->name }}
                         </a>
 
                         <div class="space-x-2">
@@ -54,7 +35,25 @@
                     </div>
                 </div>
 
-                <section class="col-span-8 col-start-5 space-y-6">
+                <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
+                    <img src="/images/illustration-1.png" alt="" class="rounded-xl">
+
+                    <div class="uppercase semi-bold text-xl bg-green-500 text-white p-2 m-2 rounded-xl">
+                        @if ($timeNow < $product->preorder_date)
+                            <span class="uppercase semi-bold text-xl">Soon available</span>
+                            @elseif (($timeNow > $product->preorder_date) && ($timeNow < $product->release_date))
+                                <span class="">
+                                    Preorder Now!
+                                </span>
+                            @else
+                                Released On: <time>{{ date('M-Y', strtotime($product->release_date)) }}</time>
+                        @endif
+
+                        <span class="flex justify-end pr-4">€{{ $product->price }}</span>
+                    </div>
+                </div>
+
+                <section class="col-span-8 col-start-1 space-y-6">
                     @auth
                     <x-panel>
                         <form method="POST" action="/products/{{ $product->slug }}/comments">
@@ -74,17 +73,17 @@
 
                             <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">
                                 <button type="submit"
-                                    class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600">Product</button>
+                                    class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600">Post</button>
                             </div>
                         </form>
                     </x-panel>
                     @else
-                        <p class="semi-bold">
-                            <a href="/register" class="hover:underline">Register</a>
-                            or
-                            <a href="/login" class="hover:underline">Log in</a>
-                            to leave a comment
-                        </p>
+                    <p class="semi-bold">
+                        <a href="/register" class="hover:underline">Register</a>
+                        or
+                        <a href="/login" class="hover:underline">Log in</a>
+                        to leave a comment
+                    </p>
                     @endauth
 
                     @foreach ( $product->comments as $comment )
@@ -100,3 +99,4 @@
     </body>
 
 </x-layout>
+<x-layout-footer />

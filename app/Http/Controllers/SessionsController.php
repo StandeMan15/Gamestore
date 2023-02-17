@@ -35,4 +35,9 @@ class SessionsController extends Controller
 
         return redirect('/')->with('success', 'Goodbye!');
     }
+
+    public function isAdmin()
+    {
+        return view('admin.home');
+    }
 }

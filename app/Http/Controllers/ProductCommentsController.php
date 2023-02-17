@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-class PostCommentsController extends Controller
+class ProductCommentsController extends Controller
 {
     public function store(Product $product)
     {
@@ -21,7 +21,7 @@ class PostCommentsController extends Controller
 
         $product->comments()->create([
             'user_id' => auth()->id(),
-            'post_id' => $product->id,
+            'product_id' => $product->id,
             'body' => request('body')
         ]);
 

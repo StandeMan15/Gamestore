@@ -13,3 +13,4 @@
         @endif
     </main>
 </x-layout>
+<x-layout-footer />

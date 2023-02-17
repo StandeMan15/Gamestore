@@ -21,6 +21,11 @@ return new class extends Migration
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
+            $table->decimal('price')->nullable;
+            $table->decimal('minimum_age')->nullable();
+            $table->string('thumbnail');
+            $table->date('release_date');
+            $table->date('preorder_date');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });
