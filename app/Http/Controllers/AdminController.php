@@ -16,14 +16,15 @@ class AdminController extends Controller
 
     public function activity($categories)
     {
-        if($categories->id == 1) {
-            $categories->is_active = 0;
+        $category = Category::find($categories);
+
+        if($category->is_active == 1) {
+            $category->is_active = 0;
+        }elseif($category->is_active == 0) {
+            $category->is_active = 1;
         }
 
-        if($categories->id == 0) {
-            $categories->is_active = 1;
-        }
-        $categories->save();
+        $category->save();
 
         return redirect()->back()
             ->with('message','Status gewijzigd');
@@ -32,18 +33,20 @@ class AdminController extends Controller
     public function edit($id)
     {
         $categories = Category::find($id);
-        return view('admin.categories.update', compact('categories'));
+        return view('admin/categories.edit', compact('categories'));
     }
 
     public function update(Request $request, $id)
     {
 
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'slug' => 'required'
         ]);
 
         $categories = Category::find($id);
         $categories->name = $request->name;
+        $categories->slug = $request->slug;
 
         $categories->save();
         return redirect()->back()->with('message','Categorie succesvol gewijzigd');

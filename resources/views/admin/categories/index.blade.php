@@ -9,7 +9,7 @@
                 </td>
 
                 <td>
-                    <a href="admin/categories/edit/{{$categories->id}}"
+                    <a href="{{route('editCategory', $categories->id)}}"
                         class="bg-yellow-400 text-white flex rounded-md px-1">
                         Edit
                     </a>
@@ -19,16 +19,15 @@
                     <form method="post" action="#">
                         @csrf
 
-                            <input type="hidden" name="categoriesID" value="$categories->id" />
-
                         @if ($categories->is_active == 1)
-                            <button class="bg-green-400 text-white flex rounded-md px-1" type="submit">
-                                Actief
-                            </button>
+                        <a href="{{route('statusCategory', $categories->id)}}" class="bg-green-400 text-white flex rounded-md px-1" type="submit">
+                            Actief
+                        </a>
                         @else
-                            <button class="bg-red-400 text-white flex rounded-md px-1" type="submit">
-                                Inactief
-                            </button>
+                        <?php //dd($categories->is_active) ?>
+                        <a href="{{route('statusCategory', $categories->id)}}" class="bg-red-400 text-white flex rounded-md px-1" type="submit">
+                            Inactief
+                        </a>
 
                         @endif
                     </form>
