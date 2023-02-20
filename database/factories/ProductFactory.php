@@ -27,9 +27,11 @@ class ProductFactory extends Factory
             'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(6)) . '</p>',
             'thumbnail' => $this->faker->url,
             'price' => $this->faker->numberBetween(0,80),
+            'discount_price' => $this->faker->numberBetween(0,80),
             'minimum_age' => $this->faker->numberBetween(12,18),
             'release_date' => $this->faker->date,
-            'preorder_date' => $this->faker->date
+            'preorder_date' => $this->faker->date,
+            'is_active' => $this->faker->boolean
         ];
     }
 }

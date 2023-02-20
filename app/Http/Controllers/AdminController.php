@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function show()
     {
-        return view('admin/categories.index', [
+        return view('admin.categories.index', [
             'category' => Category::all()
         ]);
     }
@@ -27,7 +27,7 @@ class AdminController extends Controller
         $category->save();
 
         return redirect()->back()
-            ->with('message','Status gewijzigd');
+            ->with('success','Status gewijzigd');
     }
 
     public function edit($id)
@@ -49,6 +49,6 @@ class AdminController extends Controller
         $categories->slug = $request->slug;
 
         $categories->save();
-        return redirect()->back()->with('message','Categorie succesvol gewijzigd');
+        return redirect()->back()->with('success','Categorie succesvol gewijzigd');
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -38,6 +41,17 @@ class SessionsController extends Controller
 
     public function isAdmin()
     {
-        return view('admin.home');
+        if(!auth()->check()) {
+            abort(403);
+        }
+
+        if (auth()->user()->is_admin === 1) {
+            return view('admin.home', [
+            'product' => Product::all()
+            ]);
+        } else {
+            abort(403);
+        }
+
     }
 }

@@ -20,15 +20,13 @@
                         @csrf
 
                         @if ($categories->is_active == 1)
-                        <a href="{{route('statusCategory', $categories->id)}}" class="bg-green-400 text-white flex rounded-md px-1" type="submit">
-                            Actief
-                        </a>
+                            <a href="{{route('statusCategory', $categories->id)}}" class="bg-green-400 text-white flex rounded-md px-1" type="submit">
+                                Actief
+                            </a>
                         @else
-                        <?php //dd($categories->is_active) ?>
-                        <a href="{{route('statusCategory', $categories->id)}}" class="bg-red-400 text-white flex rounded-md px-1" type="submit">
-                            Inactief
-                        </a>
-
+                            <a href="{{route('statusCategory', $categories->id)}}" class="bg-red-400 text-white flex rounded-md px-1" type="submit">
+                                Inactief
+                            </a>
                         @endif
                     </form>
                 </td>

@@ -15,7 +15,7 @@
 
                 <div class="mt-4">
                     <h1 class="text-3xl">
-                        <a href="/products/{{ $product->slug }}">
+                        <a href="/{{ $product->category->slug }}/{{ $product->slug }}">
                             {{ $product->title }}
                         </a>
                     </h1>
