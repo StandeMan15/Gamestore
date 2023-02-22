@@ -1,18 +1,25 @@
 <?php $timeNow = Carbon\Carbon::now(); ?>
 
 <x-layout>
-    <div class="grid grid-cols-6 gap-4">
+    <div class="grid grid-cols-12 gap-4">
         <div class="col-span-1 w-auto">
             <x-admin-sidebar />
         </div>
 
-        <div class="col-span-2">
+        <div class="col-start-3 col-span-4">
             <div class="w-64 h-64">
-                {{ $product->thumbnail }}
+                @foreach ( $images as $image )
+                    @if ($image->product_id == $product->id)
+                        <img src="{{ asset($image->image) }}" alt="" class="h-auto w-auto"/>
+                    @else
+                        <
+                    @endif
+                @endforeach
+
             </div>
         </div>
 
-        <div class="col-span-3">
+        <div class="col-span-4">
             <table>
                 <tr>
                     <td>

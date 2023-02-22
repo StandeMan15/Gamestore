@@ -25,7 +25,6 @@ class ProductFactory extends Factory
             'slug' => $this->faker->slug,
             'excerpt' => '<p>' . implode('</p><p>', $this->faker->paragraphs(2)) . '</p>',
             'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(6)) . '</p>',
-            'thumbnail' => $this->faker->url,
             'price' => $this->faker->numberBetween(0,80),
             'discount_price' => $this->faker->numberBetween(0,80),
             'minimum_age' => $this->faker->numberBetween(12,18),

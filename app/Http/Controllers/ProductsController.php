@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductFormRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
-use GuzzleHttp\Handler\Proxy;
+use App\Models\Image;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -16,12 +19,14 @@ class ProductsController extends Controller
             'products' => Product::latest()->filter(
                 request(['search', 'category', 'author'])
             )->paginate(6)->withQueryString()
+
         ]);
     }
 
     public function show(Product $product)
     {
         return view('products.show', [
+            'images' => Image::all(),
             'product' => $product
         ]);
     }
@@ -29,7 +34,9 @@ class ProductsController extends Controller
     public function readAdmin($id)
     {
         return view('admin/products.read', [
-            'product' => Product::find($id)
+
+            'product' => Product::find($id),
+            'images' => Image::all()
         ]);
     }
 
@@ -51,21 +58,24 @@ class ProductsController extends Controller
 
     public function edit($id)
     {
-        $product = Product::find($id);
-        return view('admin/products.edit', compact('product'));
+        //$product = Product::find($id);
+        return view('admin/products.edit', [
+            'categories' => Category::all(),
+            'product' => Product::find($id)
+        ]);
     }
 
     public function update(Request $request, $id)
     {
 
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'slug' => 'required'
-        // ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'slug' => 'required'
+        ]);
 
         $product = Product::find($id);
-        // $product->name = $request->name;
-        // $product->slug = $request->slug;
+        $product->name = $request->name;
+        $product->slug = $request->slug;
 
         $product->save();
         return redirect()->back()->with('message','Product succesvol aangepast');
@@ -79,24 +89,46 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ProductFormRequest $request)
     {
-        $request->validate([
-            'category_id' => 'required',
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-            'price' => 'required',
-            'minimum_age' => '',
-            'release_date' => 'date',
-            'preorder_date' => 'date',
-            'thumbnail' => 'image'
+        $validatedData = $request->validated();
 
+        $category = Category::find($validatedData['category_id']);
+
+        $product = $category->products()->create([
+            'user_id' => auth()->user()->id,
+            'category_id' => $validatedData['category_id'],
+            'title' => $validatedData['title'],
+            'slug' => Str::slug($validatedData['title'], '-'),
+            'excerpt' => $validatedData['excerpt'],
+            'body' => $validatedData['body'],
+            'price' => $validatedData['price'],
+            'minimum_age' => $validatedData['minimum_age'],
+            'release_date' => $validatedData['release_date'],
+            'preorder_date' => $validatedData['preorder_date'],
+            'is_active' => 0
         ]);
 
-        Product::create($request->all());
+        if($request->hasFile('image')) {
+            $uploadPath = 'uploads/products/';
 
-        return redirect()->route('admin')
-        ->with('success', 'Product aangemaakt!');
+            $i = 1;
+            foreach($request->file('image') as $imageFile) {
+                $extention = $imageFile->extension();
+                $filename = time() . $i++ . "." . $extention;
+                $imageFile->move($uploadPath,$filename);
+                $finalImagePathName = $uploadPath . $filename;
+
+                $product->images()->create([
+                    'product_id' => $product->id,
+                    'image' => $finalImagePathName,
+                ]);
+            }
+        }
+
+
+
+        return redirect('/admin')
+            ->with('success', 'Product aangemaakt!');
     }
 }

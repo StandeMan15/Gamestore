@@ -10,6 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $with = ['category', 'author'];
+    protected $guarded = [];
+    protected $table = 'products';
 
     public function scopeFilter($query, array $filters)
     {
@@ -47,6 +49,11 @@ class Product extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'product_id', 'id');
     }
 
 }

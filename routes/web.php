@@ -6,9 +6,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UserController;
-use App\Models\Product;
-use App\Models\Category;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductsController::class, 'index'])->name('home');
@@ -31,6 +29,7 @@ Route::get('admin/product/activity/{id}', [ProductsController::class, 'activity'
 Route::get('admin/product/edit/{id}', [ProductsController::class, 'edit'])->name('editProduct');
 Route::post('admin/product/update/{id}', [ProductsController::class, 'update'])->name('updateProduct');
 Route::get('admin/product/create', [ProductsController::class, 'create'])->name('createProduct');
+Route::post('admin/product/store', [ProductsController::class, 'store'])->name('storeProduct');
 
 //CRUD admin/users
 Route::get('admin/users', [UserController::class, 'show'])->name('adminUsers');

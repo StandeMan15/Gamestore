@@ -24,9 +24,8 @@ return new class extends Migration
             $table->decimal('price')->nullable();
             $table->decimal('discount_price')->nullable();
             $table->decimal('minimum_age')->nullable();
-            $table->string('thumbnail');
-            $table->date('release_date');
-            $table->date('preorder_date');
+            $table->date('release_date')->nullable();
+            $table->date('preorder_date')->nullable();
             $table->boolean('is_active');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
