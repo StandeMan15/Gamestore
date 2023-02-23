@@ -127,9 +127,10 @@
 
             <div class="col-span-3">
                 <input  class="p-2 border border-gray-200" type="file" name="image"
-                        id="image" value="{{ $product->thumbnail }}" required>
+                        id="image" value="{{ asset($images->image) }}">
                 <div>
-                    <img src="{{ $product->thumbnail }}" alt="{{ $product->title }} thumbnail   "/>
+                    <?php //dd($images) ?>
+                    <img src="{{ asset($images->image) }}" alt="{{ $product->title }} thumbnail   "/>
                 </div>
             </div>
 

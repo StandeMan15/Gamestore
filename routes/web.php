@@ -19,7 +19,9 @@ Route::prefix('/admin')->group(function()
         ->prefix('/categories')
         ->group(function()
         {   // URL::admin/categories
-            Route::get('/', 'show')->name('adminCategories');
+            Route::get('/', 'show')->name('showCategories');
+            Route::get('/read/{id}', 'read')->name('readCategory');
+            Route::get('/create', 'create')->name('createCategory');
             Route::get('/activity/{id}', 'activity')->name('statusCategory');
             Route::get('/edit/{id}', 'edit')->name('editCategory');
             Route::post('/update/{id}', 'update')->name('updateCategory');
@@ -28,7 +30,7 @@ Route::prefix('/admin')->group(function()
     Route::controller(ProductsController::class)
         ->prefix('/product')
         ->group(function(){
-            Route::get('/read/{id}', 'readAdmin')->name('readProduct');
+            Route::get('/read/{id}', 'read')->name('readProduct');
             Route::get('/activity/{id}', 'activity')->name('statusProduct');
             Route::get('/edit/{id}', 'edit')->name('editProduct');
             Route::post('/update/{id}','update')->name('updateProduct');
@@ -39,7 +41,13 @@ Route::prefix('/admin')->group(function()
     Route::controller(UserController::class)
         ->prefix('/users')
         ->group(function(){
-            Route::get('/', 'show')->name('adminUsers');
+            Route::get('/', 'show')->name('showUsers');
+            Route::get('/read/{id}', 'readUser')->name('readUser');
+            Route::get('/activity/{id}', 'activity')->name('statusUser');
+            Route::get('/edit/{id}', 'edit')->name('editUser');
+            Route::post('/update/{id}','update')->name('updateUser');
+            Route::get('/create', 'create')->name('createUser');
+            Route::post('/store', 'store')->name('storeUser');
         });
 });
 

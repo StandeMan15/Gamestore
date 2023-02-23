@@ -18,7 +18,7 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</span>
+                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->fname }}!</span>
                     @if (auth()->user()->is_admin == 1)
                         <span class="text-xs font-bold uppercase px-3">
                             <a href="/admin">Adminpanel</a>

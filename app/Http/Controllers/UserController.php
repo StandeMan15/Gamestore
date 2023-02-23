@@ -10,7 +10,9 @@ class UserController extends Controller
     public function show()
     {
         return view('admin/users.index', [
-            'user' => User::all()
+            'users' => User::paginate(10)
         ]);
     }
+
+    
 }

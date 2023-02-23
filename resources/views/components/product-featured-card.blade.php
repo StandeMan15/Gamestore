@@ -37,7 +37,7 @@
                     <div class="ml-3">
                         <a href="/?author={{ $product->author->username }}">
                             <h5 class="font-bold">
-                                {{ $product->author->name }}
+                                {{ $product->author->fname }}
                             </h5>
                         </a>
                     </div>

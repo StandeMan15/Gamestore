@@ -47,7 +47,7 @@ class SessionsController extends Controller
 
         if (auth()->user()->is_admin === 1) {
             return view('admin.home', [
-            'product' => Product::all()
+            'products' => Product::paginate(10)
             ]);
         } else {
             abort(403);

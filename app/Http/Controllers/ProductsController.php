@@ -15,7 +15,6 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        //dd('Hello World');
         return view('products.index', [
             'products' => Product::latest()->paginate(6),
             'images' => Image::all()
@@ -31,7 +30,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function readAdmin($id)
+    public function read($id)
     {
         return view('admin/products.read', [
 
@@ -58,26 +57,29 @@ class ProductsController extends Controller
 
     public function edit($id)
     {
-        //$product = Product::find($id);
         return view('admin/products.edit', [
             'categories' => Category::all(),
-            'product' => Product::find($id)
+            'product' => Product::find($id),
+            'images' => Image::where('product_id', $id)->firstOrFail()
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(ProductFormRequest $request, $id)
     {
+        $validatedData = $request->validated();
+        //dd($validatedData);
+        Product::where('id', $id)
+            ->update([
+                'title' => $validatedData['title'],
+                'price' => $validatedData['price'],
+                'category_id' => $validatedData['category_id'],
+                'release_date' => $validatedData['release_date'],
+                'excerpt' => $validatedData['excerpt'],
+                'body' => $validatedData['body'],
+                'minimum_age' => $validatedData['minimum_age'],
+                'preorder_date' => $validatedData['preorder_date']
+            ]);
 
-        $this->validate($request, [
-            'name' => 'required',
-            'slug' => 'required'
-        ]);
-
-        $product = Product::find($id);
-        $product->name = $request->name;
-        $product->slug = $request->slug;
-
-        $product->save();
         return redirect()->back()->with('message','Product succesvol aangepast');
     }
 

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryFormRequest;
 
 class CategoryController extends Controller
 {
     public function show()
     {
         return view('admin/categories.index', [
-            'category' => Category::all()
+            'category' => Category::paginate(10)
         ]);
     }
 
@@ -36,19 +37,23 @@ class CategoryController extends Controller
         return view('admin/categories.edit', compact('categories'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryFormRequest $request, $id)
     {
+        $validatedData = $request->validated();
+        dd($validatedData);
+        Category::where('id', $id)
+            ->update([
+                'name' => $validatedData['name'],
+                'slug' => $validatedData['slug']
+            ]);
 
-        $this->validate($request, [
-            'name' => 'required',
-            'slug' => 'required'
+        return redirect()->back()->with('message','Category succesvol aangepast');
+    }
+
+    public function read($id)
+    {
+        return view('admin/categories.read', [
+            'categorie' => Category::find($id)
         ]);
-
-        $categories = Category::find($id);
-        $categories->name = $request->name;
-        $categories->slug = $request->slug;
-
-        $categories->save();
-        return redirect()->back()->with('success','Categorie succesvol gewijzigd');
     }
 }
