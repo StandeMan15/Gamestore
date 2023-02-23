@@ -1,4 +1,5 @@
 <x-layout>
+    <x-admin-sidebar />
     <div class="grid grid-cols-12 gap-4">
         <table class="col-start-4 col-span-6">
 

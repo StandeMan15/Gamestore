@@ -15,18 +15,18 @@ class ProductsController extends Controller
 {
     public function index()
     {
+        //dd('Hello World');
         return view('products.index', [
-            'products' => Product::latest()->filter(
-                request(['search', 'category', 'author'])
-            )->paginate(6)->withQueryString()
+            'products' => Product::latest()->paginate(6),
+            'images' => Image::all()
 
         ]);
     }
 
-    public function show(Product $product)
+    public function show($category, Product $product)
     {
         return view('products.show', [
-            'images' => Image::all(),
+            'category' => $category,
             'product' => $product
         ]);
     }
@@ -53,7 +53,7 @@ class ProductsController extends Controller
         $product->save();
 
         return redirect()->back()
-            ->with('message','Status gewijzigd');
+            ->with('success','Status gewijzigd');
     }
 
     public function edit($id)

@@ -18,7 +18,7 @@
                                     </path>
                                 </g>
                             </svg>
-                            <?php dd($product) ?>
+                            <?php //dd($product) ?>
                             Terug naar alles van {{ $product->category->name }}
                         </a>
 

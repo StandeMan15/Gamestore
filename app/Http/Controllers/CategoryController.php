@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class CategoryController extends Controller
 {
     public function show()
     {
-        return view('admin.categories.index', [
+        return view('admin/categories.index', [
             'category' => Category::all()
         ]);
     }
