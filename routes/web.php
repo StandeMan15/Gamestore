@@ -25,6 +25,7 @@ Route::prefix('/admin')->group(function()
             Route::get('/activity/{id}', 'activity')->name('statusCategory');
             Route::get('/edit/{id}', 'edit')->name('editCategory');
             Route::post('/update/{id}', 'update')->name('updateCategory');
+            Route::post('/store', 'store')->name('storeCategory');
         });
 
     Route::controller(ProductsController::class)

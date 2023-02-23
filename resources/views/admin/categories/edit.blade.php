@@ -18,18 +18,6 @@
                         id="name" value="{{ $categories->name }}" required>
             </div>
 
-            <div class="col-span-1">
-                <label  class="static mb-2 uppercase font-bold text-xs text-gray-700"
-                        for="slug">
-                    Slug
-                </label>
-            </div>
-
-            <div class="col-span-5">
-                <input  class="p-2 border border-gray-200" type="text"
-                        value="{{ $categories->slug }}" required>
-            </div>
-
             <div class="col-span-2">
                 @error('name')
                 <p class="text-red-500 text-xs mt-1">
