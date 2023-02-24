@@ -1,6 +1,6 @@
 @props(['products'])
 @props(['images'])
-
+<?php //dd($products) ?>
 @if ($products->count() > 1)
     @foreach ($images as $image)
 

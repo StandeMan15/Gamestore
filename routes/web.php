@@ -20,7 +20,7 @@ Route::prefix('/admin')->group(function()
         ->prefix('/categories')
         ->group(function()
         {   // URL::admin/categories
-            Route::get('/', 'show')->name('showCategories');
+            Route::get('', 'show')->name('showCategories');
             Route::get('/read/{id}', 'read')->name('readCategory');
             Route::get('/create', 'create')->name('createCategory');
             Route::get('/activity/{id}', 'activity')->name('statusCategory');
@@ -34,6 +34,7 @@ Route::prefix('/admin')->group(function()
         ->group(function()
         {   // URL::admin/orders
             Route::get('', 'show')->name('showOrders');
+
         });
 
     Route::controller(ProductsController::class)
