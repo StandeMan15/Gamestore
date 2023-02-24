@@ -18,7 +18,6 @@ class ProductsController extends Controller
         return view('products.index', [
             'products' => Product::latest()->paginate(6),
             'images' => Image::all()
-
         ]);
     }
 
@@ -26,7 +25,8 @@ class ProductsController extends Controller
     {
         return view('products.show', [
             'category' => $category,
-            'product' => $product
+            'product' => $product,
+            'images' => Image::all()
         ]);
     }
 

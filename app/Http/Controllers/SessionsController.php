@@ -10,6 +10,22 @@ use Illuminate\Validation\ValidationException;
 
 class SessionsController extends Controller
 {
+    public function index()
+    {
+        if(!auth()->check()) {
+            abort(403);
+        }
+
+        if (auth()->user()->is_admin === 1) {
+            return view('admin.home', [
+            'products' => Product::paginate(10)
+            ]);
+        } else {
+            abort(403);
+        }
+
+    }
+
     public function create()
     {
         return view('sessions.create');
@@ -39,19 +55,5 @@ class SessionsController extends Controller
         return redirect('/')->with('success', 'Goodbye!');
     }
 
-    public function isAdmin()
-    {
-        if(!auth()->check()) {
-            abort(403);
-        }
 
-        if (auth()->user()->is_admin === 1) {
-            return view('admin.home', [
-            'products' => Product::paginate(10)
-            ]);
-        } else {
-            abort(403);
-        }
-
-    }
 }

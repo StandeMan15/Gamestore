@@ -13,7 +13,7 @@
             <table>
                 <th>Gebruikersnaam</th>
                 <th>email</th>
-                <th class="col-span-3">Actions</th>
+                <th class="col-span-2">Actions</th>
                 @foreach ( $users as $user )
                 <tr>
                     <td>
@@ -35,15 +35,15 @@
                         <form method="post" action="#">
                             @csrf
 
-                            @if ($user->is_active == 1)
+                            @if ($user->is_admin == 1)
                             <a href="{{route('statusUser', $user->id)}}"
                                 class="bg-green-400 text-white flex rounded-md px-3" type="submit">
-                                Actief
+                                Admin
                             </a>
                             @else
                             <a href="{{route('statusUser', $user->id)}}"
                                 class="bg-red-400 text-white flex rounded-md px-2" type="submit">
-                                Inactief
+                                User
                             </a>
                             @endif
                         </form>

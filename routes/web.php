@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductsController::class, 'index'])->name('home');
 
-Route::get('admin', [SessionsController::class, 'isAdmin']);
+Route::get('admin', [SessionsController::class, 'index']);
 
 Route::prefix('/admin')->group(function()
 {

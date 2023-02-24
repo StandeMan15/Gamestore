@@ -18,7 +18,7 @@
                                     </path>
                                 </g>
                             </svg>
-                            <?php //dd($product) ?>
+                            <?php //dd($images) ?>
                             Terug naar alles van {{ $product->category->name }}
                         </a>
 
@@ -37,7 +37,14 @@
                 </div>
 
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                    <img src="/images/illustration-1.png" alt="" class="rounded-xl">
+                    @foreach ($images as $image)
+                        @if (isset($image))
+                            <img src="{{ asset($image->image)}}" alt="" class="rounded-xl">
+                        @else
+                            <img src="https://via.placeholder.com/200" alt="{{ $product->title }}" class="rounded-xl">
+                        @endif
+                    @endforeach
+
 
                     <div class="uppercase semi-bold text-xl bg-green-500 text-white p-2 m-2 rounded-xl">
                         @if ($timeNow < $product->preorder_date)
@@ -100,4 +107,3 @@
     </body>
 
 </x-layout>
-<x-layout-footer />
