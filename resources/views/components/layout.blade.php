@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Artitext Gamestore</title>
+<title>Artitex Gamestore</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">

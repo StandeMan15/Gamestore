@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductCommentsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
@@ -28,9 +29,17 @@ Route::prefix('/admin')->group(function()
             Route::post('/store', 'store')->name('storeCategory');
         });
 
+    Route::controller(OrderController::class)
+        ->prefix('/orders')
+        ->group(function()
+        {   // URL::admin/orders
+            Route::get('', 'show')->name('showOrders');
+        });
+
     Route::controller(ProductsController::class)
         ->prefix('/product')
-        ->group(function(){
+        ->group(function()
+        {   // URL::admin/product
             Route::get('/read/{id}', 'read')->name('readProduct');
             Route::get('/activity/{id}', 'activity')->name('statusProduct');
             Route::get('/edit/{id}', 'edit')->name('editProduct');
@@ -41,7 +50,8 @@ Route::prefix('/admin')->group(function()
 
     Route::controller(UserController::class)
         ->prefix('/users')
-        ->group(function(){
+        ->group(function()
+        {   // URL::admin/users
             Route::get('/', 'show')->name('showUsers');
             Route::get('/read/{id}', 'readUser')->name('readUser');
             Route::get('/activity/{id}', 'activity')->name('statusUser');
@@ -50,6 +60,8 @@ Route::prefix('/admin')->group(function()
             Route::get('/create', 'create')->name('createUser');
             Route::post('/store', 'store')->name('storeUser');
         });
+
+
 });
 
 // Auth

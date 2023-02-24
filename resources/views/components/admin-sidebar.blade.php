@@ -9,5 +9,8 @@
         <li>
             <a href="{{route('showUsers')}}">Users</a>
         </li>
+        <li>
+            <a href="{{route('showOrders')}}">Orders</a>
+        </li>
     </ul>
 </div>

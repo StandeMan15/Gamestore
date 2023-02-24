@@ -7,7 +7,7 @@
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-8">
                     <div class="hidden lg:flex justify-between mb-6">
-                        <a href="/"
+                        <a href="/categories/{{ $product->category->slug }}"
                             class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                             <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                                 <g fill="none" fill-rule="evenodd">
@@ -18,7 +18,6 @@
                                     </path>
                                 </g>
                             </svg>
-                            <?php //dd($images) ?>
                             Terug naar alles van {{ $product->category->name }}
                         </a>
 
@@ -38,11 +37,11 @@
 
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                     @foreach ($images as $image)
-                        @if (isset($image))
-                            <img src="{{ asset($image->image)}}" alt="" class="rounded-xl">
-                        @else
-                            <img src="https://via.placeholder.com/200" alt="{{ $product->title }}" class="rounded-xl">
-                        @endif
+                    @if ((isset($image)) && ($product->id == $image->product_id))
+                        <img src="{{ asset($image->image)}}" alt="" class="rounded-xl">
+                    @else
+                        @continue
+                    @endif
                     @endforeach
 
 
@@ -53,11 +52,11 @@
                                 <span class="">
                                     Preorder Now!
                                 </span>
-                            @else
+                                @else
                                 Released On: <time>{{ date('M-Y', strtotime($product->release_date)) }}</time>
-                        @endif
+                                @endif
 
-                        <span class="flex justify-end pr-4">€{{ $product->price }}</span>
+                                <span class="flex justify-end pr-4">€{{ $product->price }}</span>
                     </div>
                 </div>
 

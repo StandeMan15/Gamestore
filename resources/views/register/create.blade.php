@@ -5,12 +5,12 @@
             <form method="POST" action="/register" class="mt-10">
                 @csrf
                 <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="name">
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="fname">
                         Name
                     </label>
 
                     <input  class="border border-gray-400 p-2 w-full"
-                            type="text" name="name" id="name" value="{{ old('name') }}" required>
+                            type="text" name="fname" id="fname" value="{{ old('fname') }}" required>
 
                     @error('name')
                         <p class="text-red-500 text-xs mt-1">
