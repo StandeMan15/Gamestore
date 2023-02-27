@@ -6,11 +6,11 @@
             {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
             <div class="py-6 px-5">
                 <div>
-                    <?php //dd($image) ?>
+                    <?php //dd($image); ?>
                     @if (isset($image))
                         <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl">
                     @else
-                        <img src="https://via.placeholder.com/450x500" alt="{{ $product->title }}" class="rounded-xl">
+                        <img src="https://via.placeholder.com/350x300" alt="{{ $product->title }}" class="rounded-xl">
                     @endif
 
                 </div>

@@ -1,15 +1,15 @@
 @props(['product'])
 @props(['image'])
-<?php //dd($image) ?>
+
 <article
     class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
             @if (isset($image))
-                <img    src="{{ asset($image)}}" alt="{{$product->title}}"
+                <img    src="{{ asset($image->image)}}" alt="{{$product->title}}"
                         class="rounded-xl">
             @else
-                <img src="https://via.placeholder.com/150" alt="{{$product->title}}"
+                <img src="https://via.placeholder.com/500x300" alt="{{$product->title}}"
                         class="rounded-xl">
             @endif
         </div>

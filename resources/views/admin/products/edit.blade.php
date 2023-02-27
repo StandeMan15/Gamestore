@@ -1,6 +1,6 @@
 <x-layout>
     <?php //dd($product)  ?>
-    <form method="POST" action="{{route('updateProduct', $product->id)}}">
+    <form method="POST" action="{{route('updateProduct', $product->id)}}" enctype="multipart/form-data">
         @csrf
 
         <div class="grid grid-cols-12 gap-4">
@@ -126,12 +126,8 @@
             </div>
 
             <div class="col-span-3">
-                <input  class="p-2 border border-gray-200" type="file" name="image"
-                        id="image" value="{{ asset($images->image) }}">
-                <div>
-                    <?php //dd($images) ?>
-                    <img src="{{ asset($images->image) }}" alt="{{ $product->title }} thumbnail   "/>
-                </div>
+                <input  class="p-2 border border-gray-200" type="file" name="image" id="image">
+
             </div>
 
             <div class="col-span-2">

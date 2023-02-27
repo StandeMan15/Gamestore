@@ -10,14 +10,15 @@ use App\Models\Image;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProductsController extends Controller
 {
     public function index()
     {
         return view('products.index', [
-            'products' => Product::latest()->paginate(6),
-            'images' => Image::all()
+            'images' => Image::all(),
+            'products' => Product::where('is_active', 1)->latest()->paginate(6)
         ]);
     }
 
@@ -60,15 +61,19 @@ class ProductsController extends Controller
         return view('admin/products.edit', [
             'categories' => Category::all(),
             'product' => Product::find($id),
-            'images' => Image::where('product_id', $id)->firstOrFail()
+            'images' => Image::all()
         ]);
     }
 
     public function update(ProductFormRequest $request, $id)
     {
         $validatedData = $request->validated();
-        //dd($validatedData);
-        Product::where('id', $id)
+
+
+        $category = Category::find($validatedData['category_id']);
+        $product = Product::find($id);
+
+        $product = $category->products()
             ->update([
                 'title' => $validatedData['title'],
                 'price' => $validatedData['price'],
@@ -80,7 +85,25 @@ class ProductsController extends Controller
                 'preorder_date' => $validatedData['preorder_date']
             ]);
 
-        return redirect()->back()->with('message','Product succesvol aangepast');
+            if($request->hasFile('image')) {
+                $uploadPath = 'uploads/products/';
+
+                $i = 1;
+                foreach($request->file('image') as $imageFile) {
+                    dd($imageFile);
+                    $extention = $imageFile->extension();
+                    $filename = time() . $i++ . "." . $extention;
+                    $imageFile->move($uploadPath,$filename);
+                    $finalImagePathName = $uploadPath . $filename;
+
+                    $product->images()->create([
+                        'product_id' => $id,
+                        'image' => $finalImagePathName,
+                    ]);
+                }
+            }
+
+        return redirect('/admin')->with('message','Product succesvol aangepast');
     }
 
     public function create()

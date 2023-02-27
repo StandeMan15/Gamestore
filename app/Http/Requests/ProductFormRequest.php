@@ -29,7 +29,7 @@ class ProductFormRequest extends FormRequest
             'excerpt' => 'string|required',
             'body' => 'string|required',
             'price' => 'numeric|required|',
-            'minimum_age' => 'numeric',
+            'minimum_age' => 'numeric|nullable',
             'release_date' => 'date|nullable',
             'preorder_date' => 'date|nullable',
             //'image' => 'nullable|image|mimes:jpeg,png,jpg'

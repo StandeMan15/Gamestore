@@ -11,8 +11,6 @@
                 @foreach ( $images as $image )
                     @if ($image->product_id == $product->id)
                         <img src="{{ asset($image->image) }}" alt="" class="h-auto w-auto"/>
-                    @else
-                        <
                     @endif
                 @endforeach
 
