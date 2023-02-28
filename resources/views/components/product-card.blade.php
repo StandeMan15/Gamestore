@@ -6,9 +6,8 @@
             {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
             <div class="py-6 px-5">
                 <div>
-                    <?php //dd($image); ?>
                     @if (isset($image))
-                        <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl">
+                        <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl" height="20rem">
                     @else
                         <img src="https://via.placeholder.com/400x300" alt="{{ $product->title }}" class="rounded-xl">
                     @endif
@@ -38,9 +37,21 @@
                         {!! $product->excerpt !!}
                     </div>
 
-                    <x-product-card-footer :product="$product"/>
+
+                    @if (isset($product->discount_price))
+                        <p>Van: <span class="line-through bg-red-400 p-1 mt-2 rounded-xl">€ {{ $product->price }}</span></p>
+                        <span class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
+                            € {{ $product->price }}
+                        </span>
+                    @else
+                    <div class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
+                    € {{ $product->price }}
+                    </div>
+                    @endif
+
+
+                    <x-product-card-footer :product="$product" />
                 </div>
             </div>
         </article>
-
 @endif

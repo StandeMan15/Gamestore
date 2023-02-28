@@ -9,9 +9,13 @@ class OrderController extends Controller
 {
     public function show()
     {
-        return view('admin/orders.index', [
+        return view('orders.index', [
             'orders' => Orders::all()
         ]);
 
+    }
+
+    public function create()
+    {
     }
 }

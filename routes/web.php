@@ -29,11 +29,11 @@ Route::prefix('/admin')->group(function()
             Route::post('/store', 'store')->name('storeCategory');
         });
 
-    Route::controller(OrderController::class)
+    Route::controller(AdminOrderController::class)
         ->prefix('/orders')
         ->group(function()
         {   // URL::admin/orders
-            Route::get('', 'show')->name('showOrders');
+            Route::get('', 'show')->name('showOrdersAdmin');
 
         });
 
@@ -63,6 +63,15 @@ Route::prefix('/admin')->group(function()
         });
 
 
+});
+
+Route::prefix('/order')->group(function()
+{
+    Route::controller(OrderController::class)
+    ->group(function()
+    {
+        Route::get('', 'create')->name('addItem');
+    });
 });
 
 // Auth
