@@ -10,7 +10,7 @@
                     @if (isset($image))
                         <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl">
                     @else
-                        <img src="https://via.placeholder.com/350x300" alt="{{ $product->title }}" class="rounded-xl">
+                        <img src="https://via.placeholder.com/400x300" alt="{{ $product->title }}" class="rounded-xl">
                     @endif
 
                 </div>

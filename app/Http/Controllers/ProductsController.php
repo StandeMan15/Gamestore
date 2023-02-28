@@ -18,7 +18,7 @@ class ProductsController extends Controller
     {
         return view('products.index', [
             'images' => Image::all(),
-            'products' => Product::where('is_active', 1)->latest()->paginate(6)
+            'products' => Product::where('is_active', 1)->latest()->paginate(7)
         ]);
     }
 

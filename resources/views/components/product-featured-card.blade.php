@@ -6,7 +6,7 @@
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
             @if (isset($image))
-                <img    src="{{ asset($image->image)}}" alt="{{$product->title}}"
+                <img    src="{{ asset($image)}}" alt="{{$product->title}}"
                         class="rounded-xl">
             @else
                 <img src="https://via.placeholder.com/500x300" alt="{{$product->title}}"
