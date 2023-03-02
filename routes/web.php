@@ -20,7 +20,7 @@ Route::prefix('/admin')->group(function()
         ->prefix('/categories')
         ->group(function()
         {   // URL::admin/categories
-            Route::get('', 'show')->name('showCategories');
+            Route::get('', 'showAdmin')->name('showAdminCategories');
             Route::get('/read/{id}', 'read')->name('readCategory');
             Route::get('/create', 'create')->name('createCategory');
             Route::get('/activity/{id}', 'activity')->name('statusCategory');
@@ -64,6 +64,9 @@ Route::prefix('/admin')->group(function()
 
 
 });
+
+//Category Handling
+Route::get('categories/{categories:slug}', [CategoryController::class, 'show'])->name('showCategories');
 
 // Auth
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');

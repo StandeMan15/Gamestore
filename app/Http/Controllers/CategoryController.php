@@ -6,14 +6,27 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\CategoryFormRequest;
+use App\Models\Image;
+use App\Models\Product;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function show()
+    public function showAdmin()
     {
         return view('admin/categories.index', [
             'category' => Category::paginate(10)
+        ]);
+    }
+
+    public function show(Request $request)
+    {
+        $url = explode('/', $request->url());
+
+        return view('categories.index', [
+            'products' => Product::all(),
+            'slug' => $url[4],
+            'images' => Image::all()
         ]);
     }
 
