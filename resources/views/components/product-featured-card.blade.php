@@ -37,6 +37,22 @@
                 {!! $product->excerpt !!}
             </div>
 
+            @if (isset($product->discount_price))
+            <p>
+                <span class="line-through bg-red-400 p-1 mt-5 rounded-xl">
+                    € {{ $product->price }}
+                </span>
+
+                <span class="mt-5 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
+                    € {{ $product->price }}
+                </span>
+            </p>
+            @else
+            <div class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
+                € {{ $product->price }}
+            </div>
+            @endif
+
             <x-product-card-footer :product="$product" />
         </div>
     </div>

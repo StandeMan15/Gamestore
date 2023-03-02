@@ -6,7 +6,9 @@
 @if ($products->count())
     <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
-    @foreach ($images as $image)
+    @if ($images->count())
+
+        @foreach ($images as $image)
             @if ($image->product_id != $products[0]->id)
                 @php
                     $noImg = true;
@@ -17,18 +19,25 @@
             @endif
         @endforeach
 
-        @if ($noImg)
-        <x-product-featured-card :product="$products[0]" />
+        @if(isset($noImg))
+            <x-product-featured-card :product="$products[0]" />
         @endif
 
-    @if ($products->count() > 1)
+    @else
+        <x-product-featured-card :product="$products[0]" />
+    @endif
+
+    @if ($products->count())
         <?php $i = 0; ?>
         <!-- Display two products bigger than the remaining grid -->
         <div class="lg:grid lg:grid-cols-6">
             @foreach ($products->skip(1) as $product)
                 @if ($product->is_active == 1)
                     @foreach ($images as $image)
-                    <?php $i++; ?>
+                        @php 
+                            $i++; 
+                        @endphp
+
                         @if ($image->product_id == $product->id)
                             <x-product-card
                                 :product="$product" :image="$image->image"
@@ -41,9 +50,14 @@
                                 @break
                         @endif
                     @endforeach
+
+                    @if (empty($images->count()))
+                            <x-product-card
+                                :product="$product"
+                                class="{{ $i <= 2 ? 'col-span-2' : 'col-span-2' }}"/>
+                        @endif
                 @endif
             @endforeach
-            <?php //dd($i)  ?>
         </div>
     @endif
 @else

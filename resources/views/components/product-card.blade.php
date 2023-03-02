@@ -40,10 +40,15 @@
 
 
             @if (isset($product->discount_price))
-            <p>Van: <span class="line-through bg-red-400 p-1 mt-5 rounded-xl">€ {{ $product->price }}</span></p>
-            <p class="mt-4">Voor: <span class="mt-5 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
+            <p>
+                <span class="line-through bg-red-400 p-1 mt-5 rounded-xl">
                     € {{ $product->price }}
-                </span></p>
+                </span>
+
+                <span class="mt-5 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
+                    € {{ $product->price }}
+                </span>
+            </p>
             @else
             <div class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
                 € {{ $product->price }}
