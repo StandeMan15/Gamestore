@@ -30,7 +30,7 @@
         @endif
 
     @endforeach
-        </div>
+    </div>
 </x-layout>
 
 <x-layout-footer />

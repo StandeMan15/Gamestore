@@ -2,11 +2,9 @@
 @props(['image'])
 
 @if ($product->is_active == 1)
-<article
-    {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
+<article {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
     <div class="py-6 px-5">
         <div>
-                    <?php //dd($image); ?>
             @if (isset($image))
             <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl">
             @else
@@ -38,7 +36,6 @@
                 {!! $product->excerpt !!}
             </div>
 
-
             @if (isset($product->discount_price))
             <p>
                 <span class="line-through bg-red-400 p-1 mt-5 rounded-xl">
@@ -46,7 +43,7 @@
                 </span>
 
                 <span class="mt-5 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
-                    € {{ $product->price }}
+                    € {{ $product->discount_price }}
                 </span>
             </p>
             @else

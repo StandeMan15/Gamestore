@@ -27,6 +27,7 @@ Route::prefix('/admin')->group(function()
             Route::get('/edit/{id}', 'edit')->name('editCategory');
             Route::post('/update/{id}', 'update')->name('updateCategory');
             Route::post('/store', 'store')->name('storeCategory');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroyCategory');
         });
 
     Route::controller(OrderController::class)
@@ -47,6 +48,7 @@ Route::prefix('/admin')->group(function()
             Route::post('/update/{id}','update')->name('updateProduct');
             Route::get('/create', 'create')->name('createProduct');
             Route::post('/store', 'store')->name('storeProduct');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroyProduct');
         });
 
     Route::controller(UserController::class)
@@ -60,10 +62,13 @@ Route::prefix('/admin')->group(function()
             Route::post('/update/{id}','update')->name('updateUser');
             Route::get('/create', 'create')->name('createUser');
             Route::post('/store', 'store')->name('storeUser');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroyUser');
         });
 
 
 });
+
+//Route::get('', [OrderController::class, 'store'])
 
 //Category Handling
 Route::get('categories/{categories:slug}', [CategoryController::class, 'show'])->name('showCategories');

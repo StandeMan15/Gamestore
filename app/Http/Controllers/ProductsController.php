@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Image;
-
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -155,5 +155,14 @@ class ProductsController extends Controller
 
         return redirect('/admin')
             ->with('success', 'Product aangemaakt!');
+    }
+
+    public function destroy($id)
+    {
+        
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect('/admin')->with('success', 'Product succesvol verwijderd');
     }
 }

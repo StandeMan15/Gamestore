@@ -52,6 +52,12 @@
                             @endif
                         </form>
                     </td>
+                    <td>
+                        <a href="{{route('destroyProduct', $product->id)}}"
+                            class="bg-red-400 text-white flex rounded-md px-2" type="submit">
+                        Delete
+                        </a>
+                    </td>
 
                 </tr>
                 @endforeach
