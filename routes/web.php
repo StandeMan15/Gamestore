@@ -83,6 +83,9 @@ Route::prefix('/order')->group(function()
     });
 });
 
+Route::get('{categories:slug}', [CategoryController::class, 'show'])->name('showcategory');
+
+
 // Auth
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');

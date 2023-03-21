@@ -21,22 +21,15 @@
                 </div>
 
                 <div class="mt-4">
-                    <h1 class="text-3xl">
+                    <h1 class="text-3xl text-black">
                         <a href="/{{ $product->category->slug }}/{{ $product->slug }}">
                             {{ $product->title }}
                         </a>
                     </h1>
 
-                        <div class="mt-4">
-                            <h1 class="text-3xl">
-                                <a href="/{{ $product->category->slug }}/{{ $product->slug }}">
-                                    {{ $product->title }}
-                                </a>
-                            </h1>
-
-                            <span class="mt-2 block text-gray-400 text-xs">
-                                Published <time>{{ $product->created_at->diffForHumans() }}</time>
-                            </span>
+                    <span class="mt-2 block text-gray-400 text-xs">
+                        Published <time>{{ $product->created_at->diffForHumans() }}</time>
+                    </span>
                         </div>
                     </header>
 

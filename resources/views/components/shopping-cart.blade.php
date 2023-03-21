@@ -25,7 +25,7 @@
               @php $total = 0 @endphp
               @foreach((array) session('cart') as $id => $details)
               @php
-               if ($details['discount_price'] != null) {
+              if ($details['discount_price'] != null) {
               $details['price'] = $details['discount_price'];
               }
               $total += $details['price'] * $details['quantity'] @endphp
@@ -36,6 +36,11 @@
             </div>
             @if(session('cart'))
             @foreach(session('cart') as $id => $details)
+            @php
+            if ($details['discount_price'] != null) {
+            $details['price'] = $details['discount_price'];
+            }
+            @endphp
             <div class="row cart-detail">
               <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
                 <img src="../{{ $details['image'] }}" alt="Product Thumbnail" width="80" height="80" />

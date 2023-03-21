@@ -53,27 +53,6 @@
         </div>
     @endif
 
-    <!-- Display two products bigger than the remaining grid -->
-    <div class="lg:grid lg:grid-cols-6">
-        @foreach ($products->skip(1) as $product)
-            @if ($product->is_active == 1)
-                @foreach ($images as $image)
-                    @if ($image->product_id == $product->id)
-                            <x-product-card :product="$product" :image="$image->image" class="{{ $loop->iteration ? 'col-span-2' : 'col-span-2' }}" />
-                        @break
-                    @else
-                        <x-product-card :product="$product" class="{{ $loop->iteration ? 'col-span-2' : 'col-span-2' }}" />
-                        @break
-                    @endif
-                @endforeach
-
-                @if (empty($images->count()))
-                    <x-product-card :product="$product" class="{{ $loop->iteration ? 'col-span-2' : 'col-span-2' }}" />
-                @endif
-            @endif
-        @endforeach
-    </div>
-
     @else
     <p class="text-center">
         No products yet. Please check back later
