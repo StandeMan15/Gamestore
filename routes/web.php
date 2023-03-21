@@ -16,6 +16,10 @@ Route::get('admin', [SessionsController::class, 'index']);
 
 Route::prefix('/admin')->group(function()
 {
+    
+    Route::get('/active', [ProductsController::class, 'filterActive' ])->name('filterActive');
+    Route::get('/inactive', [ProductsController::class, 'filterInactive'])->name('filterInactive');
+
     Route::controller(CategoryController::class)
         ->prefix('/categories')
         ->group(function()
@@ -34,8 +38,7 @@ Route::prefix('/admin')->group(function()
         ->prefix('/orders')
         ->group(function()
         {   // URL::admin/orders
-            Route::get('', 'show')->name('showOrders');
-
+            Route::get('', 'show')->name('showOrdersAdmin');
         });
 
     Route::controller(ProductsController::class)
@@ -68,10 +71,17 @@ Route::prefix('/admin')->group(function()
 
 });
 
-//Route::get('', [OrderController::class, 'store'])
-
-//Category Handling
-Route::get('categories/{categories:slug}', [CategoryController::class, 'show'])->name('showCategories');
+Route::prefix('/order')->group(function()
+{
+    Route::controller(OrderController::class)
+    ->group(function()
+    {
+        Route::get('cart', 'cart')->name('cart');
+        Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
+        Route::patch('update-cart', 'update')->name('updatecart');
+        Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
+    });
+});
 
 // Auth
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');

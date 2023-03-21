@@ -29,6 +29,7 @@ class ProductFormRequest extends FormRequest
             'excerpt' => 'string|required',
             'body' => 'string|required',
             'price' => 'numeric|required|',
+            'discount_price' => 'numeric|nullable',
             'minimum_age' => 'numeric|nullable',
             'release_date' => 'date|nullable',
             'preorder_date' => 'date|nullable',

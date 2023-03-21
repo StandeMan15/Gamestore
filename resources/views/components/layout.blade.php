@@ -18,7 +18,8 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->fname }}!</span>
+                <x-shopping-cart />
+                    <span class="ml-2 text-xs font-bold uppercase">Welkom, {{ auth()->user()->fname }}!</span>
                     @if (auth()->user()->is_admin == 1)
                         <span class="text-xs font-bold uppercase px-3">
                             <a href="/admin">Adminpanel</a>
@@ -30,7 +31,8 @@
                         <button type="submit">Logout</button>
                     </form>
                 @else
-                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                    <x-shopping-cart />
+                    <a href="/register" class=" ml-2 text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
                 @endauth
 
