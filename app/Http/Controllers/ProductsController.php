@@ -68,8 +68,7 @@ class ProductsController extends Controller
     public function update(ProductFormRequest $request, $id)
     {
         $validatedData = $request->validated();
-        dd($validatedData);
-
+        
         $category = Category::find($validatedData['category_id']);
         $product = Product::find($id);
 

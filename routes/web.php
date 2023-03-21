@@ -38,7 +38,6 @@ Route::prefix('/admin')->group(function()
         ->group(function()
         {   // URL::admin/orders
             Route::get('', 'show')->name('showOrdersAdmin');
-            Route::get('', 'addToCart')->name('cart');
         });
 
     Route::controller(ProductsController::class)
@@ -74,7 +73,10 @@ Route::prefix('/order')->group(function()
     Route::controller(OrderController::class)
     ->group(function()
     {
-        Route::get('', 'store')->name('addItem');
+        Route::get('cart', 'cart')->name('cart');
+        Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
+        Route::patch('update-cart', 'update')->name('updatecart');
+        Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
     });
 });
 
