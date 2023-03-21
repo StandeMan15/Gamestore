@@ -52,7 +52,7 @@
                 </tr>
                 @endforeach
             </table>
-            <div class="fixed top-1/2 right-2/5">
+            <div class="top-1/2 right-2/5">
                 {{ $users->links() }}
             </div>
         </div>

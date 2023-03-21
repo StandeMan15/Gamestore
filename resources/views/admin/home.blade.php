@@ -1,15 +1,35 @@
 <x-layout>
-    <div class="grid grid-cols-6 gap-4">
+    <div class="grid grid-cols-12 gap-4">
         <div class="col-span-1">
             <x-admin-sidebar />
         </div>
 
-        <div class="col-span-6 col-start-2">
-                <a href="{{route('createProduct')}}" class="bg-green-500 text-white rounded-md p-2">Create
-                </a>
+        <div class="col-span-12 col-start-3">
+            <a href="{{route('createProduct')}}" class="bg-green-500 text-white rounded-md p-2">Create
+            </a>
         </div>
 
-        <div class="col-start-2 col-span-4 m-auto">
+        <div class="col-span-2 col-start-3 pt-8">
+            <ul class="space-y-2">
+                <li>
+                    <a href="{{route('filterActive')}}" class="bg-green-400 rounded-xl p-1 m-5 text-white">
+                        Actieve producten
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('filterInactive')}}" class="bg-red-400 rounded-xl p-1 m-5 text-white">
+                        Inactie producten
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin" class="bg-yellow-400 rounded-xl p-1 m-5 text-white">
+                        Alle producten
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-span-6 m-auto">
             <table>
                 <th>Title</th>
                 <th>Price</th>
@@ -28,25 +48,21 @@
                     </td>
 
                     <td>
-                        <a href="{{route('readProduct', $product->id)}}"
-                            class="bg-blue-400 text-white flex rounded-md px-1">Read</a>
+                        <a href="{{route('readProduct', $product->id)}}" class="bg-blue-400 text-white flex rounded-md px-1">Read</a>
                     </td>
                     <td>
-                        <a href="{{route('editProduct', $product->id)}}"
-                            class="bg-yellow-400 text-white flex rounded-md px-1">Edit</a>
+                        <a href="{{route('editProduct', $product->id)}}" class="bg-yellow-400 text-white flex rounded-md px-1">Edit</a>
                     </td>
                     <td>
                         <form method="post" action="#">
                             @csrf
 
                             @if ($product->is_active == 1)
-                            <a href="{{route('statusProduct', $product->id)}}"
-                                class="bg-green-400 text-white flex rounded-md px-3" type="submit">
+                            <a href="{{route('statusProduct', $product->id)}}" class="bg-green-400 text-white flex rounded-md px-3" type="submit">
                                 Actief
                             </a>
                             @else
-                            <a href="{{route('statusProduct', $product->id)}}"
-                                class="bg-red-400 text-white flex rounded-md px-2" type="submit">
+                            <a href="{{route('statusProduct', $product->id)}}" class="bg-red-400 text-white flex rounded-md px-2" type="submit">
                                 Inactief
                             </a>
                             @endif
@@ -56,7 +72,7 @@
                 </tr>
                 @endforeach
             </table>
-            <div class="fixed top-1/2 right-2/5">
+            <div class="top-1/2 right-2/5">
                 {{ $products->links() }}
             </div>
         </div>

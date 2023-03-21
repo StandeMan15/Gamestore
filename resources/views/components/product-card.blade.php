@@ -7,7 +7,7 @@
             <div class="py-6 px-5">
                 <div>
                     @if (isset($image))
-                        <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl" height="20rem">
+                        <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl h-64 w-auto">
                     @else
                         <img src="https://via.placeholder.com/400x300" alt="{{ $product->title }}" class="rounded-xl">
                     @endif
@@ -41,7 +41,7 @@
                     @if (isset($product->discount_price))
                         <p>Van: <span class="line-through bg-red-400 p-1 mt-2 rounded-xl">€ {{ $product->price }}</span></p>
                         <span class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
-                            € {{ $product->price }}
+                            € {{ $product->discount_price }}
                         </span>
                     @else
                     <div class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
@@ -50,8 +50,8 @@
                     @endif
 
 
-                    <x-product-card-footer :product="$product" />
+                    
                 </div>
-            </div>
+            </div><x-product-card-footer :product="$product" />
         </article>
 @endif

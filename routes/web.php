@@ -16,6 +16,10 @@ Route::get('admin', [SessionsController::class, 'index']);
 
 Route::prefix('/admin')->group(function()
 {
+    
+    Route::get('/active', [ProductsController::class, 'filterActive' ])->name('filterActive');
+    Route::get('/inactive', [ProductsController::class, 'filterInactive'])->name('filterInactive');
+
     Route::controller(CategoryController::class)
         ->prefix('/categories')
         ->group(function()
@@ -29,12 +33,12 @@ Route::prefix('/admin')->group(function()
             Route::post('/store', 'store')->name('storeCategory');
         });
 
-    Route::controller(AdminOrderController::class)
+    Route::controller(OrderController::class)
         ->prefix('/orders')
         ->group(function()
         {   // URL::admin/orders
             Route::get('', 'show')->name('showOrdersAdmin');
-
+            Route::get('', 'addToCart')->name('cart');
         });
 
     Route::controller(ProductsController::class)
@@ -70,7 +74,7 @@ Route::prefix('/order')->group(function()
     Route::controller(OrderController::class)
     ->group(function()
     {
-        Route::get('', 'create')->name('addItem');
+        Route::get('', 'store')->name('addItem');
     });
 });
 

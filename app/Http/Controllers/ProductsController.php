@@ -68,15 +68,22 @@ class ProductsController extends Controller
     public function update(ProductFormRequest $request, $id)
     {
         $validatedData = $request->validated();
-
+        dd($validatedData);
 
         $category = Category::find($validatedData['category_id']);
         $product = Product::find($id);
+
+        if ((isset($validatedData['discount_price'])) && ($validatedData['price'] > $validatedData['discount_price'])) {
+            $validatedData['discount_price'] = $validatedData['discount_price'];
+        } else {
+            $validatedData['discount_price'] = NULL;
+        }
 
         $product = $category->products()
             ->update([
                 'title' => $validatedData['title'],
                 'price' => $validatedData['price'],
+                'discount_price' => $validatedData['discount_price'],
                 'category_id' => $validatedData['category_id'],
                 'release_date' => $validatedData['release_date'],
                 'excerpt' => $validatedData['excerpt'],
@@ -90,13 +97,13 @@ class ProductsController extends Controller
 
                 $i = 1;
                 foreach($request->file('image') as $imageFile) {
-                    dd($imageFile);
+                    //dd($imageFile);
                     $extention = $imageFile->extension();
                     $filename = time() . $i++ . "." . $extention;
                     $imageFile->move($uploadPath,$filename);
                     $finalImagePathName = $uploadPath . $filename;
 
-                    $product->images()->create([
+                    $product->images()->update([
                         'product_id' => $id,
                         'image' => $finalImagePathName,
                     ]);
@@ -155,5 +162,19 @@ class ProductsController extends Controller
 
         return redirect('/admin')
             ->with('success', 'Product aangemaakt!');
+    }
+
+    public function filterActive()
+    {
+        return view('admin.home', [
+            'products' => Product::where('is_active', 1)->paginate(10)
+        ]);
+    }
+
+    public function filterInactive()
+    {
+        return view('admin.home', [
+            'products' => Product::where('is_active', 0)->paginate(10)
+        ]);
     }
 }
