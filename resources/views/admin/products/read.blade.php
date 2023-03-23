@@ -43,18 +43,23 @@
                     <td>
                         Prijs:
                     </td>
-
-                    @if ($product->discount_price)
+                    @if ($product->discount_price != null)
                         <td>
                             <span class="line-through">{{ $product->price }}</span>
                             {{ $product->discount_price }}
                         </td>
+                    @else
+                        <td>
+                            <span>{{ $product->price }} </span>
+                        </td>
+                        
                     @endif
 
 
                 </tr>
 
                 <tr>
+                    @if (isset($product->minimum_age))
                     <td>
                         Minimale leeftijd:
                     </td>
@@ -62,6 +67,12 @@
                     <td>
                         {{ $product->minimum_age }}
                     </td>
+                    @else
+                    <td class="col-span-2 col-start-2">
+                        Geschikt voor alle leeftijden
+                    </td> 
+                    @endif
+
                 </tr>
 
                 <tr>

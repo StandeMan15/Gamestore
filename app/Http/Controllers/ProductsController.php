@@ -96,7 +96,7 @@ class ProductsController extends Controller
 
                 $i = 1;
                 foreach($request->file('image') as $imageFile) {
-                    //dd($imageFile);
+                    dd($imageFile);
                     $extention = $imageFile->extension();
                     $filename = time() . $i++ . "." . $extention;
                     $imageFile->move($uploadPath,$filename);
@@ -109,7 +109,7 @@ class ProductsController extends Controller
                 }
             }
 
-        return redirect('/admin')->with('message','Product succesvol aangepast');
+        return redirect('/admin')->with('success','Product succesvol aangepast');
     }
 
     public function create()

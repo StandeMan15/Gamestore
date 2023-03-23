@@ -71,20 +71,6 @@ Route::prefix('/admin')->group(function()
 
 });
 
-Route::prefix('/order')->group(function()
-{
-    Route::controller(OrderController::class)
-    ->group(function()
-    {
-        Route::get('cart', 'cart')->name('cart');
-        Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
-        Route::patch('update-cart', 'update')->name('updatecart');
-        Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
-    });
-});
-
-Route::get('{categories:slug}', [CategoryController::class, 'show'])->name('showcategory');
-
 
 // Auth
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
@@ -95,6 +81,23 @@ Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
+// Order 
+
+Route::prefix('/order')->group(function () {
+    Route::controller(OrderController::class)
+        ->group(function () {
+            Route::get('cart', 'cart')->name('cart');
+            Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
+            Route::patch('update-cart', 'update')->name('updatecart');
+            Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
+            Route::get('store', 'store')->name('storeorder');
+        });
+});
+
 // Product handling
 Route::get('{categories:slug}/{product:slug}', [ProductsController::class, 'show']);
 Route::post('products/{product:slug}/comments', [ProductCommentsController::class, 'store']);
+
+
+
+Route::get('{categories:slug}', [CategoryController::class, 'show'])->name('showcategory');

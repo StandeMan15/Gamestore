@@ -22,10 +22,9 @@ class CategoryController extends Controller
     public function show(Request $request)
     {
         $url = explode('/', $request->url());
-
         return view('categories.index', [
             'products' => Product::all(),
-            'slug' => $url[4],
+            'slug' => $url[3],
             'images' => Image::all()
         ]);
     }

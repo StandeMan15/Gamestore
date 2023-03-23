@@ -1,5 +1,6 @@
 @extends('components.shopping-cart')
 
+
 @section('content')
 <table id="cart" class="table table-hover table-condensed">
     <thead>
@@ -16,17 +17,17 @@
         @if(session('cart'))
         @foreach(session('cart') as $id => $details)
         @php
-            if ($details['discount_price'] != null) {
-                $details['price'] = $details['discount_price'];
-            }
-         $total += $details['price'] * $details['quantity'] @endphp
+        if ($details['discount_price'] != null) {
+        $details['price'] = $details['discount_price'];
+        }
+        $total += $details['price'] * $details['quantity'] @endphp
         <tr data-id="{{ $id }}">
             <td data-th="Product">
                 <div class="row">
                     <div class="col-sm-3 hidden-xs">
-                        <img src="../{{ $details['image'] }}" width="100" height="100" class="img-responsive" alt="Product Thumbnail"/>
+                        <img src="../{{ $details['image'] }}" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-8">
                         <h4 class="nomargin">{{ $details['name'] }}</h4>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
         <tr>
             <td colspan="5" class="text-right">
                 <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Verder winkelen</a>
-                <a href="#"><button class="btn btn-success">Bestellen</button></a>
+                <a href="{{route('storeorder')}}"><button class="btn btn-success">Bestellen</button></a>
             </td>
         </tr>
     </tfoot>

@@ -31,20 +31,22 @@ class OrderController extends Controller
     {
         
         $product = Product::findOrFail($id);
-        //dd($product->id);
         $image = Image::firstWhere('product_id', '=', $product->id);
-        //dd($image);
+        if($image == null) {
+            $image = 'https://via.placeholder.com/400x300';
+        }
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
+                "id" => $product->id,
                 "name" => $product->title,
                 "quantity" => 1,
                 "price" => $product->price,
                 "discount_price" => $product->discount_price,
-                "image" => $image->image
+                "image" => $image
             ];
         }
 
@@ -91,6 +93,25 @@ class OrderController extends Controller
                 session()->put('cart', $cart);
             }
             session()->flash('success', 'Product removed successfully');
+        }
+    }
+
+    public function store()
+    {
+        $order = Orders::all();
+        //dd(session('cart'));
+        foreach (session('cart') as $id => $items) {
+            
+            if(isset($items['discount_price'])) {
+                $items['price'] = $items['discount_price'];
+            }
+
+            $order->create([
+                'id' => $items['id'],
+                'name' => $items['name'],
+                'quantity' => $items['quantity'],
+                'price' => $items['price'],
+            ]);
         }
     }
 }
