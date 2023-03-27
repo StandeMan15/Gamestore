@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\ProductCommentsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\OrderController;
@@ -33,11 +34,14 @@ Route::prefix('/admin')->group(function()
             Route::post('/store', 'store')->name('storeCategory');
         });
 
-    Route::controller(OrderController::class)
+    Route::controller(OrderAdminController::class)
         ->prefix('/orders')
         ->group(function()
         {   // URL::admin/orders
-            Route::get('', 'show')->name('showOrdersAdmin');
+            Route::get('', 'show')->name('showOrders');
+            Route::get('/create', 'create')->name('createOrder');
+            Route::get('/read/{id}', 'read')->name('readOrder');
+            Route::get('/edit/{id}', 'edit')->name('editOrder');
         });
 
     Route::controller(ProductsController::class)

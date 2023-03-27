@@ -15,11 +15,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+<<<<<<< Updated upstream
             $table->foreignId('user_id');
             $table->foreignId('status_id');
             $table->foreignId('user_order');
             $table->foreignId('product_id');
             $table->string('quantity');
+=======
+            $table->foreignId('user_id')->constrained();
+
+            $table->string('order_id');
+>>>>>>> Stashed changes
             $table->timestamps();
         });
     }

@@ -10,7 +10,11 @@
             <a href="{{route('showUsers')}}">Users</a>
         </li>
         <li>
+<<<<<<< Updated upstream
             <a href="">Orders</a>
+=======
+            <a class="text-white" href="{{route('showOrders')}}">Orders</a>
+>>>>>>> Stashed changes
         </li>
     </ul>
 </div>

@@ -7,22 +7,23 @@
         <div class="col-start-6 col-span-4 my-8">
             <table>
                 <tr>
-                    <td>
-                        Categorie:
-                    </td>
+                    <th>
+                        Producten:
+                    </th>
+                    <th>
+                        Slug:
+                    </th>
 
-                    <td>
-                        {{ $categorie->name}}
-                    </td>
                 </tr>
 
-                <tr>
+                <tr> 
                     <td>
-                        Slug:
+                        {{ $orders->name}}
                     </td>
 
+
                     <td>
-                        {{ $categorie->slug }}
+                        {{ $orders->id }}
                     </td>
                 </tr>
             </table>

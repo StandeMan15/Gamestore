@@ -93,4 +93,42 @@ class OrderController extends Controller
             session()->flash('success', 'Product removed successfully');
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public function store()
+    {
+        //dd(session('cart'));
+        if (count(session('cart')) > 0) {
+            //dont forget to validate
+            $latestOrder = Order::orderBy('created_at', 'DESC')->first();
+
+            
+
+            if ($latestOrder == null) {
+                $latestOrder = (object) array('id' => 0);
+            }
+            
+            foreach (session('cart') as $id => $items) {
+                $order = new Order;
+
+                $order->user_id = auth()->id();
+                $order->order_id = '#' . str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
+                $order->name = $items['name'];
+                $order->quantity = $items['quantity'];
+
+                if (isset($items['discount_price'])) {
+                    $items['price'] = $items['discount_price'];
+                }
+                $order->price = $items['price'] * $items['quantity'];
+
+                $order->save();
+                
+            }
+        }
+        session()->forget(['cart']);
+        return redirect('')->with('success', 'Bestelling succesvol geplaatst!');
+
+    }
+>>>>>>> Stashed changes
 }
