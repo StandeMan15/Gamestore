@@ -24,9 +24,13 @@
         <tr data-id="{{ $id }}">
             <td data-th="Product">
                 <div class="row">
+                    @if ($details['image'] == null)
+                        <img src="https://via.placeholder.com/400x300" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
+                    @else
                     <div class="col-sm-3 hidden-xs">
-                        <img src="../{{ $details['image'] }}" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
+                        <img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
                     </div>
+                    @endif
                     <div class="col-sm-8">
                         <h4 class="nomargin">{{ $details['name'] }}</h4>
                     </div>

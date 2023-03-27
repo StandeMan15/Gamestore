@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
-use App\Models\Orders;
+use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -17,7 +18,7 @@ class OrderController extends Controller
     public function show()
     {
         return view('orders.index', [
-            'orders' => Orders::all()
+            'orders' => Order::all()
         ]);
 
     }
@@ -32,15 +33,13 @@ class OrderController extends Controller
         
         $product = Product::findOrFail($id);
         $image = Image::firstWhere('product_id', '=', $product->id);
-        if($image == null) {
-            $image = 'https://via.placeholder.com/400x300';
-        }
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
+                "user_id" => auth()->id(),
                 "id" => $product->id,
                 "name" => $product->title,
                 "quantity" => 1,
@@ -98,20 +97,38 @@ class OrderController extends Controller
 
     public function store()
     {
-        $order = Orders::all();
         //dd(session('cart'));
-        foreach (session('cart') as $id => $items) {
-            
-            if(isset($items['discount_price'])) {
-                $items['price'] = $items['discount_price'];
-            }
+        if (count(session('cart')) > 0) {
+            //dont forget to validate
+            $latestOrder = Order::orderBy('created_at', 'DESC')->first();
 
-            $order->create([
-                'id' => $items['id'],
-                'name' => $items['name'],
-                'quantity' => $items['quantity'],
-                'price' => $items['price'],
-            ]);
+            if ($latestOrder == null) {
+                $latestOrder[] = ['id' => 0];
+
+            }
+            
+            foreach (session('cart') as $id => $items) {
+                $order = new Order;
+
+                if(auth()->id() == null) {
+                    $order->user_id = 0;
+                }
+                $order->user_id = auth()->id();
+                $order->order_id = '#' . str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
+                $order->name = $items['name'];
+                $order->quantity = $items['quantity'];
+
+                if (isset($items['discount_price'])) {
+                    $items['price'] = $items['discount_price'];
+                }
+                $order->price = $items['price'] * $items['quantity'];
+
+                $order->save();
+                
+            }
         }
+        session()->forget(['cart']);
+        return redirect('')->with('success', 'Bestelling succesvol geplaatst!');
+
     }
 }

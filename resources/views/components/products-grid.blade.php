@@ -5,23 +5,24 @@
 <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
         @if($images->count())
-            @foreach ($images as $image)
-                @if ($image->product_id != $products[0]->id)
-                    @php
-                        $noImg = true;
-                    @endphp
-                @elseif ($image->product_id == $products[0]->id)
-                    @php
-                        $noImg = false;
-                    @endphp
-                    <x-product-featured-card :product="$products[0]" :image="$image->image" id="$product->id" />
-                @endif
-
-
-            @endforeach
-                @if ($noImg)
-                    <x-product-featured-card :product="$products[0]" id="$product->id" />
-                @endif
+            @if ($product->is_active == 1)
+                @foreach ($images as $image)
+                    @if ($image->product_id != $products[0]->id)
+                        @php
+                            $noImg = true;
+                        @endphp
+                    @elseif ($image->product_id == $products[0]->id)
+                        @php
+                            $noImg = false;
+                        @endphp
+                        <x-product-featured-card :product="$products[0]" :image="$image->image" id="$product->id" />
+                        @break
+                    @endif
+                    @if ($noImg)
+                        <x-product-featured-card :product="$products[0]" id="$product->id" />
+                    @endif
+                @endforeach
+            @endif
         @endif
 
     @if ($products->count() > 1)
@@ -44,6 +45,8 @@
                                 @break
                             @endif
                         @endforeach
+                    @else
+                    @php $noImg = true; @endphp
                     @endif
                     @if ($noImg)
                         <x-product-card :product="$product" class="col-span-2" id="$product->id" />    

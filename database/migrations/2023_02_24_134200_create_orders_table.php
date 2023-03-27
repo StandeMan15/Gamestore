@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('status_id');
-            $table->foreignId('user_order');
+            $table->integer('user_id');
+            $table->string('name');
+            $table->integer('quantity');
+            $table->integer('price');
+            $table->string('order_id');
             $table->timestamps();
         });
     }

@@ -90,7 +90,7 @@ Route::prefix('/order')->group(function () {
             Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
             Route::patch('update-cart', 'update')->name('updatecart');
             Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
-            Route::get('store', 'store')->name('storeorder');
+            Route::get('bevestig-bestelling', 'store')->name('storeorder');
         });
 });
 
