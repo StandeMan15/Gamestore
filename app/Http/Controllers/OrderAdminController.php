@@ -19,7 +19,7 @@ class OrderAdminController extends Controller
     public function read($id)
     {
         return view('admin/orders.read', [
-            'orders' => Order::where('order_id', '=', $id),
+            'orders' => orde::where('order_id', '=', $id),
             'users' => User::all()
         ]);
     }

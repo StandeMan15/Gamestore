@@ -11,9 +11,9 @@
         </li>
         <li>
 <<<<<<< Updated upstream
-            <a href="">Orders</a>
+            <a href="">Order</a>
 =======
-            <a class="text-white" href="{{route('showOrders')}}">Orders</a>
+            <a class="text-white" href="{{route('showOrders')}}">Order</a>
 >>>>>>> Stashed changes
         </li>
     </ul>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
-use App\Models\Orders;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function show()
     {
         return view('orders.index', [
-            'orders' => Orders::all()
+            'orders' => Order::all()
         ]);
 
     }
