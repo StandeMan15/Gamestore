@@ -31,7 +31,7 @@
                         <form method="post" action="#">
                             @csrf
 
-                            @if ($categorie->is_active == 1)
+                            @if ($categorie->active == 1)
                             <a href="{{route('statusCategory', $categorie->id)}}"
                                 class="bg-green-400 text-white flex rounded-md px-3" type="submit">
                                 Actief

@@ -33,10 +33,10 @@ class CategoryController extends Controller
     {
         $category = Category::find($categories);
 
-        if($category->is_active == 1) {
-            $category->is_active = 0;
-        }elseif($category->is_active == 0) {
-            $category->is_active = 1;
+        if($category->active == 1) {
+            $category->active = 0;
+        }elseif($category->active == 0) {
+            $category->active = 1;
         }
 
         $category->save();
@@ -59,7 +59,7 @@ class CategoryController extends Controller
             ->update([
                 'name' => $validatedData['name'],
                 'slug' => Str::slug($validatedData['name'], '-'),
-                'is_active' => 0
+                'active' => 0
             ]);
 
         return redirect('admin/categories')->with('message','Category succesvol aangepast');
@@ -86,7 +86,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $validatedData['name'],
             'slug' => Str::slug($validatedData['name'], '-'),
-            'is_active' => 0
+            'active' => 0
         ]);
 
         return redirect('/admin/categories')

@@ -18,7 +18,7 @@ class ProductsController extends Controller
     {
         return view('products.index', [
             'images' => Image::all(),
-            'products' => Product::where('is_active', 1)->latest()->paginate(7)
+            'products' => Product::where('active', 1)->latest()->paginate(7)
         ]);
     }
 
@@ -44,10 +44,10 @@ class ProductsController extends Controller
     {
         $product = Product::find($product);
 
-        if($product->is_active == 1) {
-            $product->is_active = 0;
-        }elseif($product->is_active == 0) {
-            $product->is_active = 1;
+        if($product->active == 1) {
+            $product->active = 0;
+        }elseif($product->active == 0) {
+            $product->active = 1;
         }
 
         $product->save();
@@ -137,7 +137,7 @@ class ProductsController extends Controller
             'minimum_age' => $validatedData['minimum_age'],
             'release_date' => $validatedData['release_date'],
             'preorder_date' => $validatedData['preorder_date'],
-            'is_active' => 0
+            'active' => 0
         ]);
 
         if($request->hasFile('image')) {
@@ -166,14 +166,14 @@ class ProductsController extends Controller
     public function filterActive()
     {
         return view('admin.home', [
-            'products' => Product::where('is_active', 1)->paginate(10)
+            'products' => Product::where('active', 1)->paginate(10)
         ]);
     }
 
     public function filterInactive()
     {
         return view('admin.home', [
-            'products' => Product::where('is_active', 0)->paginate(10)
+            'products' => Product::where('active', 0)->paginate(10)
         ]);
     }
 }

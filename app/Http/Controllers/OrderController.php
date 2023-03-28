@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -97,33 +98,36 @@ class OrderController extends Controller
 
     public function store()
     {
-        //dd(session('cart'));
+
         if (count(session('cart')) > 0) {
             //dont forget to validate
             $latestOrder = Order::orderBy('created_at', 'DESC')->first();
 
             if ($latestOrder == null) {
-                $latestOrder[] = ['id' => 0];
+                $latestOrder = (object) ['id' => 0];
 
             }
-            
-            foreach (session('cart') as $id => $items) {
-                $order = new Order;
 
-                if(auth()->id() == null) {
-                    $order->user_id = 0;
-                }
-                $order->user_id = auth()->id();
-                $order->order_id = '#' . str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
-                $order->name = $items['name'];
-                $order->quantity = $items['quantity'];
+            $order = new Order;
+
+            $order->user_id = auth()->id();
+            $order->order_number = str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
+
+
+            foreach (session('cart') as $id => $items) {              
+                $orderdetails = new OrderDetails();
+
+                $orderdetails->order_number = $order->order_number;
+                $orderdetails->name = $items['name'];
+                $orderdetails->quantity = $items['quantity'];
 
                 if (isset($items['discount_price'])) {
                     $items['price'] = $items['discount_price'];
                 }
-                $order->price = $items['price'] * $items['quantity'];
+                $orderdetails->price = $items['price'] * $items['quantity'];
 
                 $order->save();
+                $orderdetails->save();
                 
             }
         }

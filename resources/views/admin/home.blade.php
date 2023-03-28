@@ -57,7 +57,7 @@
                         <form method="post" action="#">
                             @csrf
 
-                            @if ($product->is_active == 1)
+                            @if ($product->active == 1)
                             <a href="{{route('statusProduct', $product->id)}}" class="bg-green-400 text-white flex rounded-md px-3" type="submit">
                                 Actief
                             </a>

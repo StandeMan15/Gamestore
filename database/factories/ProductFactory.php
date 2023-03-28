@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             'minimum_age' => $this->faker->numberBetween(12,18),
             'release_date' => $this->faker->date,
             'preorder_date' => $this->faker->date,
-            'is_active' => $this->faker->boolean
+            'active' => $this->faker->boolean
         ];
     }
 }

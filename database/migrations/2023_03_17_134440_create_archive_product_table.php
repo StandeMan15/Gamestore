@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('minimum_age')->nullable();
             $table->date('release_date')->nullable();
             $table->date('preorder_date')->nullable();
-            $table->boolean('is_active');
+            $table->boolean('active');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });

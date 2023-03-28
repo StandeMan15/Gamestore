@@ -5,7 +5,7 @@
 <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
         @if($images->count())
-            @if ($product->is_active == 1)
+            @if ($product->active == 1)
                 @foreach ($images as $image)
                     @if ($image->product_id != $products[0]->id)
                         @php
@@ -30,7 +30,7 @@
         <!-- Display the remaining products in rows of three -->
         <div class="lg:grid lg:grid-cols-6">
             @foreach ($products->skip(1) as $product)
-                @if ($product->is_active == 1)
+                @if ($product->active == 1)
                     @if($images->count())
                         @foreach ($images as $image)
                             @if ($image->product_id != $product->id)
