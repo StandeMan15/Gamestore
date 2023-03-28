@@ -10,7 +10,7 @@
             <a class="text-white" href="{{route('showUsers')}}">Users</a>
         </li>
         <li>
-            <a class="text-white" href="">Orders</a>
+            <a class="text-white" href="{{route('showOrdersAdmin')}}">Orders</a>
         </li>
     </ul>
 </div>

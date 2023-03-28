@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductCommentsController;
 use App\Http\Controllers\ProductsController;
@@ -34,11 +35,13 @@ Route::prefix('/admin')->group(function()
             Route::delete('/destroy/{id}', 'destroy')->name('destroyCategory');
         });
 
-    Route::controller(OrderController::class)
+    Route::controller(AdminOrderController::class)
         ->prefix('/orders')
         ->group(function()
         {   // URL::admin/orders
             Route::get('', 'show')->name('showOrdersAdmin');
+            Route::get('/read/{id}', 'read')->name('readOrdersAdmin');
+            Route::get('/create', 'create')->name('createOrdersAdmin');
         });
 
     Route::controller(ProductsController::class)
