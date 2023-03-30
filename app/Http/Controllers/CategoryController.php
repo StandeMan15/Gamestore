@@ -14,6 +14,10 @@ class CategoryController extends Controller
 {
     public function showAdmin()
     {
+        if (!auth()->check()) {
+            abort(403);
+        }
+
         return view('admin/categories.index', [
             'category' => Category::paginate(10)
         ]);

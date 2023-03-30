@@ -10,7 +10,7 @@
 
         <div class="col-start-2 col-span-12 m-auto">
             <table>
-                <th class="col-span-2">Orders</th>
+                <th class="col-span-2">User ID</th>
                 <th class="col-span-2">Order nummer</th>
                 <th class="col-span-2">Actions</th>
                 @foreach ( $orders as $order )

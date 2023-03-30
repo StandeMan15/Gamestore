@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Order;
-use App\Models\OrderDetails;
+use App\Models\UserOrder;
 use App\Models\Product;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -109,14 +109,13 @@ class OrderController extends Controller
             }
 
             $order = new Order;
-
             $order->user_id = auth()->id();
-            $order->order_number = str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
+            $order->order_number = str_pad($latestOrder->id + 1, STR_PAD_LEFT);
 
 
             foreach (session('cart') as $id => $items) {              
-                $orderdetails = new OrderDetails();
-
+                $orderdetails = new UserOrder();
+                
                 $orderdetails->order_number = $order->order_number;
                 $orderdetails->name = $items['name'];
                 $orderdetails->quantity = $items['quantity'];
@@ -132,7 +131,7 @@ class OrderController extends Controller
             }
         }
         session()->forget(['cart']);
-        return redirect('')->with('success', 'Bestelling succesvol geplaatst!');
+        return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
 
     }
 }

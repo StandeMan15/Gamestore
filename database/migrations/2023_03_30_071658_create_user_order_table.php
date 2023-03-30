@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::create('user_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_number')->constrained('orders');
+            $table->foreignId('order_number')->references('order_number')->on('orders');
             $table->string('name');
             $table->integer('quantity');
             $table->integer('price');

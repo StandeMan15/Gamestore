@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
-            $table->integer('order_number');
+            $table->integer('user_id');
+            $table->primary('order_number');
             $table->timestamps();
         });
     }

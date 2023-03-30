@@ -25,7 +25,7 @@
             <td data-th="Product">
                 <div class="row">
                     @if ($details['image'] == null)
-                        <img src="https://via.placeholder.com/400x300" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
+                    <img src="https://via.placeholder.com/400x300" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
                     @else
                     <div class="col-sm-3 hidden-xs">
                         <img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
@@ -49,19 +49,31 @@
         @endif
     </tbody>
     <tfoot>
-        <tr>
-            <td colspan="5" class="text-right">
-                <h3><strong>Totaal €{{ $total }}</strong></h3>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5" class="text-right">
-                <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Verder winkelen</a>
-                <a href="{{route('storeorder')}}"><button class="btn btn-success">Bestellen</button></a>
-            </td>
-        </tr>
     </tfoot>
 </table>
+@endsection
+
+@section('overview')
+<table>
+    <th>
+        Overzicht
+    </th>
+    <tr>
+        Artikelen
+    </tr>
+    <tr>
+        <td colspan="5" class="text-right">
+            <p class="p-2"><strong>Nog te betalen € &nbsp;{{ $total }}</strong></p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5" class="text-right">
+            <a href="{{route('storeorder')}}"><button class="btn btn-success">Verder naar bestellen</button></a>
+        </td>
+    </tr>
+
+</table>
+
 @endsection
 
 @section('scripts')

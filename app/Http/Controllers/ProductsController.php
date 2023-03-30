@@ -33,6 +33,10 @@ class ProductsController extends Controller
 
     public function read($id)
     {
+        if (!auth()->check()) {
+            abort(403);
+        }
+        
         return view('admin/products.read', [
 
             'product' => Product::find($id),
@@ -58,6 +62,10 @@ class ProductsController extends Controller
 
     public function edit($id)
     {
+        if (!auth()->check()) {
+            abort(403);
+        }
+
         return view('admin/products.edit', [
             'categories' => Category::all(),
             'product' => Product::find($id),
@@ -114,6 +122,10 @@ class ProductsController extends Controller
 
     public function create()
     {
+        if (!auth()->check()) {
+            abort(403);
+        }
+        
         return view('admin.products.create',[
             'categories' => Category::all(),
             'users' => User::all()

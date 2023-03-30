@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductCommentsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UserController;
@@ -94,6 +95,10 @@ Route::prefix('/order')->group(function () {
             Route::patch('update-cart', 'update')->name('updatecart');
             Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
             Route::get('bevestig-bestelling', 'store')->name('storeorder');
+        });
+    Route::controller(CheckoutController::class)
+        ->group(function () {
+            Route::get('{id}', 'confirm')->name('orderconfirm');
         });
 });
 
