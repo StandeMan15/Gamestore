@@ -129,7 +129,9 @@ class OrderController extends Controller
             }
             
             if(strlen($totalprice) < 3) {
+                
                 $totalprice = $totalprice . ".00";
+                ddd($totalprice);
             }
             $checkout = [
                 'order_number' => $order->order_number,

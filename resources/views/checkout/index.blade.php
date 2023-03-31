@@ -8,107 +8,117 @@ $items = 0;
         <div class="col-span-7">
             <form method="post" action="">
                 @csrf
+                <table>
+                    <tr>
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="fname">Voornaam</label>
+                        </td>
 
-                <div class="col-span-6 flex justify-around">
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="fname">Voornaam</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="text" id="fname" name="fname">
+                        </td>
 
-                    <input class="p-2 border border-gray-200" type="text" id="fname" name="fname">
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="lname">Achternaam</label>
+                        </td>
 
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="lname">Achternaam</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="text" id="lname" name="lname">
+                        </td>
+                    </tr>
 
-                    <input class="p-2 border border-gray-200" type="text" id="lname" name="lname">
-                </div>
+                    <tr>
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="compname">Bedrijfsnaam</label>
+                        </td>
 
-                <div class="col-span-6 flex justify-around">
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="compname">Bedrijfsnaam</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="text" id="compname" name="compname">
+                        </td>
 
-                    <input class="p-2 border border-gray-200" type="text" id="compname" name="compname">
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="email">Email</label>
+                        </td>
 
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="email">Email</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="email" id="email" name="email">
+                        </td>
+                    </tr>
 
-                    <input class="p-2 border border-gray-200" type="email" id="email" name="email">
-                </div>
+                    <tr>
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="address">Straat</label>
+                        </td>
 
-                <div class="col-span-6 flex justify-around">
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="address">Straat</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="text" id="address" name="address">
+                        </td>
 
-                    <input class="p-2 border border-gray-200" type="text" id="address" name="address">
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="zipcode">Postcode</label>
+                        </td>
 
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="zipcode">Postcode</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode">
+                        </td>
+                    </tr>
 
-                    <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode">
-                </div>
+                    <tr>
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmr">Huisnummer</label>
+                        </td>
 
-                <div class="col-span-6 flex justify-around">
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmr">Huisnummer</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="text" id="housenmr" name="housenmr">
+                        </td>
 
-                    <input class="p-2 border border-gray-200" type="text" id="housenmr" name="housenmr">
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmradd">Toevoeging Huisnummer</label>
+                        </td>
 
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmradd">Toevoeging Huisnummer</label>
+                        <td>
+                            <input class="p-2 border border-gray-200" type="text" id="housenmradd" name="housenmradd">
+                        </td>
+                    </tr>
 
-                    <input class="p-2 border border-gray-200" type="text" id="housenmradd" name="housenmradd">
-                </div>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="col-span-3 flex justify-content-end">
+                                <input class="p-2 border border-gray-200 checked:bg-blue-500" type="checkbox" id="housenmradd" name="housenmradd">
+                            </div>
+                        </td>
 
-                <div class="col-span-3 flex justify-content-end">
-                    <input class="p-2 border border-gray-200 checked:bg-blue-500" type="checkbox" id="housenmradd" name="housenmradd">
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmr">
-                        <a class="text-black no-underline hover:text-black" href='https://www.artitex.nl/juridisch/algemene-voorwaarden/' target="_blank">
-                            Ik ga akkoord met de algemene voorwaarden
-                        </a>
-                    </label>
-                </div>
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmr">
+                                <a class="text-black no-underline hover:text-black" href='https://www.artitex.nl/juridisch/algemene-voorwaarden/' target="_blank">
+                                    Ik ga akkoord met de algemene voorwaarden
+                                </a>
+                            </label>
+                        </td>
+                    </tr>
 
-                <div class="col-span-3 flex justify-content-end">
-                    <input class="p-2 border border-gray-200 checked:bg-blue-500" type="checkbox" id="housenmradd" name="housenmradd" checked>
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmr">
-                        Deze gegevens als factuurgegevens gebruiken
-                    </label>
-                </div>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="col-span-3 flex justify-content-end">
+                                <input class="p-2 border border-gray-200 checked:bg-blue-500" type="checkbox" id="housenmradd" name="housenmradd" checked>
+                            </div>
+                        </td>
+
+                        <td>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmr">
+                                Deze gegevens als factuurgegevens gebruiken
+                            </label>
+                        </td>
+                    </tr>
+                </table>
             </form>
         </div>
 
-        <!-- <div class="col-span-5">
-            <table class="table-auto">
-                @foreach ($orders as $order)
-                <tr>
-                    @foreach ($users as $user)
-                    @if (auth()->id() == $user->user_id)
-                    <td>
-                        {{$order->name}}
-                    </td>
 
-                    <td>
-                        @php
-                        $items += $order->quantity
-                        @endphp
-                        {{$order->quantity}}
-                    </td>
-
-                    <td>
-                        @php
-                        $total += $order->price;
-                        @endphp
-                        €{{$order->price}}
-                    </td>
-                    @break
-                    @endif
-
-                    @endforeach
-                </tr>
-                @endforeach
-                <tr class="border-t-4 border-gray-800">
-                    <td class="flex justify-content-end font-bold">
-                        Totaal:
-                    </td>
-                    <td>
-                        {{$items}}
-                    </td>
-                    <td>
-                        €{{$total}}
-                    </td>
-                </tr>
-            </table>
-        </div> -->
     </div>
 
 </x-layout>

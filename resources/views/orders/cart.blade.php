@@ -15,7 +15,9 @@
     <tbody>
         @php $total = 0 @endphp
         @if(session('cart'))
+        @php $items = count(session('cart')) @endphp
         @foreach(session('cart') as $id => $details)
+
         @php
         if ($details['discount_price'] != null) {
         $details['price'] = $details['discount_price'];
@@ -55,25 +57,37 @@
 @endsection
 
 @section('overview')
-<table>
-    <th>
-        Overzicht
-    </th>
-    <tr>
-        Artikelen
-    </tr>
-    <tr>
-        <td colspan="5" class="text-right">
-            <p class="p-2"><strong>Nog te betalen € &nbsp;{{ $total }}</strong></p>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="5" class="text-right">
-            <a href="{{route('storeorder')}}"><button class="btn btn-success">Verder naar bestellen</button></a>
-        </td>
-    </tr>
 
+
+@if (isset($items))
+<table>
+    <div class="col-span-5">
+        <tr>
+            <td>
+                <h5 class="font-bold">Overzicht</h5>
+            </td>
+        </tr>
+        <tr class="border-t-4 border-gray-800">
+            <td class="flex justify-content-end">
+                Artikelen({{$items}})
+            </td>
+            <td class="font-bold">
+                €&nbsp;{{session('checkout.order_price')}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href={{route('mollie.payment')}}><button class="btn btn-success">Door naar betalen</button></a>
+            </td>
+
+        </tr>
+    </div>
 </table>
+@else
+<h1>
+    Er liggen nog geen producten in jouw winkelwagentje
+    </h1>
+@endif
 
 @endsection
 
