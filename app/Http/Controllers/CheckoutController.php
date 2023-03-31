@@ -20,31 +20,28 @@ class CheckoutController extends Controller
 
     public function preparePayment()
     {
+        //dd(array_values(session('checkout')));
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => "EUR",
-                "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
+                "value" => session('checkout.order_price') // You must send the correct number of decimals, thus we enforce the use of strings
             ],
-            "description" => "Order #12345",
-            "redirectUrl" => route('order.success'),
-            "webhookUrl" => route('webhooks.mollie'),
+            "description" => "Order " . session('checkout.order_number'),
+            "redirectUrl" => route('payment.success'),
+            // "webhookUrl" => route('webhooks.mollie'),
             "metadata" => [
-                "order_id" => "12345",
+                "order_id" => session('checkout.order_number'),
+                "order_price" => session('checkout.order_price')
             ],
         ]);
-
+        $payment = Mollie::api()->payments->get($payment->id);
+        
         // redirect customer to Mollie checkout page
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
-    public function handleWebhookNotification(Request $request)
+    public function handleWebhookNotification()
     {
-        $paymentId = $request->input('id');
-        $payment = Mollie::api()->payments->get($paymentId);
-
-        if ($payment->isPaid()) {
-            echo 'Payment received.';
-            // Do your thing ...
-        }
+        return redirect('')->with('success', 'Uw betaling is ontvangen');
     }
 }

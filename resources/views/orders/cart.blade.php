@@ -20,7 +20,8 @@
         if ($details['discount_price'] != null) {
         $details['price'] = $details['discount_price'];
         }
-        $total += $details['price'] * $details['quantity'] @endphp
+        $total += $details['price'] * $details['quantity']
+        @endphp
         <tr data-id="{{ $id }}">
             <td data-th="Product">
                 <div class="row">

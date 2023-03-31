@@ -16,6 +16,9 @@ Route::get('/', [ProductsController::class, 'index'])->name('home');
 
 Route::get('admin', [SessionsController::class, 'index']);
 
+Route::get('mollie-payment',[CheckoutController::class, 'preparePayment'])->name('mollie.payment');
+Route::get('payment-succes', [CheckoutController::class, 'handleWebhookNotification'])->name('payment.success');
+
 Route::prefix('/admin')->group(function()
 {
     

@@ -98,24 +98,22 @@ class OrderController extends Controller
 
     public function store()
     {
-
         if (count(session('cart')) > 0) {
             //dont forget to validate
             $latestOrder = Order::orderBy('created_at', 'DESC')->first();
 
             if ($latestOrder == null) {
                 $latestOrder = (object) ['id' => 0];
-
             }
 
             $order = new Order;
             $order->user_id = auth()->id();
             $order->order_number = str_pad($latestOrder->id + 1, STR_PAD_LEFT);
 
-
+            $totalprice = 0;
             foreach (session('cart') as $id => $items) {              
                 $orderdetails = new UserOrder();
-                
+
                 $orderdetails->order_number = $order->order_number;
                 $orderdetails->name = $items['name'];
                 $orderdetails->quantity = $items['quantity'];
@@ -124,11 +122,21 @@ class OrderController extends Controller
                     $items['price'] = $items['discount_price'];
                 }
                 $orderdetails->price = $items['price'] * $items['quantity'];
-
+                $totalprice += $orderdetails->price;
+                
                 $order->save();
                 $orderdetails->save();
-                
             }
+            
+            if(strlen($totalprice) < 3) {
+                $totalprice = $totalprice . ".00";
+            }
+            $checkout = [
+                'order_number' => $order->order_number,
+                'order_price' => $totalprice
+            ];
+            
+            session()->put('checkout', $checkout);
         }
         session()->forget(['cart']);
         return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
