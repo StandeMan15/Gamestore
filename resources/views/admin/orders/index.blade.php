@@ -14,11 +14,14 @@
                 <th class="col-span-2">Order nummer</th>
                 <th class="col-span-2">Actions</th>
                 @foreach ( $orders as $order )
-                @php //dd($order) 
+                @php dd($order)
                 @endphp
                 <tr>
                     <td>
                         {{$order->user->fname}}&nbsp;{{$order->user->lname}}
+                    </td>
+                    <td>
+                        {{$order->order_number}}
                     </td>
                     <td>
                         {{$order->order_number}}

@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $with = ['user'];
+    protected $with = ['user', 'status'];
 
     public function product()
     {
@@ -22,7 +22,7 @@ class Order extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function status(): HasOne
+    public function status() : HasOne
     {
         return $this->hasOne(Status::class, 'id', 'order_status');
     }
