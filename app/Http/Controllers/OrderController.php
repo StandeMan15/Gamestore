@@ -103,7 +103,7 @@ class OrderController extends Controller
             $latestOrder = Order::orderBy('created_at', 'DESC')->first();
             //dd($latestOrder);
             if ($latestOrder == null) {
-                $latestOrder = (object) ['id' => 0];
+                $latestOrder = (object) ['order_number' => 0];
             }
 
             $order = new Order;
@@ -140,6 +140,8 @@ class OrderController extends Controller
             ];
             
             session()->put('checkout', $checkout);
+        } else {
+            return redirect('')->with('success', 'Er zijn nog geen producten in uw mand, dus u kunt nog niet afrekenen');
         }
         session()->forget(['cart']);
         return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');

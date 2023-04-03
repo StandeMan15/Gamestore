@@ -44,5 +44,6 @@ class CheckoutController extends Controller
     {
         return redirect('')->with('success', 'Uw betaling is ontvangen');
         session()->forget(['checkout']);
+        session()->flush();
     }
 }

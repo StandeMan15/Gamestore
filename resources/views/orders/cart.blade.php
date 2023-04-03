@@ -25,7 +25,6 @@
         if ($details['discount_price'] != null) {
         $details['price'] = $details['discount_price'];
         }
-        $total += $details['price'] * $details['quantity']
         @endphp
         <tr data-id="{{ $id }}">
             <td data-th="Product">
@@ -50,7 +49,7 @@
 
             @php
             $subtotal = $details['price'] * $details['quantity'];
-
+            $total += $subtotal;
             if(!str_contains($subtotal, '.')) {
 
             $subtotal = $subtotal . ".00";
@@ -86,7 +85,7 @@
                 Artikelen({{$items}})
             </td>
             <td class="font-bold">
-                €&nbsp;{{session('checkout.order_price')}}
+                €&nbsp;{{$total}}
             </td>
         </tr>
         <tr>

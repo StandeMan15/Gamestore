@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->id('order_number');
             //$table->primary('order_number');
             $table->timestamps();

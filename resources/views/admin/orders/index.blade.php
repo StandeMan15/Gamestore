@@ -16,7 +16,7 @@
                 @foreach ( $orders as $order )
                 <tr>
                     <td>
-                        {{$order->user_id}}
+                        {{$order->user->fname}}&nbsp;{{$order->user->lname}}
                     </td>
                     <td>
                         {{$order->order_number}}
