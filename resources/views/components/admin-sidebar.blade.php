@@ -12,5 +12,8 @@
         <li>
             <a class="text-white" href="{{route('showOrdersAdmin')}}">Orders</a>
         </li>
+        <li>
+            <a class="text-white" href="{{route('showStatusCodes')}}">Statussen</a>
+        </li>
     </ul>
 </div>

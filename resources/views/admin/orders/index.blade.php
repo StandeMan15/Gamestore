@@ -10,16 +10,24 @@
 
         <div class="col-start-2 col-span-12 m-auto">
             <table>
-                <th class="col-span-2">User ID</th>
+                <th class="col-span-2">Customer</th>
                 <th class="col-span-2">Order nummer</th>
                 <th class="col-span-2">Actions</th>
                 @foreach ( $orders as $order )
+                @php //dd($order) 
+                @endphp
                 <tr>
                     <td>
                         {{$order->user->fname}}&nbsp;{{$order->user->lname}}
                     </td>
                     <td>
                         {{$order->order_number}}
+                    </td>
+                    <td>
+                        <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">Read</a>
+                    </td>
+                    <td>
+                        <a href="{{route('editOrdersAdmin', $order->order_number)}}" class="bg-yellow-400 text-white flex rounded-md px-1">Edit</a>
                     </td>
                 </tr>
 

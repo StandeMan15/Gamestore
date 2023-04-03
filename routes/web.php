@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,8 @@ Route::prefix('/admin')->group(function()
             Route::get('', 'show')->name('showOrdersAdmin');
             Route::get('/read/{id}', 'read')->name('readOrdersAdmin');
             Route::get('/create', 'create')->name('createOrdersAdmin');
+            Route::get('/edit/{id}', 'edit')->name('editOrdersAdmin');
+            Route::post('/update/{id}', 'update')->name('updateOrdersAdmin');
         });
 
     Route::controller(ProductsController::class)
@@ -60,6 +63,17 @@ Route::prefix('/admin')->group(function()
             Route::post('/store', 'store')->name('storeProduct');
             Route::delete('/destroy/{id}', 'destroy')->name('destroyProduct');
         });
+
+    Route::controller(StatusController::class)
+        ->prefix('/status')
+        ->group(function () 
+        {   // URL::admin/status
+        Route::get('/', 'show')->name('showStatusCodes');
+        Route::get('/create', 'create')->name('createStatus');
+        Route::post('/store', 'store')->name('storeStatus');
+        Route::get('/edit/{id}', 'edit')->name('editStatus');
+        Route::post('/update/{id}', 'update')->name('updateStatus');
+    });
 
     Route::controller(UserController::class)
         ->prefix('/users')

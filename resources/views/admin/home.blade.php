@@ -31,20 +31,14 @@
 
         <div class="col-span-6 m-auto">
             <table>
-                <th>Title</th>
-                <th>Price</th>
+                <th>Product naam</th>
+                <th>Prijs</th>
                 <th>Min. age</th>
                 <th class="col-span-3">Actions</th>
                 @foreach ( $products as $product )
                 <tr>
                     <td>
                         {{ $product->title }}
-                    </td>
-                    <td>
-                        {{ $product->price }}
-                    </td>
-                    <td>
-                        {{ $product->minimum_age }}
                     </td>
 
                     <td>

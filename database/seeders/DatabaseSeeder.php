@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
