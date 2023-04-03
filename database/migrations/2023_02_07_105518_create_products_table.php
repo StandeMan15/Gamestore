@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('body');
             $table->decimal('price')->nullable();
             $table->decimal('discount_price')->nullable();
-            $table->int('minimum_age')->nullable();
+            $table->integer('minimum_age')->nullable();
             $table->date('release_date')->nullable();
             $table->date('preorder_date')->nullable();
             $table->boolean('active');

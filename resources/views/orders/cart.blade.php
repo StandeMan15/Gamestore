@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
@@ -13,9 +14,11 @@
         </tr>
     </thead>
     <tbody>
-        @php $total = 0 @endphp
+        @php 
+        $total = 0;
+        $items = 0;
+        @endphp
         @if(session('cart'))
-        @php $items = count(session('cart')) @endphp
         @foreach(session('cart') as $id => $details)
 
         @php
@@ -42,8 +45,19 @@
             <td data-th="Price">€{{ $details['price'] }}</td>
             <td data-th="Quantity">
                 <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
+                @php $items += $details['quantity'] @endphp
             </td>
-            <td data-th="Subtotal" class="text-center">€{{ $details['price'] * $details['quantity'] }}</td>
+
+            @php
+            $subtotal = $details['price'] * $details['quantity'];
+
+            if(!str_contains($subtotal, '.')) {
+
+            $subtotal = $subtotal . ".00";
+            }
+            @endphp
+
+            <td data-th="Subtotal" class="text-center">€{{ $subtotal }}</td>
             <td class="actions" data-th="">
                 <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
             </td>
@@ -76,8 +90,8 @@
             </td>
         </tr>
         <tr>
-            <td>
-                <a href={{route('mollie.payment')}}><button class="btn btn-success">Door naar betalen</button></a>
+            <td class="col-span-2">
+                <a href={{route('storeorder')}}><button class="btn btn-success">Door naar bestellen</button></a>
             </td>
 
         </tr>
@@ -86,7 +100,7 @@
 @else
 <h1>
     Er liggen nog geen producten in jouw winkelwagentje
-    </h1>
+</h1>
 @endif
 
 @endsection

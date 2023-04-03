@@ -101,15 +101,16 @@ class OrderController extends Controller
         if (count(session('cart')) > 0) {
             //dont forget to validate
             $latestOrder = Order::orderBy('created_at', 'DESC')->first();
-
+            //dd($latestOrder);
             if ($latestOrder == null) {
                 $latestOrder = (object) ['id' => 0];
             }
 
             $order = new Order;
             $order->user_id = auth()->id();
-            $order->order_number = str_pad($latestOrder->id + 1, STR_PAD_LEFT);
 
+            $order->order_number = str_pad($latestOrder->order_number + 1, STR_PAD_LEFT);
+            
             $totalprice = 0;
             foreach (session('cart') as $id => $items) {              
                 $orderdetails = new UserOrder();
@@ -128,11 +129,11 @@ class OrderController extends Controller
                 $orderdetails->save();
             }
             
-            if(strlen($totalprice) < 3) {
-                
+            if(!str_contains($totalprice, '.')) {
+
                 $totalprice = $totalprice . ".00";
-                ddd($totalprice);
             }
+
             $checkout = [
                 'order_number' => $order->order_number,
                 'order_price' => $totalprice

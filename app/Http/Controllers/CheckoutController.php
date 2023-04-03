@@ -24,7 +24,7 @@ class CheckoutController extends Controller
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => "EUR",
-                "value" => session('checkout.order_price') // You must send the correct number of decimals, thus we enforce the use of strings
+                "value" => session('checkout.order_price') // You must send 2 decimals, thus we enforce the use of strings
             ],
             "description" => "Order " . session('checkout.order_number'),
             "redirectUrl" => route('payment.success'),
@@ -43,5 +43,6 @@ class CheckoutController extends Controller
     public function handleWebhookNotification()
     {
         return redirect('')->with('success', 'Uw betaling is ontvangen');
+        session()->forget(['checkout']);
     }
 }

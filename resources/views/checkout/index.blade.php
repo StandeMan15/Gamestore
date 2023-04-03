@@ -118,7 +118,7 @@ $items = 0;
             </form>
         </div>
 
-
+        <a href={{route('mollie.payment')}}><button class="btn btn-success">Door naar betalen</button></a>
     </div>
 
 </x-layout>
