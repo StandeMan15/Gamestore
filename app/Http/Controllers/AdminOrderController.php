@@ -20,7 +20,7 @@ class AdminOrderController extends Controller
         return view('admin/orders.index', [
             'orders' => Order::paginate(10),
             'orderdetails' => UserOrder::all(),
-            'users' => User::all()
+            'statuses' => Status::all()
         ]);
     }
 
@@ -50,7 +50,7 @@ class AdminOrderController extends Controller
 
     public function update(AdminOrderFormRequest $request, $id)
     {
-        dd('Hello Update');
+        //dd('Hello Update');
         // $validatedData = $request->validated();
         
         // UserOrder::where('order_number', $id)
@@ -60,5 +60,12 @@ class AdminOrderController extends Controller
 
         // return redirect('/admin/orders')
         // ->with('success', 'Bestelling succesvol aangepast');
+    }
+
+    public function updateStatus(Request $request, $order_num)
+    {
+        dd($request);
+        Order::where('order_number', $order_num)
+                ->update('status_id', $request->id);
     }
 }

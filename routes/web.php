@@ -49,6 +49,7 @@ Route::prefix('/admin')->group(function()
             Route::get('/create', 'create')->name('createOrdersAdmin');
             Route::get('/edit/{id}', 'edit')->name('editOrdersAdmin');
             Route::post('/update/{id}', 'update')->name('updateOrdersAdmin');
+            Route::post('/update/{id}', 'updateStatus')->name('updateOrderStatus');
         });
 
     Route::controller(ProductsController::class)

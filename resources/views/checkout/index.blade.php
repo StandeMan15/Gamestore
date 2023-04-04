@@ -1,6 +1,7 @@
 @php
 $total = 0;
 $items = 0;
+
 @endphp
 
 <x-layout>
