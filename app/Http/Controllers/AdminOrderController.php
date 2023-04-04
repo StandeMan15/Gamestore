@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminOrderFormRequest;
 use App\Models\Order;
 use App\Models\Status;
 use App\Models\UserOrder;
@@ -42,7 +43,22 @@ class AdminOrderController extends Controller
 
         return view('admin/orders.edit', [
             'orderdetails' => UserOrder::where('order_number', $id)->get(),
-            'statuses' => Status::all()
+            'statuses' => Status::all(),
+            'order_number' => $id
         ]);
+    }
+
+    public function update(AdminOrderFormRequest $request, $id)
+    {
+        dd('Hello Update');
+        // $validatedData = $request->validated();
+        
+        // UserOrder::where('order_number', $id)
+        //     ->update([
+        //         'quantity' => $validatedData['quantity']
+        //     ]);
+
+        // return redirect('/admin/orders')
+        // ->with('success', 'Bestelling succesvol aangepast');
     }
 }

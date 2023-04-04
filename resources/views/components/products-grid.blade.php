@@ -5,7 +5,7 @@
 <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
         @if($images->count())
-            @if ($product->active == 1)
+            @if ($products[0]->active == 1)
                 @foreach ($images as $image)
                     @if ($image->product_id != $products[0]->id)
                         @php
@@ -23,6 +23,8 @@
                     @endif
                 @endforeach
             @endif
+        @else
+            <x-product-featured-card :product="$products[0]" id="$product->id" />
         @endif
 
     @if ($products->count() > 1)

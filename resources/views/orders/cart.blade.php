@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        @php 
+        @php
         $total = 0;
         $items = 0;
         @endphp
@@ -29,21 +29,24 @@
         <tr data-id="{{ $id }}">
             <td data-th="Product">
                 <div class="row">
+                    @php //dd($details['image'])
+                    @endphp
                     @if ($details['image'] == null)
                     <img src="https://via.placeholder.com/400x300" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
                     @else
-                    <div class="col-sm-3 hidden-xs">
-                        <img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive" alt="Product Thumbnail" />
+                    <div class="col-sm-4 hidden-xs">
+
+                        <img src="../{{ $details['image']['image'] }}" width="100" height="100" class="img-responsive m-3" alt="Product Thumbnail" />
                     </div>
                     @endif
                     <div class="col-sm-8">
-                        <h4 class="nomargin">{{ $details['name'] }}</h4>
+                        <h4 class="ml-4">{{ $details['name'] }}</h4>
                     </div>
                 </div>
             </td>
             <td data-th="Price">€{{ $details['price'] }}</td>
             <td data-th="Quantity">
-                <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
+                <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" min="0" />
                 @php $items += $details['quantity'] @endphp
             </td>
 

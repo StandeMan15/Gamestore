@@ -12,19 +12,23 @@
             <table>
                 <th class="col-span-2">Customer</th>
                 <th class="col-span-2">Order nummer</th>
+                <th class="col-span-2">Status</th>
                 <th class="col-span-2">Actions</th>
                 @foreach ( $orders as $order )
-                @php dd($order)
+                @php //dd($order)
                 @endphp
                 <tr>
                     <td>
                         {{$order->user->fname}}&nbsp;{{$order->user->lname}}
                     </td>
-                    <td>
+                    <td class="flex place-content-center">
                         {{$order->order_number}}
                     </td>
                     <td>
-                        {{$order->order_number}}
+                        @if (isset($order->status->title))
+                            {{$order->status->title}}
+                        @endif
+                        
                     </td>
                     <td>
                         <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">Read</a>

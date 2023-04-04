@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('order_number')->references('order_number')->on('orders');
             $table->string('name');
             $table->integer('quantity');
-            $table->integer('price');
+            $table->float('price');
             $table->timestamps();
         });
     }

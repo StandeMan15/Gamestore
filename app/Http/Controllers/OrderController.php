@@ -143,7 +143,7 @@ class OrderController extends Controller
         } else {
             return redirect('')->with('success', 'Er zijn nog geen producten in uw mand, dus u kunt nog niet afrekenen');
         }
-        session()->forget(['cart']);
+        
         return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
 
     }

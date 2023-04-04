@@ -18,7 +18,7 @@
                                     </path>
                                 </g>
                             </svg>
-                            Terug naar alles van {{ $product->category->name }}
+                            Zie alles van {{ $product->category->name }}
                         </a>
 
                         <div class="space-x-2">

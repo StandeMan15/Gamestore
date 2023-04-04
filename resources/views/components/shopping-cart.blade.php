@@ -43,7 +43,12 @@
 						@endphp
 						<div class="row cart-detail">
 							<div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-								<img src="../{{ $details['image'] }}" alt="Product Thumbnail" width="80" height="80" />
+								@if ($details['image'] == null)
+									<img src="https://via.placeholder.com/400x300" alt="Product Thumbnail" width="80" height="80" />
+								@else
+									<img src="../{{$details['image']['image'] }}" alt="Product Thumbnail" width="80" height="80" />
+								@endif
+
 							</div>
 							<div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
 								<p>{{ $details['name'] }}</p>

@@ -35,8 +35,9 @@ class CheckoutController extends Controller
             ],
         ]);
         $payment = Mollie::api()->payments->get($payment->id);
-        
+
         // redirect customer to Mollie checkout page
+        session()->forget(['cart']);
         return redirect($payment->getCheckoutUrl(), 303);
     }
 

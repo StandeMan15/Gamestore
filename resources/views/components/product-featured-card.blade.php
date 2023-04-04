@@ -13,7 +13,8 @@
             </div>
 
             <div class="flex-1 flex flex-col justify-between">
-                <header class="mt-8 lg:mt-0">
+                <header>
+
                     <div class="space-x-2">
                         <x-category-button :category="$product->category" />
                     </div>
@@ -46,10 +47,12 @@
                 </div>
 
                 @if (isset($product->discount_price))
-                <p>Van: <span class="line-through bg-red-400 p-1 mt-2 rounded-xl">€ {{ $product->price }}</span></p>
-                <span class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
-                    € {{ $product->discount_price }}
-                </span>
+                <p><span class="line-through bg-red-400 p-1 mt-2 rounded-xl">€ {{ $product->price }}</span>
+                    <span class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
+                        € {{ $product->discount_price }}
+                    </span>
+                </p>
+
                 @else
                 <div class="mt-3 bg-green-500 w-1/5 text-center p-1 rounded-xl text-white">
                     € {{ $product->price }}
