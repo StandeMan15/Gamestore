@@ -66,7 +66,7 @@ class CategoryController extends Controller
                 'active' => 0
             ]);
 
-        return redirect('admin/categories')->with('message','Category succesvol aangepast');
+        return redirect('admin/categories')->with('success','Category succesvol aangepast');
     }
 
     public function read($id)

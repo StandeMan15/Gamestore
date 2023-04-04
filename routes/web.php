@@ -61,7 +61,6 @@ Route::prefix('/admin')->group(function()
             Route::post('/update/{id}','update')->name('updateProduct');
             Route::get('/create', 'create')->name('createProduct');
             Route::post('/store', 'store')->name('storeProduct');
-            Route::delete('/destroy/{id}', 'destroy')->name('destroyProduct');
         });
 
     Route::controller(StatusController::class)
@@ -73,6 +72,7 @@ Route::prefix('/admin')->group(function()
         Route::post('/store', 'store')->name('storeStatus');
         Route::get('/edit/{id}', 'edit')->name('editStatus');
         Route::post('/update/{id}', 'update')->name('updateStatus');
+        Route::delete('/destroy/{id}', 'destroy')->name('destroyStatus');
     });
 
     Route::controller(UserController::class)
@@ -86,7 +86,6 @@ Route::prefix('/admin')->group(function()
             Route::post('/update/{id}','update')->name('updateUser');
             Route::get('/create', 'create')->name('createUser');
             Route::post('/store', 'store')->name('storeUser');
-            Route::delete('/destroy/{id}', 'destroy')->name('destroyUser');
         });
 
 

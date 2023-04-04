@@ -6,9 +6,9 @@
         <li>
             <a class="text-white" href="/admin">Products</a>
         </li>
-        <li>
+        <!-- <li>
             <a class="text-white" href="{{route('showUsers')}}">Users</a>
-        </li>
+        </li> -->
         <li>
             <a class="text-white" href="{{route('showOrdersAdmin')}}">Orders</a>
         </li>

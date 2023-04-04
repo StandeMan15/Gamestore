@@ -20,6 +20,18 @@
                     <td>
                         <a href="{{route('editStatus', $status->id)}}" class="bg-yellow-400 text-white flex rounded-md px-1">Edit</a>
                     </td>
+                    <td>
+                        <form action="{{route('destroyStatus', $status->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="bg-red-400 text-white flex rounded-md px-1">
+                                Delete
+                            </button>
+
+                        </form>
+                        <!-- <a href="" class="bg-red-400 text-white flex rounded-md px-1">Delete</a> -->
+                    </td>
                 </tr>
 
                 @endforeach
