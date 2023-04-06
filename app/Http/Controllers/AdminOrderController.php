@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminOrderFormRequest;
+use App\Http\Requests\OrderFormRequest;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Status;
 use App\Models\UserOrder;
 use App\Models\User;
@@ -42,30 +44,39 @@ class AdminOrderController extends Controller
         }
 
         return view('admin/orders.edit', [
-            'orderdetails' => UserOrder::where('order_number', $id)->get(),
+            'order' => Order::where('order_number', $id)->firstorfail(),
             'statuses' => Status::all(),
             'order_number' => $id
         ]);
     }
 
-    public function update(AdminOrderFormRequest $request, $id)
+    public function update(OrderFormRequest $request, $id)
     {
-        //dd('Hello Update');
-        // $validatedData = $request->validated();
-        
-        // UserOrder::where('order_number', $id)
+        //$validatedData = $request->validated();
+
+        dd('Hello');
+
+        // Order::where('order_number', $id)
         //     ->update([
-        //         'quantity' => $validatedData['quantity']
+        //         'status_id' => $validatedData['status_id'],
         //     ]);
 
         // return redirect('/admin/orders')
         // ->with('success', 'Bestelling succesvol aangepast');
     }
 
-    public function updateStatus(Request $request, $order_num)
+    public function create()
     {
-        dd($request);
-        Order::where('order_number', $order_num)
-                ->update('status_id', $request->id);
+        if (!auth()->check()) {
+            abort(403);
+        }
+
+        return view('admin/orders.create', [
+            'orders' => Order::all(),
+            'statuses' => Status::all(),
+            'orderdetails' => UserOrder::all(),
+            'latestorder' => Order::orderBy('order_number', 'DESC')->first(),
+            'products' => Product::select('*')->limit(10)->get()
+        ]);
     }
 }

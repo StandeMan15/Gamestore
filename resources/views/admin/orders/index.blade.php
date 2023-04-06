@@ -4,7 +4,7 @@
             <x-admin-sidebar />
         </div>
         <div class="col-span-6 col-start-2">
-            <a href="{{route('createStatus')}}" class="bg-green-500 text-white rounded-md p-2">Create
+            <a href="{{route('createOrdersAdmin')}}" class="bg-green-500 text-white rounded-md p-2">Create
             </a>
         </div>
 
@@ -12,7 +12,6 @@
             <table>
                 <th class="col-span-2">Customer</th>
                 <th class="col-span-2">Order nummer</th>
-                <th class="col-span-2">Status</th>
                 <th class="col-span-2">Actions</th>
                 @foreach ( $orders as $order )
                 @php //dd($order)
@@ -23,27 +22,6 @@
                     </td>
                     <td class="flex place-content-center">
                         {{$order->order_number}}
-                    </td>
-                    <td>
-                        @if (isset($order->status->title))
-                        <form method="POST" action="{{route('updateOrderStatus', $order->status->id, $order->order_number)}}">
-                            @csrf
-
-                            <select onchange="this.form.submit();">
-                                @foreach ($statuses as $status)
-                                    @if ($status->id == $order->status->id)
-                                        <option value=" {{$status->title}}" selected>{{$status->title}}</option>
-                                    @else
-                                        <option value="{{$status->title}}">{{$status->title}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </form>
-
-                        @else
-                        TBC
-                        @endif
-
                     </td>
                     <td>
                         <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">Read</a>

@@ -98,10 +98,11 @@ class OrderController extends Controller
 
     public function store()
     {
+
+
         if (count(session('cart')) > 0) {
             //dont forget to validate
             $latestOrder = Order::orderBy('created_at', 'DESC')->first();
-            //dd($latestOrder);
             if ($latestOrder == null) {
                 $latestOrder = (object) ['order_number' => 0];
             }
@@ -140,6 +141,8 @@ class OrderController extends Controller
             ];
             
             session()->put('checkout', $checkout);
+
+            
         } else {
             return redirect('')->with('success', 'Er zijn nog geen producten in uw mand, dus u kunt nog niet afrekenen');
         }

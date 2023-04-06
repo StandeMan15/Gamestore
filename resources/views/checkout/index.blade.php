@@ -1,12 +1,16 @@
 @php
 $total = 0;
 $items = 0;
-
+$user = Auth::user();
+//dd($user);
 @endphp
 
 <x-layout>
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-7">
+            <h4 class="font-bold uppercase">
+                Adresgegevens
+            </h4>
             <form method="post" action="">
                 @csrf
                 <table>
@@ -16,7 +20,7 @@ $items = 0;
                         </td>
 
                         <td>
-                            <input class="p-2 border border-gray-200" type="text" id="fname" name="fname">
+                            <input class="p-2 border border-gray-200" type="text" id="fname" name="fname" value="{{$user->fname}}">
                         </td>
 
                         <td>
@@ -24,17 +28,21 @@ $items = 0;
                         </td>
 
                         <td>
-                            <input class="p-2 border border-gray-200" type="text" id="lname" name="lname">
+                            <input class="p-2 border border-gray-200" type="text" id="lname" name="lname" value="{{$user->lname}}">
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="compname">Bedrijfsnaam</label>
+                            <label class=" static mb-2 uppercase font-bold text-xs text-gray-700" for="compname">Bedrijfsnaam</label>
                         </td>
 
                         <td>
+                            @if (is_null($user->compname))
                             <input class="p-2 border border-gray-200" type="text" id="compname" name="compname">
+                            @else
+                            <input class="p-2 border border-gray-200" type="text" id="compname" name="compname" value="{{$user->compname}}">
+                            @endif
                         </td>
 
                         <td>
@@ -42,17 +50,21 @@ $items = 0;
                         </td>
 
                         <td>
-                            <input class="p-2 border border-gray-200" type="email" id="email" name="email">
+                            <input class="p-2 border border-gray-200" type="email" id="email" name="email" value="{{$user->email}}">
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="address">Straat</label>
+                            <label class=" static mb-2 uppercase font-bold text-xs text-gray-700" for="address">Straat</label>
                         </td>
 
                         <td>
+                            @if (is_null($user->street))
                             <input class="p-2 border border-gray-200" type="text" id="address" name="address">
+                            @else
+                            <input class="p-2 border border-gray-200" type="text" id="address" name="address" value="{{$user->street}}">
+                            @endif
                         </td>
 
                         <td>
@@ -60,7 +72,11 @@ $items = 0;
                         </td>
 
                         <td>
+                            @if (is_null($user->zipcode))
                             <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode">
+                            @else
+                            <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode" value="{{$user->zipcode}}">
+                            @endif
                         </td>
                     </tr>
 
@@ -70,7 +86,11 @@ $items = 0;
                         </td>
 
                         <td>
+                            @if (is_null($user->housenmr))
                             <input class="p-2 border border-gray-200" type="text" id="housenmr" name="housenmr">
+                            @else
+                            <input class="p-2 border border-gray-200" type="text" id="housenmr" name="housenmr" value="{{$user->housenmr}}">
+                            @endif
                         </td>
 
                         <td>
@@ -78,7 +98,11 @@ $items = 0;
                         </td>
 
                         <td>
+                            @if (is_null($user->housenmradd))
                             <input class="p-2 border border-gray-200" type="text" id="housenmradd" name="housenmradd">
+                            @else
+                            <input class="p-2 border border-gray-200" type="text" id="housenmradd" name="housenmradd" value="{{$user->housenmradd}}">
+                            @endif
                         </td>
                     </tr>
 

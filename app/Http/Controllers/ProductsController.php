@@ -85,7 +85,6 @@ class ProductsController extends Controller
         } else {
             $validatedData['discount_price'] = NULL;
         }
-
         $product = $category->products()
             ->update([
                 'title' => $validatedData['title'],
@@ -104,7 +103,7 @@ class ProductsController extends Controller
 
                 $i = 1;
                 foreach($request->file('image') as $imageFile) {
-                    dd($imageFile);
+                    //dd($imageFile);
                     $extention = $imageFile->extension();
                     $filename = time() . $i++ . "." . $extention;
                     $imageFile->move($uploadPath,$filename);

@@ -46,14 +46,13 @@
             <div class="col-span-2">
                 <select class="p-2 border border-gray-200" type="text" name="category_id" id="category_id" required>
 
-                    <option value="{{ $product->category->id }}" selected>{{ $product->category->name }}
-                    </option>
+
                     @foreach ( $categories as $category )
-                    @if ($product->category->name == $category->name)
-                    @continue
-                    @endif
-                    <option value="{{ $category->id }}">{{ $category->name }}
-                    </option>
+                        @if ($product->category->name == $category->name)
+                            <option value="{{ $product->category->id }}" selected>{{ $product->category->name }}</option>
+                        @else
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

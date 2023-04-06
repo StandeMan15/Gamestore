@@ -49,7 +49,7 @@ Route::prefix('/admin')->group(function()
             Route::get('/create', 'create')->name('createOrdersAdmin');
             Route::get('/edit/{id}', 'edit')->name('editOrdersAdmin');
             Route::post('/update/{id}', 'update')->name('updateOrdersAdmin');
-            Route::post('/update/{id}', 'updateStatus')->name('updateOrderStatus');
+            Route::post('/store', 'store')->name('storeAdminOrder');
         });
 
     Route::controller(ProductsController::class)
@@ -74,7 +74,7 @@ Route::prefix('/admin')->group(function()
         Route::get('/edit/{id}', 'edit')->name('editStatus');
         Route::post('/update/{id}', 'update')->name('updateStatus');
         Route::delete('/destroy/{id}', 'destroy')->name('destroyStatus');
-    });
+        });
 
     Route::controller(UserController::class)
         ->prefix('/users')
