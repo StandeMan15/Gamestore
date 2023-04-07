@@ -23,6 +23,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreignId('company_id')->references('id')->on('companies');
+            $table->string('streetname')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('postalcode')->nullable();
+            $table->string('postalcode_extra')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();

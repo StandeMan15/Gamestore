@@ -98,8 +98,6 @@ class OrderController extends Controller
 
     public function store()
     {
-
-
         if (count(session('cart')) > 0) {
             //dont forget to validate
             $latestOrder = Order::orderBy('created_at', 'DESC')->first();
@@ -149,5 +147,10 @@ class OrderController extends Controller
         
         return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
 
+    }
+
+    public function storeshipment()
+    {
+        
     }
 }

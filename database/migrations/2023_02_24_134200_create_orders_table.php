@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
             $table->id('order_number');
+            $table->foreignId('shipping_id')->nullable()->references('id')->on('shipping_details');
             $table->foreignId('status_id')->nullable()->constrained();
             $table->timestamps();
         });

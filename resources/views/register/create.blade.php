@@ -77,7 +77,7 @@
                         Bedrijf ID
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="company_id" name="company_id" id="company_id" value="{{ old('company_id') }}" required>
+                    <input class="border border-gray-400 p-2 w-full" type="company_id" name="company_id" id="company_id" value="{{ old('company_id') }}">
                     @error('company_id')
                     <p class="text-red-500 text-xs mt-1">
                         {{ $message }}
