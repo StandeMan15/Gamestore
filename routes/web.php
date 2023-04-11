@@ -112,7 +112,7 @@ Route::prefix('/order')->group(function () {
             Route::patch('update-cart', 'update')->name('updatecart');
             Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
             Route::get('bevestig-bestelling', 'store')->name('storeorder');
-            //Route::get('bevestig-bezorgadres', 'storeshipment')->name('storeShippingDetails');
+            Route::get('bevestig-bezorgadres', 'storeshipment')->name('storeShippingDetails');
         });
     Route::controller(CheckoutController::class)
         ->group(function () {
