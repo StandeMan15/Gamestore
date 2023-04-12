@@ -11,7 +11,7 @@
                         </td>
 
                         <td>
-                            <input class="p-2 border border-gray-200" type="text" id="fname" name="fname" value="{{$user->fname}}">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="fname" name="fname" value="{{$user->fname}}" readonly>
                         </td>
 
                         <td>
@@ -19,7 +19,7 @@
                         </td>
 
                         <td>
-                            <input class="p-2 border border-gray-200" type="text" id="lname" name="lname" value="{{$user->lname}}">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="lname" name="lname" value="{{$user->lname}}" readonly>
                         </td>
                     </tr>
 
@@ -29,7 +29,7 @@
                         </td>
 
                         <td>
-                            <input class="p-2 border border-gray-200" type="email" id="email" name="email" value="{{$user->email}}">
+                            <input class="p-2 border border-gray-200 bg-gray-200 bg-gray-200" type="email" id="email" name="email" value="{{$user->email}}" readonly>
                         </td>
 
 
@@ -42,9 +42,9 @@
 
                         <td>
                             @if (is_null($user->company->streetname))
-                            <input class="p-2 border border-gray-200" type="text" id="address" name="address">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="address" name="address" readonly>
                             @else
-                            <input class="p-2 border border-gray-200" type="text" id="address" name="address" value="{{$user->company->streetname}}">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="address" name="address" value="{{$user->company->streetname}}"  readonly>
                             @endif
                         </td>
 
@@ -54,9 +54,9 @@
 
                         <td>
                             @if (is_null($user->company->zipcode))
-                            <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="zipcode" name="zipcode" readonly>
                             @else
-                            <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode" value="{{$user->company->zipcode}}">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="zipcode" name="zipcode" value="{{$user->company->zipcode}}" readonly>
                             @endif
                         </td>
                     </tr>
@@ -68,9 +68,9 @@
 
                         <td>
                             @if (is_null($user->company->postalcode))
-                            <input class="p-2 border border-gray-200" type="text" id="housenmr" name="housenmr">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="housenmr" name="housenmr" readonly>
                             @else
-                            <input class="p-2 border border-gray-200" type="text" id="housenmr" name="housenmr" value="{{$user->company->postalcode}}">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="housenmr" name="housenmr" value="{{$user->company->postalcode}}" readonly>
                             @endif
                         </td>
 
@@ -80,9 +80,9 @@
 
                         <td>
                             @if (is_null($user->company->postalcode_extra))
-                            <input class="p-2 border border-gray-200" type="text" id="housenmradd" name="housenmradd">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="housenmradd" name="housenmradd" readonly>
                             @else
-                            <input class="p-2 border border-gray-200" type="text" id="housenmradd" name="housenmradd" value="{{$user->company->postalcode_extra}}">
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="housenmradd" name="housenmradd" value="{{$user->company->postalcode_extra}}" readonly>
                             @endif
                         </td>
                     </tr>
