@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\ShippingDetailsController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 
@@ -17,7 +18,7 @@ Route::get('/', [ProductsController::class, 'index'])->name('home');
 
 Route::get('admin', [SessionsController::class, 'index']);
 
-Route::get('mollie-payment',[CheckoutController::class, 'preparePayment'])->name('mollie.payment');
+Route::get('betalen',[CheckoutController::class, 'preparePayment'])->name('mollie.payment');
 Route::get('payment-succes', [CheckoutController::class, 'handleWebhookNotification'])->name('payment.success');
 
 Route::prefix('/admin')->group(function()
@@ -112,11 +113,14 @@ Route::prefix('/order')->group(function () {
             Route::patch('update-cart', 'update')->name('updatecart');
             Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
             Route::get('bevestig-bestelling', 'store')->name('storeorder');
-            Route::get('bevestig-bezorgadres', 'storeshipment')->name('storeShippingDetails');
         });
     Route::controller(CheckoutController::class)
         ->group(function () {
             Route::get('{id}', 'confirm')->name('orderconfirm');
+        });
+    Route::controller(ShippingDetailsController::class)
+        ->group(function () {
+            Route::post('bevestig-bezorgadres', 'store')->name('storeShippingDetails');
         });
 });
 

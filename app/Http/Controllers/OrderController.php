@@ -6,7 +6,6 @@ use App\Models\Image;
 use App\Models\Order;
 use App\Models\UserOrder;
 use App\Models\Product;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -147,10 +146,5 @@ class OrderController extends Controller
         
         return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
 
-    }
-
-    public function storeshipment()
-    {
-        
     }
 }

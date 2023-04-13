@@ -2,7 +2,7 @@
             <h4 class="font-bold uppercase">
                 Adresgegevens
             </h4>
-            <form method="post" action={{route('mollie.payment')}}>
+            <form method="post" action={{route('storeShippingDetails')}}>
                 @csrf
                 <table>
                     <tr>
@@ -37,26 +37,26 @@
 
                     <tr>
                         <td>
-                            <label class=" static mb-2 uppercase font-bold text-xs text-gray-700" for="address">Straat</label>
+                            <label class=" static mb-2 uppercase font-bold text-xs text-gray-700" for="streetname">Straat</label>
                         </td>
 
                         <td>
                             @if (is_null($user->company->streetname))
-                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="address" name="address" readonly>
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="streetname" name="streetname" readonly>
                             @else
-                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="address" name="address" value="{{$user->company->streetname}}"  readonly>
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="streetname" name="streetname" value="{{$user->company->streetname}}" readonly>
                             @endif
                         </td>
 
                         <td>
-                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="zipcode">Postcode</label>
+                            <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="postalcode">Postcode</label>
                         </td>
 
                         <td>
                             @if (is_null($user->company->zipcode))
-                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="zipcode" name="zipcode" readonly>
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="postalcode" name="postalcode" readonly>
                             @else
-                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="zipcode" name="zipcode" value="{{$user->company->zipcode}}" readonly>
+                            <input class="p-2 border border-gray-200 bg-gray-200" type="text" id="postalcode" name="postalcode" value="{{$user->company->zipcode}}" readonly>
                             @endif
                         </td>
                     </tr>

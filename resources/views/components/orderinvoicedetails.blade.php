@@ -3,7 +3,7 @@
             <form>
               @if (!old('agree'))
               <div id="conditionalForm" style="display:block;">
-                <form method="post" action={{route('mollie.payment')}}>
+                <form method="post" action={{route('storeShippingDetails')}}>
                   @csrf
                   <table>
                     <th class="font-bold uppercase">
@@ -65,14 +65,14 @@
                       </td>
 
                       <td>
-                        <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="zipcode">Postcode</label>
+                        <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="postalcode">Postcode</label>
                       </td>
 
                       <td>
                         @if (is_null($user->company->zipcode))
-                        <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode">
+                        <input class="p-2 border border-gray-200" type="text" id="postalcode" name="postalcode">
                         @else
-                        <input class="p-2 border border-gray-200" type="text" id="zipcode" name="zipcode" value="{{$user->company->zipcode}}">
+                        <input class="p-2 border border-gray-200" type="text" id="postalcode" name="postalcode" value="{{$user->company->zipcode}}">
                         @endif
                       </td>
                     </tr>
@@ -120,10 +120,7 @@
                     </tr>
                     <tr>
                       <td>
-                        <!-- <button type="submit" id="myButton2" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>
-                                            Door naar betalen
-                              </button> -->
-                        <button id="myButton2" disabled class="mt-4 px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50">
+                        <button type="submit" id="myButton2" disabled class="mt-4 px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50">
                           Door naar betalen
                         </button>
                       </td>
