@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('company_id')->default(1);
             $table->string('name');
             $table->string('streetname');
+            $table->string('housenmr');
+            $table->string('housenmr_extra')->nullable();
             $table->string('postalcode');
-            $table->string('postalcode_extra')->nullable();
-            $table->string('zipcode');
             $table->timestamps();
         });
     }

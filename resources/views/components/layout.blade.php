@@ -1,12 +1,4 @@
-<!doctype html>
-
-<title>Artitex Gamestore</title>
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<x-header />
 
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
@@ -21,6 +13,7 @@
                 <x-shopping-cart class="mr-4" />
 
                 @auth
+                @if (auth()->user()->is_admin == 1)
                 <div class="relative w-32">
                     <div x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center justify-between bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 text-xs font-bold uppercase">
@@ -36,13 +29,16 @@
                         <div x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-32 bg-white border border-gray-300 shadow-md rounded-md">
                             <ul>
                                 <li class="text-xs font-bold uppercase px-3">
-                                    <a href="/admin">Adminpaneel</a>
+                                    <a href="/admin" class="hover:no-underline"><i class="fas fa-tachometer-alt fa-lg"></i> Admin</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('showuser')}}" class="hover:no-underline"><i class="fas fa-user"></i> Uw profiel</a>
                                 </li>
                                 <li class="text-xs font-semibold text-blue-500 ml-6">
                                     <form method="POST" action="/logout">
                                         @csrf
 
-                                        <button type="submit">Logout</button>
+                                        <button type="submit"><i class="fas fa-sign-out-alt"></i>Logout</button>
                                     </form>
                                 </li>
                             </ul>
@@ -50,22 +46,45 @@
                     </div>
                 </div>
                 @else
-                <div class="relative">
+                <div class="relative w-32">
                     <div x-data="{ open: false }">
-                        <button @click="open = true" class="ml-2 text-xs font-bold uppercase">
-                            <i class="fas fa-cog fa-lg mr-10"></i>
-                        </button>
+                        <x-layout-button />
 
-                        <div x-show="open" @click.outside="open = false" class="absolute mt-2 w-32">
-                            <ul class="py-2">
-                                <li class="text-xs font-bold uppercase px-3">
-                                    <a href="/register">Register</a>
+                        <div x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-32 bg-white border border-gray-300 shadow-md rounded-md">
+                            <ul>
+                                <li>
+                                    <a href="{{route('showuser')}}" class="hover:no-underline"><i class="fas fa-user"></i> Uw profiel</a>
                                 </li>
-                                <li class="text-xs font-bold uppercase px-3">
-                                    <a href="/login">Log In</a>
+                                <li class="text-xs font-semibold text-blue-500 ml-6">
+                                    <form method="POST" action="/logout">
+                                        @csrf
+
+                                        <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+
+                @endif
+                @endauth
+
+                @if (!auth()->check())
+                <div x-data="{ open: false }">
+                    <button @click="open = true" class="ml-2 text-xs font-bold uppercase">
+                        <i class="fas fa-cog fa-lg mr-10"></i>
+                    </button>
+
+                    <div x-show="open" @click.outside="open = false" class="absolute mt-2 w-32">
+                        <ul class="py-2">
+                            <li class="text-xs font-bold uppercase px-3">
+                                <a href="/register">Register</a>
+                            </li>
+                            <li class="text-xs font-bold uppercase px-3">
+                                <a href="/login">Log In</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 @endif

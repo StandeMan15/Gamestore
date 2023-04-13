@@ -20,8 +20,8 @@ class CompanyFactory extends Factory
             'company_id' => $this->faker->randomNumber(5, true),
             'name' => $this->faker->company(),
             'streetname' => $this->faker->streetName(),
-            'postalcode' => $this->faker->randomNumber(3, true),
-            'zipcode' => $this->faker->regexify('[0-9]{4}[A-Z]{2}')
+            'housenmr' => $this->faker->randomNumber(3, true),
+            'postalcode' => $this->faker->regexify('[0-9]{4}[A-Z]{2}')
         ];
     }
 }

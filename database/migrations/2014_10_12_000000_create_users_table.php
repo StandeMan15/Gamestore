@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('streetname')->nullable();
-            $table->string('zipcode')->nullable();
             $table->string('postalcode')->nullable();
-            $table->string('postalcode_extra')->nullable();
+            $table->string('housenmr')->nullable();
+            $table->string('housenmr_extra')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();

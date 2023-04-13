@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ShippingDetailsController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
@@ -77,11 +78,11 @@ Route::prefix('/admin')->group(function()
         Route::delete('/destroy/{id}', 'destroy')->name('destroyStatus');
         });
 
-    Route::controller(UserController::class)
+    Route::controller(UserAdminController::class)
         ->prefix('/users')
         ->group(function()
         {   // URL::admin/users
-            Route::get('/', 'show')->name('showUsers');
+            Route::get('/', 'showadmin')->name('showUsers');
             Route::get('/read/{id}', 'readUser')->name('readUser');
             Route::get('/activity/{id}', 'activity')->name('statusUser');
             Route::get('/edit/{id}', 'edit')->name('editUser');
@@ -123,6 +124,16 @@ Route::prefix('/order')->group(function () {
             Route::post('bevestig-bezorgadres', 'store')->name('storeShippingDetails');
         });
 });
+
+Route::prefix('/user')->group(function () {
+    Route::controller(UserController::class)
+        ->group(function () {
+            Route::get('my-profile', 'show')->name('showuser');
+            Route::get('edit-my-profile', 'edit')->name('edituser');
+            Route::post('edit-my-profile', 'update')->name('updateuser');
+    });
+});
+
 
 // Product handling
 Route::get('{categories:slug}/{product:slug}', [ProductsController::class, 'show']);

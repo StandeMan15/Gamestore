@@ -9,14 +9,21 @@ class UserController extends Controller
 {
     public function show()
     {
-        if (!auth()->check()) {
-            abort(403);
-        }
-
-        return view('admin/users.index', [
-            'users' => User::paginate(10)
+        return view('user.index', [
+            'user' => User::find(auth()->user()->id)
         ]);
     }
 
+    public function edit()
+    {
+        return view('user.edit', [
+            'user' => User::find(auth()->user()->id)
+        ]);
+    }
+
+    public function update()
+    {
+        dd('Hello Update');
+    }
     
 }
