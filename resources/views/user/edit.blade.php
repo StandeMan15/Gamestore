@@ -4,6 +4,15 @@
 <x-header />
 
 <x-layout>
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
 
   <body class="bg-gray-100">
     <div class="max-w-md mx-auto mt-10 w-full">

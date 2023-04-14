@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('fname');
             $table->string('lname');
-            $table->string('company_id');
+            $table->foreignId('order_nmr')->references('order_number')->on('orders');
             $table->string('streetname');
             $table->string('housenmr');
             $table->string('housenmr_extra')->nullable();

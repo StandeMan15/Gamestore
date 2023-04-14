@@ -10,18 +10,18 @@ class ShippingDetailsController extends Controller
     public function store(ShippingDetailsFormRequest $request)
     {
         $validatedData = $request->validated();
-
-        dd($validatedData);
-
+        // dd(session('checkout.order_number'));
         ShippingDetails::create([
             'fname' => $validatedData['fname'],
             'lname' => $validatedData['lname'],
-            'email' => $validatedData['email'],
             'streetname' => $validatedData['streetname'],
             'postalcode' => $validatedData['postalcode'],
             'housenmr' => $validatedData['housenmr'],
-            'housenmradd' => $validatedData['housenmradd']
+            'housenmr_extra' => $validatedData['housenmradd'],
+            'order_nmr' => session('checkout.order_number')
         ]);
 
+        return redirect()->route('mollie.payment')
+        ->with('success', 'Bezorgadres succesvol doorgegeven');
     }
 }

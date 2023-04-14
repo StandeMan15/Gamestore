@@ -1,14 +1,22 @@
 @php
-$total = 0;
-$items = 0;
 $user = Auth::user();
 @endphp
 
 <x-layout>
-    <div class="grid grid-cols-12 gap-4">
-        <x-orderaddressdetails :user="$user" />
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
-        <x-orderinvoicedetails :user="$user" />
+    <div class="grid grid-cols-12 gap-4">
+        <x-orderaddressdetails :user="$user" :orderid="$id" />
+
+        <x-orderinvoicedetails :user="$user" :orderid="$id" />
 </x-layout>
 
 <script>

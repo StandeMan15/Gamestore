@@ -30,7 +30,8 @@ class ShippingDetailsFormRequest extends FormRequest
             'streetname' => 'string|required',
             'postalcode' => 'string|required|max:6',
             'housenmr' => 'numeric|required',
-            'housenmradd' => 'string'
+            'housenmradd' => 'string|nullable',
+            'order_number' => 'numeric'
         ];
     }
 }

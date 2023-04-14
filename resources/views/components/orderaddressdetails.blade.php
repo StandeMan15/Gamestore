@@ -4,14 +4,23 @@ $isReadonly = true;
 
 <div class="col-span-6">
     <h4 class="font-bold uppercase">
-        Adresgegevens
+        Bestelgegevens
     </h4>
-    <form method="post" action={{route('storeShippingDetails')}}>
+    <form action="{{ route('storeShippingDetails', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <table>
             <tr>
                 <td>
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="fname">Voornaam</label>
+                    <x-form-label for="order_number">Bestelnummer</x-form-label>
+                </td>
+
+                <td>
+                    <x-user-edit type="text" name="order_number" id="order_number" value="{{$orderid}}" :readonly="$isReadonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <x-form-label for="fname">Voornaam</x-form-label>
                 </td>
 
                 <td>
@@ -19,7 +28,7 @@ $isReadonly = true;
                 </td>
 
                 <td>
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="lname">Achternaam</label>
+                    <x-form-label for="lname">Achternaam</x-form-label>
                 </td>
 
                 <td>
@@ -29,7 +38,7 @@ $isReadonly = true;
 
             <tr>
                 <td>
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="email">Email</label>
+                    <x-form-label for="email">Email</x-form-label>
                 </td>
 
                 <td>
@@ -41,33 +50,32 @@ $isReadonly = true;
 
             <tr>
                 <td>
-                    <label class=" static mb-2 uppercase font-bold text-xs text-gray-700" for="streetname">Straat</label>
+                    <x-form-label for="housenmr">Huisnummer</x-form-label>
                 </td>
 
                 <td>
-                    @if (is_null($user->streetname))
-                    <x-user-edit type="text" name="streetname" id="streetname" :readonly="$isReadonly" />
+                    @if (!is_null($user->housnmr))
+                    <x-user-edit type="text" name="housenmr" id="housenmr" :readonly="$isReadonly" />
                     @else
-                    <x-user-edit type="text" name="streetname" id="streetname" value="{{$user->streetname}}" :readonly="$isReadonly" />
+                    <x-user-edit type="text" name="housenmr" id="housenmr" value="{{$user->housenmr}}" :readonly="$isReadonly" />
                     @endif
                 </td>
 
                 <td>
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmr_extra">Toevoeging</label>
+                    <x-form-label for="housenmradd">Toevoeging Huisnummer</x-form-label>
                 </td>
-
                 <td>
-                    @if (is_null($user->zipcode))
-                    <x-user-edit type="text" name="housenmr_extra" id="housenmr_extra" :readonly="$isReadonly" />
+                    @if (is_null($user->postalcode_extra))
+                    <x-user-edit type="text" name="housenmradd" id="housenmradd" :readonly="$isReadonly" />
                     @else
-                    <x-user-edit type="text" name="housenmr_extra" id="housenmr_extra" value="{{$user->housenmr_extra}}" :readonly="$isReadonly" />
+                    <x-user-edit type="text" name="housenmradd" id="housenmradd" value="{{$user->housenmradd}}" :readonly="$isReadonly" />
                     @endif
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="postalcode">Postcode</label>
+                    <x-form-label for="postalcode">Postcode</x-form-label>
                 </td>
 
                 <td>
@@ -79,14 +87,14 @@ $isReadonly = true;
                 </td>
 
                 <td>
-                    <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="housenmradd">Toevoeging Huisnummer</label>
+                    <x-form-label for="streetname">Straat</x-form-label>
                 </td>
 
                 <td>
-                    @if (is_null($user->postalcode_extra))
-                    <x-user-edit type="text" name="housenmradd" id="housenmradd" :readonly="$isReadonly" />
+                    @if (is_null($user->streetname))
+                    <x-user-edit type="text" name="streetname" id="streetname" :readonly="$isReadonly" />
                     @else
-                    <x-user-edit type="text" name="housenmradd" id="housenmradd" value="{{$user->housenmradd}}" :readonly="$isReadonly" />
+                    <x-user-edit type="text" name="streetname" id="streetname" value="{{$user->streetname}}" :readonly="$isReadonly" />
                     @endif
                 </td>
             </tr>

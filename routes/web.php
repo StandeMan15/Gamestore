@@ -121,7 +121,7 @@ Route::prefix('/order')->group(function () {
         });
     Route::controller(ShippingDetailsController::class)
         ->group(function () {
-            Route::post('bevestig-bezorgadres', 'store')->name('storeShippingDetails');
+            Route::post('bevestig-bezorgadres/{id}', 'store')->name('storeShippingDetails');
         });
 });
 

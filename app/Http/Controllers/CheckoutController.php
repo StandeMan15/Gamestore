@@ -10,11 +10,12 @@ use Mollie\Laravel\Facades\Mollie;
 
 class CheckoutController extends Controller
 {
-    public function confirm($id)
+    public function confirm(Request $request, $id)
     {
         return view('checkout.index', [
             'orders' => UserOrder::where('order_number', $id)->get(),
-            'users' => Order::all()
+            'users' => Order::all(),
+            'id' => $id
         ]);
     }
 
