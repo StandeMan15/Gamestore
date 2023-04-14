@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,9 +22,23 @@ class UserController extends Controller
         ]);
     }
 
-    public function update()
+    public function update(UserFormRequest $request, $id)
     {
-        dd('Hello Update');
+        $validatedData = $request->validated();
+        //dd($validatedData);
+        User::where('id', $id)
+            ->update([
+                'fname' => $validatedData['fname'],
+                'addition' => $validatedData['mname'],
+                'lname' => $validatedData['lname'],
+                'streetname' => $validatedData['streetname'],
+                'housenmr' => $validatedData['housenmr'],
+                'housenmr_extra' => $validatedData['housenmr_extra'],
+                'email' => $validatedData['email'],
+                'postalcode' => $validatedData['postalcode'],
+            ]);
+
+        return redirect('/my-profile')->with('success', 'Je hebt jouw gegevens gewijzigd!');
     }
     
 }

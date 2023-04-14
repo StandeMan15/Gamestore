@@ -125,12 +125,12 @@ Route::prefix('/order')->group(function () {
         });
 });
 
-Route::prefix('/user')->group(function () {
+Route::prefix('')->group(function () {
     Route::controller(UserController::class)
         ->group(function () {
             Route::get('my-profile', 'show')->name('showuser');
             Route::get('edit-my-profile', 'edit')->name('edituser');
-            Route::post('edit-my-profile', 'update')->name('updateuser');
+            Route::post('edit-my-profile/{id}', 'update')->name('updateuser');
     });
 });
 
