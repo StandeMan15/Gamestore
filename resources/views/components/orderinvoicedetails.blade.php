@@ -3,7 +3,6 @@
  @endphp
  <div class="grid grid-cols-12 gap-4">
  	<div class="col-span-7">
- 		<form>
  			@if (!old('agree'))
  			<div id="conditionalForm" style="display:block;">
  				<form method="POST" action="{{ route('storeShippingDetails', $user->id) }}">
@@ -122,6 +121,5 @@
  				</form>
  			</div>
  			@endif
- 		</form>
  	</div>
  </div>

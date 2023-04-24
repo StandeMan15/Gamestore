@@ -79,4 +79,36 @@ class AdminOrderController extends Controller
             'products' => Product::select('*')->limit(10)->get()
         ]);
     }
+
+    public function store(Request $request)
+    {
+        // This function isnt done yet
+        $validatedData = $request->validate([
+            'ordernmr' => 'required',
+            'product_id' => 'required',
+            'quantity' => 'required|numeric|min:1',
+        ]);
+
+        //dd($validatedData);
+
+        $ordernmr = $validatedData['ordernmr'];
+        $productIds = $validatedData['product_id'];
+        $quantities = $validatedData['quantity'];
+
+        $order = new Order;
+        $order->user_id = auth()->id();
+        $order->order_number = $ordernmr;
+
+        foreach ($productIds as $index => $productId) {
+            $quantity = $quantities[$index];
+
+            $orderItem = new UserOrder();
+            $orderItem->order_number = $ordernmr;
+            $orderItem->product_id = $productId;
+            $orderItem->quantity = $quantity;
+            $orderItem->save();
+        }
+
+        //return redirect()->back()->with('success', 'Admin Order submitted successfully!');
+    }
 }

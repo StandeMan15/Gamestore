@@ -11,12 +11,11 @@
                         Email
                     </label>
 
-                    <input  class="border border-gray-400 p-2 w-full"
-                            type="email" name="email" id="email" value="{{ old('email') }}" required>
+                    <input class="border border-gray-400 p-2 w-full" type="email" name="email" id="email" value="{{ old('email') }}" required>
                     @error('email')
-                        <p class="text-red-500 text-xs mt-1">
-                            {{ $message }}
-                        </p>
+                    <p class="text-red-500 text-xs mt-1">
+                        {{ $message }}
+                    </p>
                     @enderror
                 </div>
 
@@ -25,12 +24,11 @@
                         Password
                     </label>
 
-                    <input  class="border border-gray-400 p-2 w-full"
-                            type="password" name="password" id="password" value="{{ old('password') }}" required>
+                    <input class="border border-gray-400 p-2 w-full" type="password" name="password" id="password" value="{{ old('password') }}" required>
                     @error('password')
-                        <p class="text-red-500 text-xs mt-1">
-                            {{ $message }}
-                        </p>
+                    <p class="text-red-500 text-xs mt-1">
+                        {{ $message }}
+                    </p>
                     @enderror
                 </div>
 
@@ -39,6 +37,7 @@
                         Login
                     </button>
                 </div>
+
 
                 <!-- @if ($errors->any())
                     <ul>
@@ -50,6 +49,11 @@
                     </ul>
                 @endif -->
             </form>
+            <a href="/register">
+                <button class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500">
+                    Geen account?
+                </button>
+            </a>
         </main>
     </section>
 </x-layout>
