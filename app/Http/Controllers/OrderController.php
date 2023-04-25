@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Image;
 use App\Models\Order;
 use App\Models\UserOrder;
@@ -41,6 +42,8 @@ class OrderController extends Controller
             $cart[$id] = [
                 "user_id" => auth()->id(),
                 "id" => $product->id,
+                "category_id" => $product->category->id,
+                "slug" => $product->slug,
                 "name" => $product->title,
                 "quantity" => 1,
                 "price" => $product->price,
@@ -60,7 +63,9 @@ class OrderController extends Controller
      */
     public function cart()
     {
-        return view('orders.cart');
+        return view('orders.cart', [
+            'category' => Category::all()
+        ]);
     }
 
     /**

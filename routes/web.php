@@ -136,7 +136,9 @@ Route::prefix('')->group(function () {
 
 
 // Product handling
+Route::get('{product:slug}', [ProductsController::class, 'showProduct'])->name('showProduct');
 Route::get('{categories:slug}/{product:slug}', [ProductsController::class, 'show']);
+
 Route::post('products/{product:slug}/comments', [ProductCommentsController::class, 'store']);
 
 

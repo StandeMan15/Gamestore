@@ -31,6 +31,15 @@ class ProductsController extends Controller
         ]);
     }
 
+    public function showProduct(Product $product)
+    {
+        return view('products.show', [
+            'category' => Category::all(),
+            'product' => Product::where('slug', $product)->get(),
+            'images' => Image::all()
+        ]);
+    }
+
     public function read($id)
     {
         if (!auth()->check()) {
