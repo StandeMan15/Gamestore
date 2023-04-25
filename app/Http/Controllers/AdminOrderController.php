@@ -50,19 +50,16 @@ class AdminOrderController extends Controller
         ]);
     }
 
-    public function update(OrderFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        //$validatedData = $request->validated();
 
-        dd('Hello');
-
-        // Order::where('order_number', $id)
-        //     ->update([
-        //         'status_id' => $validatedData['status_id'],
-        //     ]);
-
-        // return redirect('/admin/orders')
-        // ->with('success', 'Bestelling succesvol aangepast');
+        Order::where('order_number', $id)
+            ->update([
+                'status_id' => $request['status_id'],
+            ]);
+            
+        return redirect('/admin/orders')
+        ->with('success', 'Bestelling succesvol aangepast');
     }
 
     public function create()
@@ -89,7 +86,7 @@ class AdminOrderController extends Controller
             'quantity' => 'required|numeric|min:1',
         ]);
 
-        //dd($validatedData);
+        dd($validatedData);
 
         $ordernmr = $validatedData['ordernmr'];
         $productIds = $validatedData['product_id'];

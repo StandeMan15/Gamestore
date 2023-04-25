@@ -12,6 +12,7 @@
             <table>
                 <th class="col-span-2">Customer</th>
                 <th class="col-span-2">Order nummer</th>
+                <th class="col-span-2">Status</th>
                 <th class="col-span-2">Actions</th>
                 @foreach ( $orders as $order )
                 @php //dd($order)
@@ -22,6 +23,13 @@
                     </td>
                     <td class="flex place-content-center">
                         {{$order->order_number}}
+                    </td>
+                    <td>
+                        @foreach ($statuses as $status)
+                            @if ($status->id == $order->status_id)
+                                {{$status->title}}
+                            @endif
+                        @endforeach
                     </td>
                     <td>
                         <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">Read</a>

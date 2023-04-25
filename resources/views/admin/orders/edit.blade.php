@@ -1,5 +1,5 @@
 <x-layout>
-    <?php //dd($product)  
+    <?php //dd($order)  
     ?>
     <form method="POST" action="{{route('updateOrdersAdmin', $order_number)}}">
         @csrf
@@ -7,11 +7,11 @@
         <div class="grid grid-cols-12 gap-4">
             <select class="p-2 border border-gray-200" type="text" name="status_id" id="status_id" onchange="this.form.submit()">
                 @foreach ($statuses as $status)
-                    @if ($status->id == $order->status->id)
-                        <option id="{{$status->id}}" value=" {{$status->title}}" selected>{{$status->title}}</option>
-                    @else
-                        <option id="{{$status->id}}" value="{{$status->title}}">{{$status->title}}</option>
-                    @endif
+                @if ($status->id == $order->status->id)
+                    <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}" selected>{{$status->title}}</option>
+                @else
+                    <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}">{{$status->title}}</option>
+                @endif
                 @endforeach
             </select>
 

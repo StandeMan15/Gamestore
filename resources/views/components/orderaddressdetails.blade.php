@@ -135,7 +135,7 @@ $isReadonly = true;
 
                 <td>
                     <button type="submit" id="myButton1" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>
-                        Door naar betalen
+                        Zie bezorgopties
                     </button>
                 </td>
             </tr>

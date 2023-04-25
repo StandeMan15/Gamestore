@@ -112,7 +112,7 @@
  						<tr>
  							<td>
  								<button type="submit" id="myButton2" disabled class="mt-4 px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50">
- 									Door naar betalen
+ 									Zie bezorgopties
  								</button>
  							</td>
 
