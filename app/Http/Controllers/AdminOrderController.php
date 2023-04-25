@@ -45,6 +45,7 @@ class AdminOrderController extends Controller
 
         return view('admin/orders.edit', [
             'order' => Order::where('order_number', $id)->firstorfail(),
+            'orderdetails' => UserOrder::where('order_number', $id)->get(),
             'statuses' => Status::all(),
             'order_number' => $id
         ]);
@@ -79,33 +80,45 @@ class AdminOrderController extends Controller
 
     public function store(Request $request)
     {
-        // This function isnt done yet
         $validatedData = $request->validate([
             'ordernmr' => 'required',
-            'product_id' => 'required',
-            'quantity' => 'required|numeric|min:1',
-        ]);
-
-        dd($validatedData);
+            'product_name' => 'required|array',
+            'quantity' => 'required|array',
+        ]);     
 
         $ordernmr = $validatedData['ordernmr'];
-        $productIds = $validatedData['product_id'];
-        $quantities = $validatedData['quantity'];
+        $productNames = $validatedData['product_name'];
 
+        $quantity = $validatedData['quantity'];
+        
         $order = new Order;
+
+        for ($i = 1; $i < count($productNames); $i++) {
+            $name = $productNames[$i];
+        }
+
+        $product = Product::where('title', $name)->firstorfail();
+
         $order->user_id = auth()->id();
         $order->order_number = $ordernmr;
+        $order->save();
 
-        foreach ($productIds as $index => $productId) {
-            $quantity = $quantities[$index];
+        foreach ($productNames as $name) {
+
 
             $orderItem = new UserOrder();
             $orderItem->order_number = $ordernmr;
-            $orderItem->product_id = $productId;
-            $orderItem->quantity = $quantity;
+
+            $orderItem->name = $name;
+
+            for($i = 1;$i < count($quantity);$i++) {
+                $orderItem->quantity = $quantity[$i];
+            }
+
+            $orderItem->price = $product->price * $orderItem->quantity;
             $orderItem->save();
         }
 
-        //return redirect()->back()->with('success', 'Admin Order submitted successfully!');
+        return redirect()->back()->with('success', 'Admin Order submitted successfully!');
     }
 }

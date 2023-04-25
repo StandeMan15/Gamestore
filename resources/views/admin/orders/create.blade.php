@@ -26,14 +26,14 @@ $ordernmr = $latestorder->order_number + 1;
         <tbody id="table_body">
           <tr>
             <td>
-              <select class="p-2 border border-gray-200" type="text" name="product_id[]" id="product_id">
+              <select class="p-2 border border-gray-200" type="text" name="product_name[]" id="product_name">
                 @foreach ($products as $product)
-                <option id="{{$product->id}}" value="{{$product->id}}">{{$product->title}}</option>
+                <option id="{{$product->title}}" value="{{$product->title}}">{{$product->title}}</option>
                 @endforeach
               </select>
             </td>
             <td>
-              <input type="number" class="form_control" name="quantity[]" placeholder="1" min="0">
+              <input type="number" class="form_control" name="quantity[]" placeholder="1" value=1 min="0">
             </td>
             <td>
               <div class="action_container">
@@ -74,7 +74,7 @@ $ordernmr = $latestorder->order_number + 1;
 
   function remove_tr(This) {
     if (This.closest('tbody').childElementCount == 1) {
-      alert("You Don't have Permission to Delete This ?");
+      alert("Nee mag nie");
     } else {
       This.closest('tr').remove();
     }
