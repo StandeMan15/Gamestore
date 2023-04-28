@@ -29,11 +29,7 @@ $total += $details['price'] * $details['quantity'];
 								<div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
 									<div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
 										<div class="flex items-start justify-between">
-											@if(session('cart'))
 											<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Jouw winkelwagentje</h2>
-											@else
-											<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Jouw winkelwagentje is nog leeg</h2>
-											@endif
 											<div class="ml-3 flex h-7 items-center">
 												<button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500" @click="isOpen = false">
 													<span class="sr-only">Close panel</span>
@@ -89,6 +85,10 @@ $total += $details['price'] * $details['quantity'];
 														</div>
 													</li>
 													@endforeach
+													@else
+													<div>
+														<img src="https://usagif.com/wp-content/uploads/upgifsok/tumbleweed-acegif-14.gif">
+													</div>
 													@endif
 												</ul>
 											</div>
