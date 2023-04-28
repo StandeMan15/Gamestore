@@ -13,82 +13,52 @@
                 <x-shopping-cart class="mr-4" />
 
                 @auth
-                @if (auth()->user()->is_admin == 1)
-                <div class="relative w-32">
-                    <div x-data="{ open: false }">
-                        <button @click="open = !open" class="flex items-center justify-between bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 text-xs font-bold uppercase">
-                            <span class="mr-2">Welkom, {{ auth()->user()->fname }}!</span>
-                            <svg x-show="!open" class="w-4 h-4 transform -rotate-90" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 0 1 1.414-1.414L10 9.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4z" />
-                            </svg>
-                            <svg x-show="open" class="w-4 h-4 transform rotate-90" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 0 0 1.414-1.414L10 9.586l3.293-3.293a1 1 0 0 0-1.414-1.414l-4 4a1 1 0 0 0 0 1.414l4 4z" />
-                            </svg>
-                        </button>
-
-                        <div x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-32 bg-white border border-gray-300 shadow-md rounded-md">
-                            <ul>
-                                <li class="text-xs font-bold uppercase px-3">
-                                    <a href="/admin" class="hover:no-underline"><i class="fas fa-tachometer-alt fa-lg"></i> Admin</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('showuser')}}" class="hover:no-underline"><i class="fas fa-user"></i> Uw profiel</a>
-                                </li>
-                                <li class="text-xs font-semibold text-blue-500 ml-6">
-                                    <form method="POST" action="/logout">
-                                        @csrf
-
-                                        <button type="submit"><i class="fas fa-sign-out-alt"></i>Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                @else
                 <div class="relative w-32">
                     <div x-data="{ open: false }">
                         <x-layout-button />
 
-                        <div x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-32 bg-white border border-gray-300 shadow-md rounded-md">
-                            <ul>
-                                <li>
-                                    <a href="{{route('showuser')}}" class="hover:no-underline"><i class="fas fa-user"></i> Uw profiel</a>
-                                </li>
-                                <li class="text-xs font-semibold text-blue-500 ml-6">
-                                    <form method="POST" action="/logout">
-                                        @csrf
+                        <div x-cloak x-show="open" @click.outside="open = false" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                            <div class="py-1" role="none">
 
-                                        <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
+                                @if (auth()->user()->is_admin == 1)
+                                <a href="/admin" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+                                    <i class="fas fa-chart-bar fa-lg"></i>
+                                    Admin
+                                </a>
+                                @endif
+
+                                <a href="{{route('showuser')}}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1"><i class="fas fa-user"></i> Uw profiel</a>
+
+                                <form method="POST" action="/logout">
+                                    @csrf
+
+                                    <button type="submit" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                @endif
                 @endauth
 
                 @if (!auth()->check())
                 <div x-data="{ open: false }">
-                    <button @click="open = true" class="ml-2 text-xs font-bold uppercase">
-                        <i class="fas fa-cog fa-lg mr-10"></i>
+                    <button x-cloak @click="open = true" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                        <i class="fas fa-user-cog fa-lg"></i>
+                        <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
                     </button>
 
-                    <div x-show="open" @click.outside="open = false" class="absolute mt-2 w-32">
-                        <ul class="py-2">
-                            <li class="text-xs font-bold uppercase px-3">
-                                <a href="/register">Register</a>
-                            </li>
-                            <li class="text-xs font-bold uppercase px-3">
-                                <a href="/login">Log In</a>
-                            </li>
-                        </ul>
+                    <div x-cloak x-show="open" @click.outside="open = false" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <a href="/login" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Log In</a>
+                            <a href="/register" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Registreer</a>
+                        </div>
                     </div>
+
+
+                    @endif
                 </div>
-                @endif
-            </div>
         </nav>
 
         {{ $slot }}

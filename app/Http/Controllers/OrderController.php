@@ -11,11 +11,6 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function show()
     {
         return view('orders.index', [
@@ -24,11 +19,6 @@ class OrderController extends Controller
 
     }
 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function addToCart($id)
     {
         
@@ -53,14 +43,9 @@ class OrderController extends Controller
         }
 
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', $product->title . 'toegevoegd aan winkelwagen!');
+        return redirect('/')->with('success', $product->title . 'toegevoegd aan winkelwagen!');
     }
 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function cart()
     {
         return view('orders.cart', [
@@ -68,11 +53,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function update(Request $request)
     {
         if ($request->id && $request->quantity) {
@@ -83,11 +63,6 @@ class OrderController extends Controller
         }
     }
 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function remove(Request $request)
     {
         if ($request->id) {
