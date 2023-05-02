@@ -13,27 +13,26 @@ $total += $details['price'] * $details['quantity'];
 @endphp
 
 <body>
-	<div x-data="{ isOpen: false }">
+	<div x-data="{ isOpen: sessionStorage.getItem('cartOpened') === 'true' }">
 		<button @click="isOpen = !isOpen" id="showcart" class="w-24 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
 			<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 			<span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
 		</button>
 
-		<div x-cloak x-show="isOpen" x-init="isOpen = '{{ session('cartRemoved') ? 'false' : 'true' }}' === 'false';">
+		<div x-cloak x-show="isOpen">
 			<div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
 				<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
 				<div class="fixed inset-0 overflow-hidden">
 					<div class="absolute inset-0 overflow-hidden">
-						<div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10" @click.away="isOpen = false">
+						<div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10" @click.away="sessionStorage.setItem('cartOpened', false); isOpen = false;">
 							<div class="pointer-events-auto w-screen max-w-md">
 								<div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
 									<div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
 										<div class="flex items-start justify-between">
 											<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Jouw winkelwagentje</h2>
 											<div class="ml-3 flex h-7 items-center">
-												<button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500" @click="isOpen = false">
-													<span class="sr-only">Close panel</span>
+												<button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500" @click.away="sessionStorage.setItem('cartOpened', false); isOpen = false;">
 													<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 														<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 													</svg>
@@ -128,24 +127,25 @@ $total += $details['price'] * $details['quantity'];
 </html>
 
 <script type="text/javascript">
-	// $(".update-cart").change(function(e) {
-	// 	e.preventDefault();
+	$(".update-cart").change(function(e) {
+		e.preventDefault();
 
-	// 	var ele = $(this);
+		var ele = $(this);
 
-	// 	$.ajax({
-	// 		url: 'order/update-cart',
-	// 		method: "patch",
-	// 		data: {
-	// 			_token: '{{ csrf_token() }}',
-	// 			id: ele.parents("li").attr("data-id"),
-	// 			quantity: ele.parents("li").find(".quantity").val()
-	// 		},
-	// 		success: function(response) {
-	// 			window.location.reload();
-	// 		}
-	// 	});
-	// });
+		$.ajax({
+			url: 'order/update-cart',
+			method: "patch",
+			data: {
+				_token: '{{ csrf_token() }}',
+				id: ele.parents("li").attr("data-id"),
+				quantity: ele.parents("li").find(".quantity").val()
+			},
+			success: function(response) {
+			sessionStorage.setItem('cartOpened', true);
+			location.reload();
+			}
+		});
+	});
 
 	$(".remove-from-cart").click(function(e) {
 		e.preventDefault();
@@ -158,8 +158,7 @@ $total += $details['price'] * $details['quantity'];
 				id: ele.parents("li").attr("data-id")
 			},
 			success: function(response) {
-				sessionStorage.setItem('cartRemoved', true);
-				//console.log(sessionStorage);
+				sessionStorage.setItem('cartOpened', true);
 				location.reload();
 			}
 		});
