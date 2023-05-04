@@ -86,7 +86,7 @@ class OrderController extends Controller
 
             $order = new Order;
             $order->user_id = auth()->id();
-
+            $order->status_id = 1;
             $order->order_number = str_pad($latestOrder->order_number + 1, STR_PAD_LEFT);
             
             $totalprice = 0;
@@ -111,7 +111,8 @@ class OrderController extends Controller
 
                 $totalprice = $totalprice . ".00";
             }
-
+            $totalprice = strval($totalprice);
+            
             $checkout = [
                 'order_number' => $order->order_number,
                 'order_price' => $totalprice

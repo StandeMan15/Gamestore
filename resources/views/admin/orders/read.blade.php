@@ -1,47 +1,32 @@
 <x-layout>
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-1 w-auto">
-            <x-admin-sidebar />
-        </div>
-
-        <div class="col-start-6 col-span-4 my-8">
-            <table>
-                <th>
-                    Product naam
-                </th>
-                <th>
-                    Aantal
-                </th>
-                <th>
-                    Prijs
-                </th>
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left">
+            <thead class="text-xs uppercase bg-gray-600">
+                <tr class="text-white">
+                    <th scope="col" class="px-6 py-3">
+                        Producten
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Prijs
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Aantal
+                    </th>
+                </tr>
                 @foreach ($orderdetails as $details)
-                <tr>
-                    <td>
-                        {{ $details->name}}
-                    </td>
-
-                    <td>
-                        {{ $details->quantity }}
-                    </td>
-
-                    <td>
-                        €&nbsp;{{ $details->price }}
-                    </td>
+                <tr class="bg-white border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$details->name}}</th>
+                    <td class="px-6 py-4">€{{$details->price}}</td>
+                    <td class="px-6 py-4">{{$details->quantity}}</td>
                 </tr>
                 @endforeach
-            </table>
-
-        </div>
+                <tr class="bg-white border-b">
+                    <td></td>
+                    <td></td>
+                    <td class="px-6 py-4 col-span-1">
+                        <a href="{{ URL::previous() }}" class="bg-blue-500 text-white rounded-md p-2">Go Back</a>
+                    </td>
+                </tr>
+        </table>
     </div>
-
-    <div class="grid grid-cols-6 gap-4">
-        <div class="col-span-5"></div>
-        <div class="col-span-1">
-            <a href="{{ URL::previous() }}" class="bg-blue-500 text-white rounded-md p-2">Go Back</a>
-        </div>
-    </div>
-
-
-
 </x-layout>

@@ -28,7 +28,5 @@
         order.push(item);
 
         let countItems = order.length;
-        console.log(countItems);
-        console.log(order);
     }
 </script>

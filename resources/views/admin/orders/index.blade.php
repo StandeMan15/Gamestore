@@ -25,17 +25,37 @@
                         {{$order->order_number}}
                     </td>
                     <td>
-                        @foreach ($statuses as $status)
+                        <form method="POST" action="{{route('updateOrdersAdmin', $order->order_number)}}">
+                            @csrf
+
+                            @foreach ($statuses as $status)
                             @if ($status->id == $order->status_id)
-                                {{$status->title}}
+                            <select class="p-2 border border-gray-200" type="text" name="status_id" id="status_id" onchange="this.form.submit()">
+                                @foreach ($statuses as $status)
+                                @if ($status->id == $order->status->id)
+                                <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}" selected>{{$status->title}}</option>
+                                @elseif ($status->id != $order->status->id)
+                                <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}">{{$status->title}}</option>
+                                @endif
+                                @endforeach
+                            </select>
                             @endif
-                        @endforeach
+                            @endforeach
+
+                            <div class="col-span-2">
+                                @error('name')
+                                <p class="text-red-500 text-xs mt-1">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+                        </form>
                     </td>
                     <td>
                         <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">Read</a>
                     </td>
                     <td>
-                        <a href="{{route('editOrdersAdmin', $order->order_number)}}" class="bg-yellow-400 text-white flex rounded-md px-1">Edit</a>
+                        <a href="{{route('editOrdersAdmin', $order->order_number)}}" class="bg-gray-400 text-white flex rounded-md px-1 pointer-events-none">Edit</a>
                     </td>
                 </tr>
 
