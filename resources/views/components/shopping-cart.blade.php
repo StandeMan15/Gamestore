@@ -102,7 +102,11 @@ $total += $details['price'] * $details['quantity'];
 										</div>
 										<p class="mt-0.5 text-sm text-gray-500">Bezorgkosten worden bijberekend bij afrekenen</p>
 										<div class="mt-6">
+											@if (empty(session('cart')) || !auth()->check())
+												<x-checkout-forbidden route="{{ route('orderdenied') }}" />
+											@else
 											<a href="{{ route('storeorder') }}" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Afrekenen</a>
+											@endif
 										</div>
 										<div class="mt-6 flex justify-center text-center text-sm text-gray-500">
 											<p>
@@ -141,8 +145,8 @@ $total += $details['price'] * $details['quantity'];
 				quantity: ele.parents("li").find(".quantity").val()
 			},
 			success: function(response) {
-			sessionStorage.setItem('cartOpened', true);
-			location.reload();
+				sessionStorage.setItem('cartOpened', true);
+				location.reload();
 			}
 		});
 	});

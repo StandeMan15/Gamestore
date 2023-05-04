@@ -112,7 +112,7 @@ class OrderController extends Controller
                 $totalprice = $totalprice . ".00";
             }
             $totalprice = strval($totalprice);
-            
+
             $checkout = [
                 'order_number' => $order->order_number,
                 'order_price' => $totalprice
@@ -127,5 +127,10 @@ class OrderController extends Controller
         
         return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
 
+    }
+
+    public function deny()
+    {
+        return redirect('')->with('success', 'Uw moet ingelogd zijn om te kunnen bestellen');
     }
 }
