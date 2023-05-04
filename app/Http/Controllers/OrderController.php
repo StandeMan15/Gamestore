@@ -131,6 +131,11 @@ class OrderController extends Controller
 
     public function deny()
     {
-        return redirect('')->with('success', 'Uw moet ingelogd zijn om te kunnen bestellen');
+        if (!auth()->check()) {
+            return redirect('')->with('success', 'Uw moet ingelogd zijn om te kunnen bestellen');
+        } else {
+            return redirect('')->with('success', 'Er zit nog niks in jouw winkelwagentje');
+        }
+        
     }
 }
