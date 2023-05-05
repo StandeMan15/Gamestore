@@ -4,13 +4,13 @@
             <thead class="text-xs uppercase bg-gray-600">
                 <tr class="text-white">
                     <th scope="col" class="px-6 py-3">
-                        Producten
+                        {{ __('messages.admin.product.title') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Prijs
+                        {{ __('messages.admin.order.price') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Aantal
+                        {{ __('messages.admin.product.qty') }}
                     </th>
                 </tr>
                 @foreach ($orderdetails as $details)

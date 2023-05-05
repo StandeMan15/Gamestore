@@ -9,9 +9,9 @@
         <div class="col-start-3 col-span-4">
             <div class="w-64 h-64">
                 @foreach ( $images as $image )
-                    @if ($image->product_id == $product->id)
-                        <img src="{{ asset($image->image) }}" alt="" class="h-auto w-auto"/>
-                    @endif
+                @if ($image->product_id == $product->id)
+                <img src="{{ asset($image->image) }}" alt="" class="h-auto w-auto" />
+                @endif
                 @endforeach
 
             </div>
@@ -21,7 +21,7 @@
             <table>
                 <tr>
                     <td>
-                        Categorie:
+                        {{ __('messages.admin.category.title') }}
                     </td>
 
                     <td>
@@ -31,7 +31,7 @@
 
                 <tr>
                     <td>
-                        Game:
+                        {{ __('messages.admin.product.title') }}
                     </td>
 
                     <td>
@@ -41,18 +41,18 @@
 
                 <tr>
                     <td>
-                        Prijs:
+                        {{ __('messages.admin.order.price') }}:
                     </td>
                     @if ($product->discount_price != null)
-                        <td>
-                            <span class="line-through">{{ $product->price }}</span>
-                            {{ $product->discount_price }}
-                        </td>
+                    <td>
+                        <span class="line-through">{{ $product->price }}</span>
+                        {{ $product->discount_price }}
+                    </td>
                     @else
-                        <td>
-                            <span>{{ $product->price }} </span>
-                        </td>
-                        
+                    <td>
+                        <span>{{ $product->price }} </span>
+                    </td>
+
                     @endif
 
 
@@ -61,7 +61,7 @@
                 <tr>
                     @if (isset($product->minimum_age))
                     <td>
-                        Minimale leeftijd:
+                        {{ __('messages.admin.product.min_age') }}:
                     </td>
 
                     <td>
@@ -69,8 +69,8 @@
                     </td>
                     @else
                     <td class="col-span-2 col-start-2">
-                        Geschikt voor alle leeftijden
-                    </td> 
+                        {{ __('messages.admin.product.all_ages') }}
+                    </td>
                     @endif
 
                 </tr>
@@ -78,21 +78,21 @@
                 <tr>
                     @if ($timeNow < $product->release_date)
                         <td>
-                            Pre-order datum:
+                            {{ __('messages.admin.product.preorder') }}:
                         </td>
 
                         <td>
                             {{ $product->preorder_date }}
                         </td>
-                    @else
+                        @else
                         <td>
-                            Uitgebracht op:
+                            {{ __('messages.admin.product.release') }}:
                         </td>
 
                         <td>
                             {{ $product->release_date }}
                         </td>
-                    @endif
+                        @endif
                 </tr>
             </table>
 
@@ -103,14 +103,14 @@
     <div class="grid grid-cols-6 gap-4">
         <div class="col-span-1"></div>
         <div class="col-span-4">
-            Beschrijving: {!! $product->body !!}
+            {{ __('messages.admin.product.desc') }}: {!! $product->body !!}
         </div>
     </div>
 
     <div class="grid grid-cols-6 gap-4">
         <div class="col-span-5"></div>
         <div class="col-span-1">
-            <a href="{{ URL::previous() }}" class="bg-blue-500 text-white rounded-md p-2">Go Back</a>
+            <a href="{{ URL::previous() }}" class="bg-blue-500 text-white rounded-md p-2">{{ __('messages.form.back') }}</a>
         </div>
     </div>
 

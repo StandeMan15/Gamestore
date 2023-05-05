@@ -72,7 +72,7 @@ $total += $details['price'] * $details['quantity'];
 															</div>
 															<div class="flex flex-1 items-end justify-between text-sm">
 																<div>
-																	<p class="text-gray-500" data-th="Quantity">Aantal:&nbsp;{{ $details['quantity'] }}</p>
+																	<p class="text-gray-500" data-th="Quantity">{{ __('messages.admin.product.qty') }}:&nbsp;{{ $details['quantity'] }}</p>
 																	<input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" min="0" />
 																</div>
 																<div>
@@ -97,22 +97,22 @@ $total += $details['price'] * $details['quantity'];
 
 									<div class="border-t border-gray-200 px-4 py-6 sm:px-6">
 										<div class="flex justify-between text-base font-medium text-gray-900">
-											<p>Subtotaal</p>
+											<p>{{ __('messages.admin.order.subtotal') }}</p>
 											<p>€&nbsp;{{ $total }}</p>
 										</div>
-										<p class="mt-0.5 text-sm text-gray-500">Bezorgkosten worden bijberekend bij afrekenen</p>
+										<p class="mt-0.5 text-sm text-gray-500">{{ __('messages.admin.order.shipment_cost') }}</p>
 										<div class="mt-6">
 											@if (empty(session('cart')) || !auth()->check())
-												<x-checkout-forbidden route="{{ route('orderdenied') }}" />
+											<x-checkout-forbidden route="{{ route('orderdenied') }}" />
 											@else
-											<a href="{{ route('storeorder') }}" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Afrekenen</a>
+											<a href="{{ route('storeorder') }}" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">{{ __('messages.checkout.pay_btn') }}</a>
 											@endif
 										</div>
 										<div class="mt-6 flex justify-center text-center text-sm text-gray-500">
 											<p>
-												of
+												{{ __('messages.index.or') }}
 												<button type="button" class="font-medium text-indigo-600 hover:text-indigo-500" @click="isOpen = false">
-													Verder winkelen
+													{{ __('messages.cart.continue') }}
 													<span aria-hidden="true"> &rarr;</span>
 												</button>
 											</p>

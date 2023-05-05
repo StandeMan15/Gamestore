@@ -49,7 +49,7 @@ class StatusController extends Controller
             ]);
 
         return redirect('/admin')
-            ->with('success', 'Status succesvol aangepast');
+            ->with('success', __('messages.admin.status.create'));
     }
 
     public function destroy($id)
@@ -57,6 +57,6 @@ class StatusController extends Controller
 
         Status::destroy($id);
 
-        return redirect('admin/status')->with('success', 'Status is verwijderd');
+        return redirect('admin/status')->with('success', __('messages.admin.status.removed'));
     }
 }

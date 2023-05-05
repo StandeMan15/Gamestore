@@ -38,7 +38,7 @@ class UserController extends Controller
                 'postalcode' => $validatedData['postalcode'],
             ]);
 
-        return redirect('/my-profile')->with('success', 'Je hebt jouw gegevens gewijzigd!');
+        return redirect('/my-profile')->with('success', __('messages.user.edit'));
     }
     
 }

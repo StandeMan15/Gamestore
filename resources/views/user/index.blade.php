@@ -11,7 +11,7 @@
 				<a href="{{route('edituser')}}" class="hover:no-underline hover:text-black visited:text-black text-black">
 					<table class="w-full">
 						<th>
-							<h1 class="text-2xl font-semibold mb-6">Jouw Gegevens</h1>
+							<h1 class="text-2xl font-semibold mb-6">{{ __('messages.nav.profile') }}</h1>
 						</th>
 						<th><i class="fas fa-edit fa-lg text-yellow-500"></i></th>
 						<tr>
@@ -45,7 +45,7 @@
 						</tr>
 						<tr>
 							<td>
-								Klantnummer:
+								{{ __('messages.user.user_id') }}:
 							</td>
 							<td class="text-left">
 								{{ auth()->user()->id }}

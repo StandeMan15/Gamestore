@@ -27,15 +27,15 @@
 
                     @if (isset($product->release_date))
                     <span class="mt-2 block text-gray-400 text-xs">
-                        Released On: {{ $product->release_date }}
+                        {{ __('messages.admin.product.release') }}: {{ $product->release_date }}
                     </span>
                     @elseif (isset($product->preorder_date))
                     <span class="mt-2 block text-gray-400 text-xs">
-                        Preorder On: {{ $product->preorder_date }}
+                        {{ __('messages.admin.product.preorder') }}: {{ $product->preorder_date }}
                     </span>
                     @else
                     <span class="mt-2 block text-gray-400 text-xs">
-                        Available Soon
+                        {{ __('messages.admin.product.available') }}
                     </span>
                     @endif
                 </div>

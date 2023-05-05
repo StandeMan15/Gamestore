@@ -4,21 +4,21 @@
             <x-admin-sidebar />
         </div>
         <div class="col-span-6 col-start-2">
-            <a href="{{route('createStatus')}}" class="bg-green-500 text-white rounded-md p-2">Create
+            <a href="{{route('createStatus')}}" class="bg-green-500 text-white rounded-md p-2">{{ __('messages.admin.index.create') }}
             </a>
         </div>
 
         <div class="col-start-2 col-span-12 m-auto">
             <table>
-                <th class="col-span-2">Status</th>
-                <th class="col-span-2">Actions</th>
+                <th class="col-span-2">{{ __('messages.admin.status.title') }}</th>
+                <th class="col-span-2">{{ __('messages.admin.index.actions') }}</th>
                 @foreach ( $statuses as $status )
                 <tr>
                     <td>
                         {{$status->title}}
                     </td>
                     <td>
-                        <a href="{{route('editStatus', $status->id)}}" class="bg-yellow-400 text-white flex rounded-md px-1">Edit</a>
+                        <a href="{{route('editStatus', $status->id)}}" class="bg-yellow-400 text-white flex rounded-md px-1">{{ __('messages.admin.index.edit') }}</a>
                     </td>
                     <td>
                         <form action="{{route('destroyStatus', $status->id)}}" method="POST">
@@ -26,7 +26,7 @@
                             @method('DELETE')
 
                             <button type="submit" class="bg-red-400 text-white flex rounded-md px-1">
-                                Delete
+                                {{ __('messages.admin.index.delete') }}
                             </button>
 
                         </form>

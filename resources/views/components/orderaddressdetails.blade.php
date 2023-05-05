@@ -4,14 +4,14 @@ $isReadonly = true;
 
 <div class="col-span-6">
     <h4 class="font-bold uppercase">
-        Bestelgegevens
+        {{ __('messages.admin.order.title') }}
     </h4>
     <form action="{{ route('storeShippingDetails', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <table>
             <tr>
                 <td>
-                    <x-form-label for="order_number">Bestelnummer</x-form-label>
+                    <x-form-label for="order_number">{{ __('messages.admin.order.num') }}</x-form-label>
                 </td>
 
                 <td>
@@ -20,7 +20,7 @@ $isReadonly = true;
             </tr>
             <tr>
                 <td>
-                    <x-form-label for="fname">Voornaam</x-form-label>
+                    <x-form-label for="fname">{{ __('messages.form.fname') }}</x-form-label>
                 </td>
 
                 <td>
@@ -28,7 +28,7 @@ $isReadonly = true;
                 </td>
 
                 <td>
-                    <x-form-label for="lname">Achternaam</x-form-label>
+                    <x-form-label for="lname">{{ __('messages.form.lname') }}</x-form-label>
                 </td>
 
                 <td>
@@ -38,7 +38,7 @@ $isReadonly = true;
 
             <tr>
                 <td>
-                    <x-form-label for="email">Email</x-form-label>
+                    <x-form-label for="email">{{ __('messages.form.email') }}</x-form-label>
                 </td>
 
                 <td>
@@ -50,7 +50,7 @@ $isReadonly = true;
 
             <tr>
                 <td>
-                    <x-form-label for="housenmr">Huisnummer</x-form-label>
+                    <x-form-label for="housenmr">{{ __('messages.form.housenmr') }}</x-form-label>
                 </td>
 
                 <td>
@@ -62,7 +62,7 @@ $isReadonly = true;
                 </td>
 
                 <td>
-                    <x-form-label for="housenmradd">Toevoeging Huisnummer</x-form-label>
+                    <x-form-label for="housenmradd">{{ __('messages.form.housenmr_ex') }}</x-form-label>
                 </td>
                 <td>
                     @if (is_null($user->postalcode_extra))
@@ -75,7 +75,7 @@ $isReadonly = true;
 
             <tr>
                 <td>
-                    <x-form-label for="postalcode">Postcode</x-form-label>
+                    <x-form-label for="postalcode">{{ __('messages.form.postalcode') }}</x-form-label>
                 </td>
 
                 <td>
@@ -87,7 +87,7 @@ $isReadonly = true;
                 </td>
 
                 <td>
-                    <x-form-label for="streetname">Straat</x-form-label>
+                    <x-form-label for="streetname">{{ __('messages.form.streetname') }}</x-form-label>
                 </td>
 
                 <td>
@@ -109,7 +109,7 @@ $isReadonly = true;
                 <td>
                     <label class=" static mb-2 uppercase font-bold text-xs text-gray-700" for="myCheckbox">
                         <a class="text-black no-underline hover:text-black" href='https://www.artitex.nl/juridisch/algemene-voorwaarden/' target="_blank" id="termsofservice" name="terms">
-                            Ik ga akkoord met de algemene voorwaarden
+                            {{ __('messages.index.privacy') }}
                         </a>
                     </label>
 
@@ -125,7 +125,7 @@ $isReadonly = true;
 
                 <td>
                     <label class=" static mb-2 uppercase font-bold text-xs text-gray-700" for="checkbox3">
-                        Deze gegevens als factuurgegevens gebruiken
+                        {{ __('messages.index.bil_info') }}
                     </label>
 
                 </td>
@@ -135,7 +135,7 @@ $isReadonly = true;
 
                 <td>
                     <button type="submit" id="myButton1" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>
-                        Zie bezorgopties
+                        {{ __('messages.checkout.shipment_mthd') }}
                     </button>
                 </td>
             </tr>

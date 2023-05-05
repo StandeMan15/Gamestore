@@ -119,6 +119,6 @@ class AdminOrderController extends Controller
             $orderItem->save();
         }
 
-        return redirect()->back()->with('success', 'Admin Order submitted successfully!');
+        return redirect()->back()->with('success', __('messages.admin.order.create'));
     }
 }

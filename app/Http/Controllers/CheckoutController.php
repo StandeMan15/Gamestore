@@ -44,7 +44,7 @@ class CheckoutController extends Controller
 
     public function handleWebhookNotification()
     {
-        return redirect('')->with('success', 'Uw betaling is ontvangen');
+        return redirect('')->with('success', __('messages.checkout.payment_succes'));
         session()->forget(['checkout']);
         session()->flush();
     }

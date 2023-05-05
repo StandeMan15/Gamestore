@@ -4,16 +4,16 @@
             <thead class="text-xs uppercase bg-gray-600">
                 <tr class="text-white">
                     <th scope="col" class="px-6 py-3">
-                        Producten
+                        {{ __('messages.admin.product.title') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Prijs
+                        {{ __('messages.admin.order.price') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Aantal
+                        {{ __('messages.admin.product.qty') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Action
+                        {{ __('messages.admin.index.actions') }}
                     </th>
                 </tr>
                 @foreach ($orderdetails as $details)
@@ -33,19 +33,19 @@
                 <tr class="bg-white border-b">
                     <form method="POST" action="{{route('updateOrdersAdmin', $order_number)}}">
                         @csrf
-                            <td class="px-6 py-4">
-                                @if (isset($statuses))
-                                <select class="p-2 border border-gray-200" type="text" name="status_id" id="status_id" onchange="this.form.submit()">
-                                    @foreach ($statuses as $status)
-                                    @if ($status->id == $order->status->id)
-                                    <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}" selected>{{$status->title}}</option>
-                                    @elseif ($status->id != $order->status->id)
-                                    <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}">{{$status->title}}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
+                        <td class="px-6 py-4">
+                            @if (isset($statuses))
+                            <select class="p-2 border border-gray-200" type="text" name="status_id" id="status_id" onchange="this.form.submit()">
+                                @foreach ($statuses as $status)
+                                @if ($status->id == $order->status->id)
+                                <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}" selected>{{$status->title}}</option>
+                                @elseif ($status->id != $order->status->id)
+                                <option id="{{$status->id}}" value="{{$status->id}}" name="{{$status->id}}">{{$status->title}}</option>
                                 @endif
-                            </td>
+                                @endforeach
+                            </select>
+                            @endif
+                        </td>
 
                         <div class="col-span-2">
                             @error('name')

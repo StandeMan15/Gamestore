@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()->back()
-            ->with('success','Status gewijzigd');
+            ->with('success', __('messages.admin.status.edit'));
     }
 
     public function edit($id)
@@ -66,7 +66,7 @@ class CategoryController extends Controller
                 'active' => 0
             ]);
 
-        return redirect('admin/categories')->with('success','Category succesvol aangepast');
+        return redirect('admin/categories')->with('success', __('messages.admin.category.edit'));
     }
 
     public function read($id)
@@ -94,6 +94,6 @@ class CategoryController extends Controller
         ]);
 
         return redirect('/admin/categories')
-            ->with('success', 'Categorie aangemaakt!');
+            ->with('success', __('messages.admin.category.create'));
     }
 }

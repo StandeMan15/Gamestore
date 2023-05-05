@@ -9,7 +9,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="title">
-                    Game Naam
+                    {{ __('messages.admin.product.title') }}
                 </label>
             </div>
 
@@ -19,7 +19,7 @@
 
             <div class="col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="price">
-                    Prijs in €
+                    {{ __('messages.admin.order.price') }} €
                 </label>
             </div>
 
@@ -29,7 +29,7 @@
 
             <div class="col-span-1 col-start-6">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="discount_price">
-                    Actieprijs in €
+                    {{ __('messages.admin.order.dis_price') }} €
                 </label>
             </div>
 
@@ -39,7 +39,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="category_id">
-                    Game Categorie
+                    {{ __('messages.admin.category.title') }}
                 </label>
             </div>
 
@@ -48,18 +48,18 @@
 
 
                     @foreach ( $categories as $category )
-                        @if ($product->category->name == $category->name)
-                            <option value="{{ $product->category->id }}" selected>{{ $product->category->name }}</option>
-                        @else
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endif
+                    @if ($product->category->name == $category->name)
+                    <option value="{{ $product->category->id }}" selected>{{ $product->category->name }}</option>
+                    @else
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endif
                     @endforeach
                 </select>
             </div>
 
             <div class="col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="release_date">
-                    Release Datum
+                    {{ __('messages.admin.product.release') }}
                 </label>
             </div>
             <div class="col-span-5">
@@ -70,7 +70,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="excerpt">
-                    Korte beschrijving
+                    {{ __('messages.admin.product.excerpt') }}
                 </label>
             </div>
             <div class="col-span-9 w-full">
@@ -80,7 +80,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="body">
-                    Volledige beschrijving
+                    {{ __('messages.admin.product.desc') }}
                 </label>
             </div>
             <div class="col-span-9">
@@ -90,7 +90,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="minimum_age">
-                    Minimale leeftijd
+                    {{ __('messages.admin.product.min_age') }}
                 </label>
             </div>
             <div class="col-span-2">
@@ -99,7 +99,7 @@
 
             <div class="col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="preorder_date">
-                    Preorder Datum
+                    {{ __('messages.admin.product.preorder') }}
                 </label>
             </div>
             <div class="col-span-2">
@@ -108,7 +108,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="mb-2 uppercase font-bold text-xs text-gray-700" for="image">
-                    Thumbnail
+                    {{ __('messages.admin.product.preorder') }}
                 </label>
             </div>
 
@@ -129,7 +129,7 @@
         </div>
 
         <div class="grid grid-cols-12 gap-4">
-            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">Submit</button>
+            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">{{ __('messages.form.submit') }}</button>
         </div>
     </form>
 </x-layout>

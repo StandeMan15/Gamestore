@@ -10,7 +10,7 @@
             <table>
                 <tr>
                     <td>
-                        Categorie:
+                        {{ __('messages.admin.category.title') }}:
                     </td>
 
                     <td>
@@ -20,7 +20,7 @@
 
                 <tr>
                     <td>
-                        Slug:
+                        {{ __('messages.admin.category.slug') }}:
                     </td>
 
                     <td>
@@ -35,7 +35,7 @@
     <div class="grid grid-cols-6 gap-4">
         <div class="col-span-5"></div>
         <div class="col-span-1">
-            <a href="{{ URL::previous() }}" class="bg-blue-500 text-white rounded-md p-2">Go Back</a>
+            <a href="{{ URL::previous() }}" class="bg-blue-500 text-white rounded-md p-2">{{ __('messages.form.back') }}</a>
         </div>
     </div>
 

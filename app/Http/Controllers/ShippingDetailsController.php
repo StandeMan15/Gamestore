@@ -22,6 +22,6 @@ class ShippingDetailsController extends Controller
         ]);
 
         return redirect()->route('mollie.payment')
-        ->with('success', 'Bezorgadres succesvol doorgegeven');
+        ->with('success', __('messages.checkout.delivery_address'));
     }
 }

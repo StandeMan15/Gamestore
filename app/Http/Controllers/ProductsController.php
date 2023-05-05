@@ -66,7 +66,7 @@ class ProductsController extends Controller
         $product->save();
 
         return redirect()->back()
-            ->with('success','Status gewijzigd');
+            ->with('success', __('messages.admin.status.edit'));
     }
 
     public function edit($id)
@@ -125,7 +125,7 @@ class ProductsController extends Controller
                 }
             }
 
-        return redirect('/admin')->with('success','Product succesvol aangepast');
+        return redirect('/admin')->with('success', __('messages.admin.product.edit'));
     }
 
     public function create()

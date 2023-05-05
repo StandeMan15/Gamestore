@@ -10,10 +10,10 @@
 
         <div class="col-start-2 col-span-12 m-auto">
             <table>
-                <th class="col-span-2">Customer</th>
-                <th class="col-span-2">Order nummer</th>
-                <th class="col-span-2">Status</th>
-                <th class="col-span-2">Actions</th>
+                <th class="col-span-2">{{ __('messages.user.title') }}</th>
+                <th class="col-span-2">{{ __('messages.admin.order.num') }}</th>
+                <th class="col-span-2">{{ __('messages.admin.status.title') }}</th>
+                <th class="col-span-2">{{ __('messages.admin.index.actions') }}</th>
                 @foreach ( $orders as $order )
                 @php //dd($order)
                 @endphp
@@ -52,10 +52,10 @@
                         </form>
                     </td>
                     <td>
-                        <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">Read</a>
+                        <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">{{ __('messages.admin.index.read') }}</a>
                     </td>
                     <td>
-                        <a href="{{route('editOrdersAdmin', $order->order_number)}}" class="bg-gray-400 text-white flex rounded-md px-1 pointer-events-none">Edit</a>
+                        <a href="{{route('editOrdersAdmin', $order->order_number)}}" class="bg-gray-400 text-white flex rounded-md px-1 pointer-events-none">{{ __('messages.admin.index.edit') }}</a>
                     </td>
                 </tr>
 

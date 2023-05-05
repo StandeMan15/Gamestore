@@ -5,15 +5,16 @@
         </div>
 
         <div class="col-span-6 col-start-2">
-                <a href="{{route('createUser')}}" class="bg-green-500 text-white rounded-md p-2">Create
-                </a>
+            <a href="{{route('createUser')}}" class="bg-green-500 text-white rounded-md p-2">
+                {{ __('messages.admin.index.create') }}
+            </a>
         </div>
 
         <div class="col-start-2 col-span-4 m-auto">
             <table>
-                <th>Gebruikersnaam</th>
-                <th>email</th>
-                <th class="col-span-2">Actions</th>
+                <th>{{ __('messages.user.uname') }}</th>
+                <th>{{ __('messages.form.email') }}</th>
+                <th class="col-span-2">{{ __('messages.admin.index.actions') }}</th>
                 @foreach ( $users as $user )
                 <tr>
                     <td>
@@ -24,26 +25,22 @@
                     </td>
 
                     <td>
-                        <a href="{{route('readUser', $user->id)}}"
-                            class="bg-blue-400 text-white flex rounded-md px-1">Read</a>
+                        <a href="{{route('readUser', $user->id)}}" class="bg-blue-400 text-white flex rounded-md px-1">{{ __('messages.admin.index.read') }}</a>
                     </td>
                     <td>
-                        <a href="{{route('editUser', $user->id)}}"
-                            class="bg-yellow-400 text-white flex rounded-md px-1">Edit</a>
+                        <a href="{{route('editUser', $user->id)}}" class="bg-yellow-400 text-white flex rounded-md px-1">{{ __('messages.admin.index.edit') }}</a>
                     </td>
                     <td>
                         <form method="post" action="#">
                             @csrf
 
                             @if ($user->is_admin == 1)
-                            <a href="{{route('statusUser', $user->id)}}"
-                                class="bg-green-400 text-white flex rounded-md px-3" type="submit">
-                                Admin
+                            <a href="{{route('statusUser', $user->id)}}" class="bg-green-400 text-white flex rounded-md px-3" type="submit">
+                                {{ __('messages.user.admin') }}
                             </a>
                             @else
-                            <a href="{{route('statusUser', $user->id)}}"
-                                class="bg-red-400 text-white flex rounded-md px-2" type="submit">
-                                User
+                            <a href="{{route('statusUser', $user->id)}}" class="bg-red-400 text-white flex rounded-md px-2" type="submit">
+                                {{ __('messages.user.title') }}
                             </a>
                             @endif
                         </form>

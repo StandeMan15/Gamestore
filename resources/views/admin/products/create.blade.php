@@ -4,14 +4,14 @@
 
         <div class="grid grid-cols-12 gap-4">
             @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    <div>{{$error}}</div>
-                @endforeach
+            @foreach ($errors->all() as $error)
+            <div>{{$error}}</div>
+            @endforeach
             @endif
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="title">
-                    Game Naam
+                    {{ __('messages.admin.product.title') }}
                 </label>
             </div>
 
@@ -21,7 +21,7 @@
 
             <div class="col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="price">
-                    Prijs in €
+                    {{ __('messages.admin.order.price') }} €
                 </label>
             </div>
 
@@ -33,7 +33,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="category_id">
-                    Game Categorie
+                    {{ __('messages.admin.category.title') }}
                 </label>
             </div>
 
@@ -47,7 +47,7 @@
 
             <div class="col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="release_date">
-                    Release Datum
+                    {{ __('messages.admin.product.release') }}
                 </label>
             </div>
             <div class="col-span-5">
@@ -58,7 +58,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="excerpt">
-                    Korte beschrijving
+                    {{ __('messages.admin.product.excerpt') }}
                 </label>
             </div>
             <div class="col-span-9 w-full">
@@ -67,19 +67,18 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="body">
-                    Volledige beschrijving
+                    {{ __('messages.admin.product.desc') }}
                 </label>
             </div>
             <div class="col-span-9">
-                <textarea class="p-2 border border-gray-200 w-1/2" type="text" name="body" id="body" rows="10"
-                    cols="50"></textarea>
+                <textarea class="p-2 border border-gray-200 w-1/2" type="text" name="body" id="body" rows="10" cols="50"></textarea>
             </div>
 
 
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="minimum_age">
-                    Minimale leeftijd
+                    {{ __('messages.admin.product.min_age') }}
                 </label>
             </div>
             <div class="col-span-2">
@@ -88,7 +87,7 @@
 
             <div class="col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="preorder_date">
-                    Preorder Datum
+                    {{ __('messages.admin.product.preorder') }}
                 </label>
             </div>
             <div class="col-span-2">
@@ -97,12 +96,12 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="mb-2 uppercase font-bold text-xs text-gray-700" for="image">
-                    Image
+                    {{ __('messages.admin.product.img') }}
                 </label>
             </div>
 
             <div class="col-span-1">
-                <input class="p-2 border border-gray-200" type="file" multiple name="image[]" id="image" >
+                <input class="p-2 border border-gray-200" type="file" multiple name="image[]" id="image">
             </div>
 
             @error('name')
@@ -114,7 +113,7 @@
         </div>
 
         <div class="grid grid-cols-12 gap-4">
-            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">Submit</button>
+            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">{{ __('messages.form.submit') }}</button>
         </div>
     </form>
 </x-layout>

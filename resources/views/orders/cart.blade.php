@@ -6,9 +6,9 @@
 <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
-            <th style="width:50%">Product</th>
-            <th style="width:10%">Prijs</th>
-            <th style="width:8%">Aantal</th>
+            <th style="width:50%">{{ __('messages.admin.product.title') }}</th>
+            <th style="width:10%">{{ __('messages.admin.product.price') }}</th>
+            <th style="width:8%">{{ __('messages.admin.product.qty') }}</th>
             <th style="width:22%" class="text-center">Subtotaal</th>
             <th style="width:10%"></th>
         </tr>

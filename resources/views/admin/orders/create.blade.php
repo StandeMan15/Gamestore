@@ -6,14 +6,14 @@ $ordernmr = $latestorder->order_number + 1;
   <form method="POST" action="{{route('storeAdminOrder')}}">
     @csrf
     <div class="pl-lg-2 pt-10">
-      <label class="font-bold" for="ordernmr">Order nummer</label>
+      <label class="font-bold" for="ordernmr">{{ __('messages.admin.order.num') }}</label>
       <input class="bg-gray-200 border border-gray-300 p-2" id="ordernmr" name="ordernmr" value='{{$ordernmr}}' readonly />
 
       <table class="_table">
         <thead>
           <tr>
-            <th>Product</th>
-            <th>Aantal</th>
+            <th>{{ __('messages.admin.product.title') }}</th>
+            <th>{{ __('messages.admin.product.qty') }}</th>
             <th width="50px">
               <div class="action_container">
                 <button class="success" type="button" onclick="create_tr('table_body')">
@@ -45,7 +45,7 @@ $ordernmr = $latestorder->order_number + 1;
           </tr>
         </tbody>
       </table>
-      <button type="submit">Submit</button>
+      <button type="submit">{{ __('messages.form.submit') }}</button>
     </div>
   </form>
 </x-layout>

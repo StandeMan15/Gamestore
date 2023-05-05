@@ -11,7 +11,7 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="title">
-                    Status titel
+                    {{ __('messages.admin.status.title') }}
                 </label>
             </div>
 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="grid grid-cols-12 gap-4">
-            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">Submit</button>
+            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">{{ __('messages.form.submit') }}</button>
         </div>
     </form>
 </x-layout>

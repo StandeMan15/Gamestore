@@ -9,7 +9,7 @@
             {{ $products->links() }}
             @else
             <p class="text-center">
-                There are no products yet. Please check back later
+                {{ __('messages.admin.index.no_products') }}
             </p>
             @endif
         </main>

@@ -43,7 +43,7 @@ class OrderController extends Controller
         }
 
         session()->put('cart', $cart);
-        return redirect('/')->with('success', $product->title . 'toegevoegd aan winkelwagen!');
+        return redirect('/')->with('success', __('messages.cart.added', ['attribute' => $product->title]));
     }
 
     public function cart()
@@ -59,7 +59,7 @@ class OrderController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
+            session()->flash('success', __('messages.cart.update'));
         }
     }
 
@@ -71,7 +71,7 @@ class OrderController extends Controller
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }
-            session()->flash('success', 'Product removed successfully');
+            session()->flash('success', __('messages.cart.removed'));
         }
     }
 
@@ -122,19 +122,19 @@ class OrderController extends Controller
 
             
         } else {
-            return redirect('')->with('success', 'Er zit nog niks in jouw winkelwagentje');
+            return redirect('')->with('success', __('messages.error.cart_empty'));
         }
         
-        return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
+        return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', __('messages.order.success'));
 
     }
 
     public function deny()
     {
         if (!auth()->check()) {
-            return redirect('')->with('success', 'U moet ingelogd zijn om te kunnen bestellen');
+            return redirect('')->with('success', __('messages.error.logged_out'));
         } else {
-            return redirect('')->with('success', 'Er zit nog niks in jouw winkelwagentje');
+            return redirect('')->with('success', __('messages.error.cart_empty'));
         }
         
     }
