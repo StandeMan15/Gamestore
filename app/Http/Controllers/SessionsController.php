@@ -40,11 +40,11 @@ class SessionsController extends Controller
 
         if (auth()->attempt($attributes)) {
             session()->regenerate();
-            return redirect('/')->with('success', 'Welcome Back!');
+            return redirect('/')->with('success', __('messages.user.logged_in'));
         }
 
         throw ValidationException::withMessages([
-            'email' => 'Your provided credentials could not be verified.'
+            'email' => __('messages.error.wrong_credentials')
         ]);
     }
 
@@ -52,7 +52,7 @@ class SessionsController extends Controller
     {
         auth()->logout();
 
-        return redirect('/')->with('success', 'Goodbye!');
+        return redirect('/')->with('success', __('messages.user.logged_out'));
     }
 
 

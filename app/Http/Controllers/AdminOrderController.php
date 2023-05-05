@@ -60,7 +60,7 @@ class AdminOrderController extends Controller
             ]);
             
         return redirect('/admin/orders')
-        ->with('success', 'Bestelling succesvol aangepast');
+        ->with('success',  __('messages.order.success'));
     }
 
     public function create()

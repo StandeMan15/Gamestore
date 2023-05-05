@@ -23,16 +23,16 @@
                                 @if (auth()->user()->is_admin == 1)
                                 <a href="/admin" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
                                     <i class="fas fa-chart-bar fa-lg"></i>
-                                    Admin
+                                    {{ __('messages.nav.admin') }}
                                 </a>
                                 @endif
 
-                                <a href="{{route('showuser')}}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1"><i class="fas fa-user"></i> Uw profiel</a>
+                                <a href="{{route('showuser')}}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1"><i class="fas fa-user"></i>{{ __('messages.nav.profile') }}</a>
 
                                 <form method="POST" action="/logout">
                                     @csrf
 
-                                    <button type="submit" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                    <button type="submit" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2"><i class="fas fa-sign-out-alt"></i>{{ __('messages.nav.logout') }}</button>
                                 </form>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
 
                     <div x-cloak x-show="open" @click.outside="open = false" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                         <div class="py-1" role="none">
-                            <a href="/login" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Log In</a>
-                            <a href="/register" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Registreer</a>
+                            <a href="/login" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">{{ __('messages.nav.login') }}</a>
+                            <a href="/register" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">{{ __('messages.nav.register') }}</a>
                         </div>
                     </div>
 

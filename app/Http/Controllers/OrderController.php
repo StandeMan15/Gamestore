@@ -122,7 +122,7 @@ class OrderController extends Controller
 
             
         } else {
-            return redirect('')->with('success', 'Er zijn nog geen producten in uw mand, dus u kunt nog niet afrekenen');
+            return redirect('')->with('success', 'Er zit nog niks in jouw winkelwagentje');
         }
         
         return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', 'Bestelling succesvol geplaatst!');
@@ -132,7 +132,7 @@ class OrderController extends Controller
     public function deny()
     {
         if (!auth()->check()) {
-            return redirect('')->with('success', 'Uw moet ingelogd zijn om te kunnen bestellen');
+            return redirect('')->with('success', 'U moet ingelogd zijn om te kunnen bestellen');
         } else {
             return redirect('')->with('success', 'Er zit nog niks in jouw winkelwagentje');
         }
