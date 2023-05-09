@@ -48,9 +48,11 @@ class CheckoutController extends Controller
         $payedStatus = 3;
         Order::where('order_number', $orderNumber)->update(['status_id' => $payedStatus]);
 
-        return redirect('')->with('success', __('messages.checkout.payment_succes'));
         session()->forget(['cart']);
         session()->forget(['checkout']);
         session()->flush();
+        
+        return redirect('')->with('success', __('messages.checkout.payment_succes'));
+
     }
 }

@@ -30,7 +30,7 @@ $total += $details['price'] * $details['quantity'];
 								<div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
 									<div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
 										<div class="flex items-start justify-between">
-											<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Jouw winkelwagentje</h2>
+											<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">{{ __('messages.cart.title') }}</h2>
 											<div class="ml-3 flex h-7 items-center">
 												<button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
 													<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">

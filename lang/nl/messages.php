@@ -16,6 +16,7 @@ return [
     'update' => 'Bestelling is aangepast',
   ],
   'cart' => [
+    'title' => 'Jouw Winkelwagente',
     'removed' => 'Product succesvol verwijderd',
     'update' => 'Winkelwagen succesvol aangepast',
     'added' => ':attribute zit nu in uw winkelwagentje',

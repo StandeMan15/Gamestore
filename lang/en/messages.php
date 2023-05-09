@@ -16,6 +16,7 @@ return [
     'update' => 'Your order has been edited',
   ],
   'cart' => [
+    'title' => 'Your shoppingcart',
     'removed' => 'Product removed succesfully',
     'update' => 'Your shoppingcart has been updated',
     'added' => ':attribute is now in your shoppingcart',
