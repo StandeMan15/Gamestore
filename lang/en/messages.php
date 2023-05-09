@@ -20,6 +20,7 @@ return [
     'update' => 'Your shoppingcart has been updated',
     'added' => ':attribute is now in your shoppingcart',
     'continue' => 'Continue Shopping',
+    'add' => 'Add to cart',
   ],
   'admin' => [
     'status' => [

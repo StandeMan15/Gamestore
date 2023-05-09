@@ -20,6 +20,7 @@ return [
     'update' => 'Winkelwagen succesvol aangepast',
     'added' => ':attribute zit nu in uw winkelwagentje',
     'continue' => 'Verder Winkelen',
+    'add' => 'Voeg toe',
   ],
   'admin' => [
     'status' => [

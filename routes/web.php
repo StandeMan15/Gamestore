@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductCommentsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ShippingDetailsController;
@@ -15,23 +16,27 @@ use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ProductsController::class, 'index'])->name('home');
+Route::get('lang/home', [HomeController::class, 'index']);
+Route::get('lang/change', [HomeController::class, 'change'])->name('changeLang');
+
+//Route::get('{lang}', function (string $lang) {
+
+//     Route::prefix($lang)->group(function () { 
+Route::get('', [ProductsController::class, 'index'])->name('home');
 
 Route::get('admin', [SessionsController::class, 'index']);
 
-Route::get('betalen',[CheckoutController::class, 'preparePayment'])->name('mollie.payment');
+Route::get('betalen', [CheckoutController::class, 'preparePayment'])->name('mollie.payment');
 Route::get('payment-succes', [CheckoutController::class, 'handleWebhookNotification'])->name('payment.success');
 
-Route::prefix('/admin')->group(function()
-{
-    
-    Route::get('/active', [ProductsController::class, 'filterActive' ])->name('filterActive');
+Route::prefix('/admin')->group(function () {
+
+    Route::get('/active', [ProductsController::class, 'filterActive'])->name('filterActive');
     Route::get('/inactive', [ProductsController::class, 'filterInactive'])->name('filterInactive');
 
     Route::controller(CategoryController::class)
         ->prefix('/categories')
-        ->group(function()
-        {   // URL::admin/categories
+        ->group(function () {   // URL::admin/categories
             Route::get('', 'showAdmin')->name('showAdminCategories');
             Route::get('/read/{id}', 'read')->name('readCategory');
             Route::get('/create', 'create')->name('createCategory');
@@ -44,8 +49,7 @@ Route::prefix('/admin')->group(function()
 
     Route::controller(AdminOrderController::class)
         ->prefix('/orders')
-        ->group(function()
-        {   // URL::admin/orders
+        ->group(function () {   // URL::admin/orders
             Route::get('', 'show')->name('showOrdersAdmin');
             Route::get('/read/{id}', 'read')->name('readOrdersAdmin');
             Route::get('/create', 'create')->name('createOrdersAdmin');
@@ -56,42 +60,37 @@ Route::prefix('/admin')->group(function()
 
     Route::controller(ProductsController::class)
         ->prefix('/product')
-        ->group(function()
-        {   // URL::admin/product
+        ->group(function () {   // URL::admin/product
             Route::get('/read/{id}', 'read')->name('readProduct');
             Route::get('/activity/{id}', 'activity')->name('statusProduct');
             Route::get('/edit/{id}', 'edit')->name('editProduct');
-            Route::post('/update/{id}','update')->name('updateProduct');
+            Route::post('/update/{id}', 'update')->name('updateProduct');
             Route::get('/create', 'create')->name('createProduct');
             Route::post('/store', 'store')->name('storeProduct');
         });
 
     Route::controller(StatusController::class)
         ->prefix('/status')
-        ->group(function () 
-        {   // URL::admin/status
-        Route::get('/', 'show')->name('showStatusCodes');
-        Route::get('/create', 'create')->name('createStatus');
-        Route::post('/store', 'store')->name('storeStatus');
-        Route::get('/edit/{id}', 'edit')->name('editStatus');
-        Route::post('/update/{id}', 'update')->name('updateStatus');
-        Route::delete('/destroy/{id}', 'destroy')->name('destroyStatus');
+        ->group(function () {   // URL::admin/status
+            Route::get('/', 'show')->name('showStatusCodes');
+            Route::get('/create', 'create')->name('createStatus');
+            Route::post('/store', 'store')->name('storeStatus');
+            Route::get('/edit/{id}', 'edit')->name('editStatus');
+            Route::post('/update/{id}', 'update')->name('updateStatus');
+            Route::delete('/destroy/{id}', 'destroy')->name('destroyStatus');
         });
 
     Route::controller(UserAdminController::class)
         ->prefix('/users')
-        ->group(function()
-        {   // URL::admin/users
+        ->group(function () {   // URL::admin/users
             Route::get('/', 'showadmin')->name('showUsers');
             Route::get('/read/{id}', 'readUser')->name('readUser');
             Route::get('/activity/{id}', 'activity')->name('statusUser');
             Route::get('/edit/{id}', 'edit')->name('editUser');
-            Route::post('/update/{id}','update')->name('updateUser');
+            Route::post('/update/{id}', 'update')->name('updateUser');
             Route::get('/create', 'create')->name('createUser');
             Route::post('/store', 'store')->name('storeUser');
         });
-
-
 });
 
 
@@ -132,7 +131,7 @@ Route::prefix('')->group(function () {
             Route::get('my-profile', 'show')->name('showuser');
             Route::get('edit-my-profile', 'edit')->name('edituser');
             Route::post('edit-my-profile/{id}', 'update')->name('updateuser');
-    });
+        });
 });
 
 
@@ -145,3 +144,6 @@ Route::post('products/{product:slug}/comments', [ProductCommentsController::clas
 
 
 Route::get('{categories:slug}', [CategoryController::class, 'show'])->name('showcategory');
+        
+//     })->middleware('locale');
+// });

@@ -131,40 +131,29 @@ $total += $details['price'] * $details['quantity'];
 </html>
 
 <script type="text/javascript">
-	$(".update-cart").change(function(e) {
-		e.preventDefault();
+	var langButton = document.querySelector('.lang-button');
+	var langContainer = document.querySelector('.lang-container');
 
-		var ele = $(this);
-
-		$.ajax({
-			url: 'order/update-cart',
-			method: "patch",
-			data: {
-				_token: '{{ csrf_token() }}',
-				id: ele.parents("li").attr("data-id"),
-				quantity: ele.parents("li").find(".quantity").val()
-			},
-			success: function(response) {
-				sessionStorage.setItem('cartOpened', true);
-				location.reload();
-			}
-		});
+	langButton.addEventListener('click', function() {
+		langContainer.classList.remove('hidden');
+		document.body.classList.add('blur');
 	});
 
-	$(".remove-from-cart").click(function(e) {
-		e.preventDefault();
-		var ele = $(this);
-		$.ajax({
-			url: 'order/remove-from-cart',
-			method: "DELETE",
-			data: {
-				_token: '{{ csrf_token() }}',
-				id: ele.parents("li").attr("data-id")
-			},
-			success: function(response) {
-				sessionStorage.setItem('cartOpened', true);
-				location.reload();
-			}
-		});
+	var langForm = document.querySelector('.lang-content form');
+	langForm.addEventListener('submit', function(event) {
+		event.preventDefault();
+		var selectedLang = document.querySelector('input[name="lang"]:checked').value;
+		var langSelect = document.querySelector('#lang-select');
+		langSelect.value = selectedLang;
+		langSelect.dispatchEvent(new Event('change'));
+		langContainer.classList.add('hidden');
+		document.body.classList.remove('blur');
+	});
+
+	document.addEventListener('click', function(event) {
+		if (!langContainer.contains(event.target) && event.target !== langButton) {
+			langContainer.classList.add('hidden');
+			document.body.classList.remove('blur');
+		}
 	});
 </script>

@@ -81,9 +81,9 @@
                     </x-panel>
                     @else
                     <p class="semi-bold">
-                        <a href="/register" class="hover:underline">{{ __('messages.admin.nav.register') }}</a>
+                        <a href="/register" class="hover:underline">{{ __('messages.nav.register') }}</a>
                         {{ __('messages.index.or') }}
-                        <a href="/login" class="hover:underline">{{ __('messages.admin.nav.login') }}</a>
+                        <a href="/login" class="hover:underline">{{ __('messages.nav.login') }}</a>
                         {{ __('messages.index.leave_comment') }}
                     </p>
                     @endauth

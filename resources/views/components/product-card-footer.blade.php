@@ -3,7 +3,7 @@
 <footer class="flex justify-between items-center mt-16">
     <div class="relative bottom-0">
 
-        <a href="{{ route('addtocart', $product->id) }}" class="bg-green-400 rounded-xl text-white p-2 btn-block text-center" role="button">Add to cart</a> </p>
+        <a href="{{ route('addtocart', $product->id) }}" class="bg-green-400 rounded-xl text-white p-2 btn-block text-center" role="button">{{ __('messages.cart.add') }}</a> </p>
 
     </div>
     <div class="relative bottom-0">
