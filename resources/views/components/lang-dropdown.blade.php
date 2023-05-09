@@ -12,7 +12,7 @@
         <div class="lang-content bg-white shadow-md rounded-md flex p-4 w-52 items-center" style="margin-top: 10px;">
           <div>
             <div class="p-1">
-              <a href="{{route('changeLang')}}" class="hover:no-underline text-black visited:text-black">
+              <a href="{{ route('changeLang', ['locale' => 'en']) }}" class="hover:no-underline text-black visited:text-black">
                 <img src="https://www.worldometers.info/img/flags/uk-flag.gif" alt="English icon" class="inline-block w-6 h-6 mr-2">
                 English
               </a>
@@ -20,7 +20,7 @@
 
             <br>
             <div class="p-1">
-              <a href="{{route('changeLang')}}" class="hover:no-underline text-black visited:text-black">
+              <a href="{{ route('changeLang', ['locale' => 'nl']) }}" class="hover:no-underline text-black visited:text-black">
                 <img src="https://www.worldometers.info/img/flags/nl-flag.gif" alt="Dutch icon" class="inline-block w-6 h-6 mr-2">
                 Nederlands
               </a>
