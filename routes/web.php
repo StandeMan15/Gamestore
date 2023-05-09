@@ -19,9 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('lang/home', [HomeController::class, 'index']);
 Route::get('lang/change', [HomeController::class, 'change'])->name('changeLang');
 
-//Route::get('{lang}', function (string $lang) {
-
-//     Route::prefix($lang)->group(function () { 
 Route::get('', [ProductsController::class, 'index'])->name('home');
 
 Route::get('admin', [SessionsController::class, 'index']);
@@ -141,9 +138,4 @@ Route::get('{categories:slug}/{product:slug}', [ProductsController::class, 'show
 
 Route::post('products/{product:slug}/comments', [ProductCommentsController::class, 'store']);
 
-
-
 Route::get('{categories:slug}', [CategoryController::class, 'show'])->name('showcategory');
-        
-//     })->middleware('locale');
-// });

@@ -38,13 +38,18 @@ class CheckoutController extends Controller
         $payment = Mollie::api()->payments->get($payment->id);
 
         // redirect customer to Mollie checkout page
-        session()->forget(['cart']);
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
     public function handleWebhookNotification()
     {
+        // set orders status to 3 (betaald)
+        $orderNumber = session('checkout.order_number');
+        $payedStatus = 3;
+        Order::where('order_number', $orderNumber)->update(['status_id' => $payedStatus]);
+
         return redirect('')->with('success', __('messages.checkout.payment_succes'));
+        session()->forget(['cart']);
         session()->forget(['checkout']);
         session()->flush();
     }
