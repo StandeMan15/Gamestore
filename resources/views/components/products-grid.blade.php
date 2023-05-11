@@ -4,28 +4,29 @@
 @if ($products->count())
 <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
-        @if($images->count())
-            @if ($products[0]->active == 1)
-                @foreach ($images as $image)
-                    @if ($image->product_id != $products[0]->id)
-                        @php
-                            $noImg = true;
-                        @endphp
-                    @elseif ($image->product_id == $products[0]->id)
-                        @php
-                            $noImg = false;
-                        @endphp
-                        <x-product-featured-card :product="$products[0]" :image="$image->image" id="$product->id" />
-                        @break
-                    @endif
-                    @if ($noImg)
-                        <x-product-featured-card :product="$products[0]" id="$product->id" />
-                    @endif
-                @endforeach
+    @if($images->count())
+        @if ($products[0]->active == 1)
+            @foreach ($images as $image)
+                @if ($image->product_id != $products[0]->id)
+                    @php
+                        $noImg = true;
+                    @endphp
+                @elseif ($image->product_id == $products[0]->id)
+                    @php
+                        $noImg = false;
+                    @endphp
+                    <x-product-featured-card :product="$products[0]" :image="$image->image" id="$product->id" />
+                    @break
+                @endif
+            @endforeach
+            
+            @if ($noImg)
+                <x-product-featured-card :product="$products[0]" id="$product->id" />
             @endif
-        @else
-            <x-product-featured-card :product="$products[0]" id="$product->id" />
         @endif
+    @else
+        <x-product-featured-card :product="$products[0]" id="$product->id" />
+    @endif
 
     @if ($products->count() > 1)
         <?php $i = 0; ?>

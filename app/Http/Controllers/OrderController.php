@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Order;
 use App\Models\UserOrder;
 use App\Models\Product;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -137,5 +138,15 @@ class OrderController extends Controller
             return redirect('')->with('success', __('messages.error.cart_empty'));
         }
         
+    }
+
+    public function createPDF()
+    {
+        $data = UserOrder::where('order_number', 1);
+        // share data to view
+        view()->share('orders', $data);
+        $pdf = new PDF();
+        $pdf->loadView('pdf.invoice', $data);
+        return $pdf->download('invoice.pdf');
     }
 }
