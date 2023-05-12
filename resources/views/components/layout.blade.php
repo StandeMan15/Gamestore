@@ -28,7 +28,14 @@
                                 </a>
                                 @endif
 
-                                <a href="{{route('showuser')}}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1"><i class="fas fa-user"></i>{{ __('messages.nav.profile') }}</a>
+                                <a href="{{route('showuser')}}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">
+                                    <i class="fas fa-user"></i>
+                                    {{ __('messages.nav.profile') }}
+                                </a>
+                                <a href="{{route('view.orders')}}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">
+                                    <i class="fas fa-receipt"></i>
+                                    {{ __('messages.nav.orders') }}
+                                </a>
 
                                 <form method="POST" action="/logout">
                                     @csrf

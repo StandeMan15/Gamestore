@@ -7,8 +7,10 @@ use App\Models\Image;
 use App\Models\Order;
 use App\Models\UserOrder;
 use App\Models\Product;
-use Barryvdh\DomPDF\PDF;
+use App\Models\ShippingDetails;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -140,13 +142,32 @@ class OrderController extends Controller
         
     }
 
-    public function createPDF()
+    public function viewall() {
+        return view('user.order', [
+            'orders' => Order::where('user_id', Auth()->user()->id)->get()
+        ]);
+
+    }
+
+    public function createPDF($id)
     {
-        $data = UserOrder::where('order_number', 1);
-        // share data to view
-        view()->share('orders', $data);
-        $pdf = new PDF();
-        $pdf->loadView('pdf.invoice', $data);
-        return $pdf->download('invoice.pdf');
+        $data = Order::where('user_id', Auth()->user()->id)->get();
+        foreach ($data as $order) {
+            $userID = $order->user->id;
+        }
+
+        if (Auth()->user()->id == $userID) {
+            $orderdetails = UserOrder::where('order_number', $id)->get();
+            $orderbase = Order::where('order_number', $id)->firstorfail();
+            $shippingdetails = ShippingDetails::where('order_nmr', $id)->firstorfail();
+
+            foreach ($orderdetails as $order) {
+                $ordernum = $order->order_number;
+            }
+            $pdf = Pdf::loadView('pdf.user-order', compact('orderdetails', 'orderbase', 'shippingdetails'));
+            return $pdf->download('Order#' . $ordernum . '.pdf');
+        } else {
+            abort(403);
+        }
     }
 }

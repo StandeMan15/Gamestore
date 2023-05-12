@@ -1,6 +1,10 @@
 @props(['product'])
 @props(['image'])
 
+@php
+$available = true;
+@endphp
+
 <article class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
     <div class="py-6 px-5 lg:flex">
         <a href="/{{ $product->category->slug }}/{{ $product->slug }}">
@@ -38,6 +42,9 @@
                         <span class="mt-2 block text-gray-400 text-xs">
                             {{ __('messages.admin.product.available') }}
                         </span>
+                        @php
+                        $available = false;
+                        @endphp
                         @endif
                     </div>
                 </header>
@@ -59,7 +66,7 @@
                 </div>
                 @endif
 
-                <x-product-card-footer :product="$product" />
+                <x-product-card-footer :product="$product" :available="$available" />
             </div>
         </a>
     </div>

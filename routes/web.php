@@ -111,6 +111,8 @@ Route::prefix('/order')->group(function () {
             Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
             Route::get('bevestig-bestelling', 'store')->name('storeorder');
             Route::get('cart-forbidden', 'deny')->name('orderdenied');
+            Route::get('download/{id}', 'createPDF')->name('download.order');
+            Route::get('view-all', 'viewall')->name('view.orders');
         });
     Route::controller(CheckoutController::class)
         ->group(function () {
@@ -130,7 +132,6 @@ Route::prefix('')->group(function () {
             Route::post('edit-my-profile/{id}', 'update')->name('updateuser');
         });
 });
-
 
 // Product handling
 Route::get('{product:slug}', [ProductsController::class, 'showProduct'])->name('showProduct');

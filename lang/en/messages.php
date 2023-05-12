@@ -7,6 +7,8 @@ return [
     'bil_info' => 'Use this information as billing information',
     'bil_title' => 'Billing information',
     'read_mr' => 'Read More',
+    'from' => 'from',
+    'to' => 'to',
     'or' => 'or',
     'participate' => 'Want to participate?',
     'leave_comment' => 'to leave a comment',
@@ -37,6 +39,7 @@ return [
       'price' => 'Price',
       'dis_price' => 'Discount Price',
       'subtotal' => 'Subtotal',
+      'total' => 'Total Payable',
       'shipment_cost' => 'Delivery costs are added at checkout',
     ],
     'category' => [
@@ -61,6 +64,7 @@ return [
       'img' => 'Image',
     ],
     'index' => [
+      'download' => 'Download',
       'actions' => 'Actions',
       'create' => 'Create',
       'read' => 'Read',
@@ -104,6 +108,7 @@ return [
     'login' => 'Log in',
     'logout' => 'Log out',
     'register' => 'Register',
+    'orders' => 'Your Orders',
   ],
   'form' => [
     'submit' => 'Submit',
@@ -120,6 +125,22 @@ return [
     'psw' => 'Password',
     'comp_id' => 'Company ID',
     'no_acc' => 'Not registerd?',
+  ],
+  'pdf' => [
+    'title' => 'Artitex | Gameshop | Order',
+    'purchase' => 'Order Date',
+    'payment_mth' => 'Payment Method',
+    'shipping_mth' => 'Shipping method',
+    'product_name' => 'Product Name',
+    'btw' => 'BTW (:attribute%)',
+  ],
+  'artitex' => [
+    'title' => 'Artitex',
+    'address' => 'Zoomstede 27L',
+    'postalcode' => '3431 HK Nieuwegein',
+    'country' => 'Nederland',
+    'mail' => 'info@artitex.nl',
+    'phone' => '030 207 2488',
   ],
   'error' => [
     'logged_out' => 'U need to be logged in to be able to order',

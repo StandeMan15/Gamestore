@@ -7,6 +7,8 @@ return [
     'bil_info' => 'Deze gegevens als factuurgegevens gebruiken',
     'bil_title' => 'Factuurgegevens',
     'read_mr' => 'Lees meer',
+    'from' => 'van',
+    'to' => 'aan',
     'or' => 'of',
     'participate' => 'Wil je meepraten?',
     'leave_comment' => 'om een reactie achter te laten',
@@ -37,6 +39,7 @@ return [
       'price' => 'Prijs',
       'dis_price' => 'Actie Prijs',
       'subtotal' => 'Subtotaal',
+      'total' => 'Totaal te betalen',
       'shipment_cost' => 'Bezorgkosten worden bijberekend bij afrekenen',
     ],
     'category' => [
@@ -61,6 +64,7 @@ return [
       'img' => 'Afbeelding',
     ],
     'index' => [
+      'download' => 'Download',
       'actions' => 'Acties',
       'create' => 'Maak nieuw item',
       'read' => 'Lees',
@@ -73,7 +77,7 @@ return [
       'view_all' => 'Zie alles van',
     ],
     'nav' => [
-      'category' => 'Categorie&euml;n',
+      'category' => 'Categorieen',
       'products' => 'Producten',
       'orders' => 'Bestellingen',
       'status' => 'Statusen',
@@ -104,6 +108,7 @@ return [
     'login' => 'Inloggen',
     'logout' => 'Uitloggen',
     'register' => 'Registeren',
+    'orders' => 'Jouw Bestellingen',
   ],
   'form' => [
     'submit' => 'Verstuur',
@@ -120,6 +125,22 @@ return [
     'psw' => 'Wachtwoord',
     'comp_id' => 'Company ID',
     'no_acc' => 'Not registerd?',
+  ],
+  'pdf' => [
+    'title' => 'Artitex | Gameshop | Bestelling',
+    'purchase' => 'Besteld op',
+    'payment_mth' => 'Betaal methode',
+    'shipping_mth' => 'Verzend methode',
+    'product_name' => 'Product naam',
+    'btw' => 'BTW (:attribute%)',
+  ],
+  'artitex' => [
+    'title' => 'Artitex',
+    'address' => 'Zoomstede 27L',
+    'postalcode' => '3431 HK Nieuwegein',
+    'country' => 'Nederland',
+    'mail' => 'info@artitex.nl',
+    'phone' => '030 207 2488',
   ],
   'error' => [
     'logged_out' => 'U moet ingelogd zijn om te kunnen bestellen',
