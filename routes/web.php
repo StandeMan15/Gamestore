@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ShippingDetailsController;
@@ -25,6 +26,7 @@ Route::get('admin', [SessionsController::class, 'index']);
 
 Route::get('betalen', [CheckoutController::class, 'preparePayment'])->name('mollie.payment');
 Route::get('payment-succes', [CheckoutController::class, 'handleWebhookNotification'])->name('payment.success');
+Route::get('send-mail', [MailController::class, 'sendMail'])->name('send.mail');
 
 Route::prefix('/admin')->group(function () {
 

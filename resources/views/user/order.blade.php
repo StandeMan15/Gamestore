@@ -54,4 +54,10 @@
   <div class="flex justify-center">
     {{ $orders->links() }}
   </div>
+
+  <div>
+    <a href="{{route('send.mail')}}">
+    Stuur mailtje dan
+    </a>
+  </div>
 </x-layout>
