@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('streetname')->nullable();
             $table->string('postalcode')->nullable();
             $table->string('housenmr')->nullable();

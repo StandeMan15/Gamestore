@@ -6,7 +6,7 @@ $isReadonly = true;
     <h4 class="font-bold uppercase">
         {{ __('messages.admin.order.title') }}
     </h4>
-    <form action="{{ route('storeShippingDetails', $user->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('storeShippingDetails', $orderid) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <table>
             <tr>
