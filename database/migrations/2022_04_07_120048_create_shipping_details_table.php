@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('shipping_details', function (Blueprint $table) {
             $table->string('fname');
             $table->string('lname');
-            $table->id('order_nmr');
+            $table->id('order_number');
             $table->string('streetname');
             $table->string('housenmr');
             $table->string('housenmr_extra')->nullable();

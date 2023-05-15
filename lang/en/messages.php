@@ -16,6 +16,8 @@ return [
   'order' => [
     'success' => 'Your order has been placed',
     'update' => 'Your order has been edited',
+    'empty' => 'You dont have any orders with us 😓',
+    'download' => 'Your order with :orderNumber is downloadable',
   ],
   'cart' => [
     'title' => 'Your shoppingcart',

@@ -43,9 +43,14 @@
         @endforeach
       </tbody>
     </table>
+
+
     @else
     <p>{{__('messages.order.empty')}}</p>
     @endif
 
+  </div>
+  <div class="flex justify-center">
+    {{ $orders->links() }}
   </div>
 </x-layout>

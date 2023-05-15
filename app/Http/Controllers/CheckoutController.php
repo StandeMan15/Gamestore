@@ -10,29 +10,41 @@ use Mollie\Laravel\Facades\Mollie;
 
 class CheckoutController extends Controller
 {
-    public function confirm(Request $request, $id)
+    public function confirm(Request $request)
     {
+        $latestOrder = Order::orderBy('created_at', 'DESC')->first();
+        if ($latestOrder == null) {
+            $latestOrder = (object) ['order_number' => 0];
+        }
+        $order = new Order;
+        $order->user_id = auth()->id();
+        $order->status_id = 1;
+        $order->order_number = str_pad($latestOrder->order_number + 1, STR_PAD_LEFT);
+        $order->save();
+        session()->put('checkout', $order);
+
         return view('checkout.index', [
-            'orders' => UserOrder::where('order_number', $id)->get(),
+            'orders' => UserOrder::where('order_number',$order->order_number)->get(),
             'users' => Order::all(),
-            'id' => $id
+            'id' =>  $order->order_number
         ]);
     }
 
     public function preparePayment()
     {
-        //dd(array_values(session('checkout')));
+        $total = session('cart.price') + (session('cart.price') * config('config.BTW'));
+        $total = strval($total);
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => "EUR",
-                "value" => session('checkout.order_price') // You must send 2 decimals, thus we enforce the use of strings
+                "value" => $total, // You must send 2 decimals, thus we enforce the use of strings
             ],
             "description" => "Order " . session('checkout.order_number'),
             "redirectUrl" => route('payment.success'),
-            // "webhookUrl" => route('webhooks.mollie'),
+            //"webhookUrl" => route('webhooks.mollie'),
             "metadata" => [
                 "order_id" => session('checkout.order_number'),
-                "order_price" => session('checkout.order_price')
+                "order_price" => session('cart.price'),
             ],
         ]);
         $payment = Mollie::api()->payments->get($payment->id);
@@ -43,16 +55,14 @@ class CheckoutController extends Controller
 
     public function handleWebhookNotification()
     {
-        // set orders status to 3 (betaald)
         $orderNumber = session('checkout.order_number');
         $payedStatus = 3;
         Order::where('order_number', $orderNumber)->update(['status_id' => $payedStatus]);
 
+        //return redirect()->route('download.order', ['id' => $orderNumber])->with('success', __('messages.checkout.payment_succes'));
         session()->forget(['cart']);
         session()->forget(['checkout']);
-        session()->flush();
-        
-        return redirect('')->with('success', __('messages.checkout.payment_succes'));
 
+        return redirect()->route('view.orders')->with('success', __('messages.order.download', ['orderNumber' => $orderNumber]));
     }
 }

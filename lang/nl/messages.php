@@ -16,6 +16,8 @@ return [
   'order' => [
     'success' => 'Bestelling succesvol geplaatst!',
     'update' => 'Bestelling is aangepast',
+    'empty' => 'U heeft nog geen bestellingen bij ons 😓',
+    'download' => 'Uw bestelling met nummer :orderNumber is nu te downloaden',
   ],
   'cart' => [
     'title' => 'Jouw Winkelwagente',

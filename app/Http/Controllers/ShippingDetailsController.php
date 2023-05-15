@@ -10,7 +10,6 @@ class ShippingDetailsController extends Controller
     public function store(ShippingDetailsFormRequest $request)
     {
         $validatedData = $request->validated();
-        // dd(session('checkout.order_number'));
         ShippingDetails::create([
             'fname' => $validatedData['fname'],
             'lname' => $validatedData['lname'],
@@ -18,10 +17,9 @@ class ShippingDetailsController extends Controller
             'postalcode' => $validatedData['postalcode'],
             'housenmr' => $validatedData['housenmr'],
             'housenmr_extra' => $validatedData['housenmradd'],
-            'order_nmr' => session('checkout.order_number')
+            'order_number' => $validatedData['order_number'],
         ]);
 
-        return redirect()->route('mollie.payment')
-        ->with('success', __('messages.checkout.delivery_address'));
+        return redirect()->route('storeorder');
     }
 }

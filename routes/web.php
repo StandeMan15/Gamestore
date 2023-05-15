@@ -109,14 +109,14 @@ Route::prefix('/order')->group(function () {
             Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
             Route::patch('update-cart', 'update')->name('updatecart');
             Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
-            Route::get('bevestig-bestelling', 'store')->name('storeorder');
+            Route::get('store', 'store')->name('storeorder');
             Route::get('cart-forbidden', 'deny')->name('orderdenied');
             Route::get('download/{id}', 'createPDF')->name('download.order');
             Route::get('view-all', 'viewall')->name('view.orders');
         });
     Route::controller(CheckoutController::class)
         ->group(function () {
-            Route::get('{id}', 'confirm')->name('orderconfirm');
+            Route::get('', 'confirm')->name('orderconfirm');
         });
     Route::controller(ShippingDetailsController::class)
         ->group(function () {

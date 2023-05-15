@@ -105,7 +105,7 @@ $total += $details['price'] * $details['quantity'];
 											@if (empty(session('cart')) || !auth()->check())
 											<x-checkout-forbidden route="{{ route('orderdenied') }}" />
 											@else
-											<a href="{{ route('storeorder') }}" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">{{ __('messages.checkout.pay_btn') }}</a>
+											<x-pay-button />
 											@endif
 										</div>
 										<div class="mt-6 flex justify-center text-center text-sm text-gray-500">

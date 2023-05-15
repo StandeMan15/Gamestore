@@ -80,33 +80,23 @@ class OrderController extends Controller
 
     public function store()
     {
+        $totalprice = 0;
         if (count(session('cart')) > 0) {
             //dont forget to validate
-            $latestOrder = Order::orderBy('created_at', 'DESC')->first();
-            if ($latestOrder == null) {
-                $latestOrder = (object) ['order_number' => 0];
-            }
-
-            $order = new Order;
-            $order->user_id = auth()->id();
-            $order->status_id = 1;
-            $order->order_number = str_pad($latestOrder->order_number + 1, STR_PAD_LEFT);
-            
-            $totalprice = 0;
             foreach (session('cart') as $id => $items) {              
                 $orderdetails = new UserOrder();
 
-                $orderdetails->order_number = $order->order_number;
+                $orderdetails->order_number = session('checkout.order_number');
                 $orderdetails->name = $items['name'];
                 $orderdetails->quantity = $items['quantity'];
 
                 if (isset($items['discount_price'])) {
                     $items['price'] = $items['discount_price'];
                 }
+
                 $orderdetails->price = $items['price'] * $items['quantity'];
                 $totalprice += $orderdetails->price;
                 
-                $order->save();
                 $orderdetails->save();
             }
             
@@ -115,20 +105,10 @@ class OrderController extends Controller
                 $totalprice = $totalprice . ".00";
             }
             $totalprice = strval($totalprice);
-
-            $checkout = [
-                'order_number' => $order->order_number,
-                'order_price' => $totalprice
-            ];
             
-            session()->put('checkout', $checkout);
-
-            
-        } else {
-            return redirect('')->with('success', __('messages.error.cart_empty'));
         }
-        
-        return redirect()->route('orderconfirm', $orderdetails->order_number)->with('success', __('messages.order.success'));
+       session()->put("cart.price", $totalprice);
+        return redirect()->route('mollie.payment')->with('success', __('messages.order.success'));
 
     }
 
@@ -144,7 +124,7 @@ class OrderController extends Controller
 
     public function viewall() {
         return view('user.order', [
-            'orders' => Order::where('user_id', Auth()->user()->id)->get()
+            'orders' => Order::where('user_id', Auth()->user()->id)->paginate(10)
         ]);
 
     }
@@ -159,7 +139,7 @@ class OrderController extends Controller
         if (Auth()->user()->id == $userID) {
             $orderdetails = UserOrder::where('order_number', $id)->get();
             $orderbase = Order::where('order_number', $id)->firstorfail();
-            $shippingdetails = ShippingDetails::where('order_nmr', $id)->firstorfail();
+            $shippingdetails = ShippingDetails::where('order_number', $id)->firstorfail();
 
             foreach ($orderdetails as $order) {
                 $ordernum = $order->order_number;
