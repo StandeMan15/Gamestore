@@ -5,7 +5,7 @@
  	<div class="col-span-7">
  		@if (!old('agree'))
  		<div id="conditionalForm" style="display:block;">
- 			<form method="POST" action="{{ route('storeShippingDetails', $user->id) }}">
+ 			<form method="POST" action="{{ route('storeShippingDetails', $orderid) }}">
  				@csrf
  				<table>
  					<th class="font-bold uppercase">

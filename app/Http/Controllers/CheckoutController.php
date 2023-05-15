@@ -12,22 +12,25 @@ class CheckoutController extends Controller
 {
     public function confirm(Request $request)
     {
-        $latestOrder = Order::orderBy('created_at', 'DESC')->first();
-        if ($latestOrder == null) {
-            $latestOrder = (object) ['order_number' => 0];
+        if (empty(session('checkout.order_number'))) {
+            $latestOrder = Order::orderBy('created_at', 'DESC')->first();
+            if ($latestOrder == null) {
+                $latestOrder = (object) ['order_number' => 0];
+            }
+            $order = new Order;
+            $order->user_id = auth()->id();
+            $order->status_id = 1; // afwachting
+            $order->order_number = str_pad($latestOrder->order_number + 1, STR_PAD_LEFT);
+            $order->save();
+            session()->put('checkout.order_number', $order->order_number);
         }
-        $order = new Order;
-        $order->user_id = auth()->id();
-        $order->status_id = 1;
-        $order->order_number = str_pad($latestOrder->order_number + 1, STR_PAD_LEFT);
-        $order->save();
-        session()->put('checkout', $order);
-
+        
         return view('checkout.index', [
-            'orders' => UserOrder::where('order_number',$order->order_number)->get(),
+            'orders' => UserOrder::where('order_number', session('checkout.order_number'))->get(),
             'users' => Order::all(),
-            'id' =>  $order->order_number
+            'id' =>  session('checkout.order_number')
         ]);
+        
     }
 
     public function preparePayment()

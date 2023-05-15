@@ -20,11 +20,12 @@
         <tr>
           <td>{{ $order->status->title }}</td>
           <td>#{{ $order->order_number }}</td>
-          @if ($order->status->title == 'Afwachten')
+          @if ($order->status->id == 1)
           <td>
             <div class="m-2">
-              <button class=" bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded pointer-events-auto cursor-not-allowed">
+              <a href="{{ route('download.order', ['id' => $order->order_number]) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                 <i class="far fa-file-pdf" style="font-size: 24px;"></i>
+              </a>
               </button>
             </div>
           </td>
@@ -32,7 +33,7 @@
           @else
           <td>
             <button class="m-2">
-              <a href="{{ route('download.order', ['id' => $order->order_number]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <a href="{{ route('download.order', ['id' => $order->order_number]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                 <i class="far fa-file-pdf" style="font-size: 24px;"></i>
               </a>
             </button>

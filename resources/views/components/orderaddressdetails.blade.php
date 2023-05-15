@@ -6,7 +6,7 @@ $isReadonly = true;
     <h4 class="font-bold uppercase">
         {{ __('messages.admin.order.title') }}
     </h4>
-    <form action="{{ route('storeShippingDetails', $orderid) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('storeShippingDetails', session('checkout.order_number')) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <table>
             <tr>
@@ -15,7 +15,7 @@ $isReadonly = true;
                 </td>
 
                 <td>
-                    <x-user-edit type="text" name="order_number" id="order_number" value="{{$orderid}}" :readonly="$isReadonly" />
+                    <x-user-edit type="text" name="order_number" id="order_number" value="{{session('checkout.order_number')}}" :readonly="$isReadonly" />
                 </td>
             </tr>
             <tr>

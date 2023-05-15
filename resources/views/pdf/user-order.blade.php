@@ -158,7 +158,7 @@ $subtotal = 0;
         <th class="w-50">{{ __('messages.pdf.shipping_mth') }}</th>
       </tr>
       <tr>
-        <td>TBC</td>
+        <td>{{$orderbase->status->title}}</td>
         <td>TBC</td>
       </tr>
     </table>
