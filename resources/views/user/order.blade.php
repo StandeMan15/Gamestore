@@ -55,9 +55,9 @@
     {{ $orders->links() }}
   </div>
 
-  <div>
+  <!-- <div>
     <a href="{{route('send.mail')}}">
     Stuur mailtje dan
     </a>
-  </div>
+  </div> -->
 </x-layout>

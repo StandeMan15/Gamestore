@@ -59,13 +59,12 @@ class CheckoutController extends Controller
     public function handleWebhookNotification()
     {
         $orderNumber = session('checkout.order_number');
-        $payedStatus = 3;
+        $payedStatus = 3; // status "betaald"
         Order::where('order_number', $orderNumber)->update(['status_id' => $payedStatus]);
 
-        //return redirect()->route('download.order', ['id' => $orderNumber])->with('success', __('messages.checkout.payment_succes'));
         session()->forget(['cart']);
         session()->forget(['checkout']);
-
-        return redirect()->route('view.orders')->with('success', __('messages.order.download', ['orderNumber' => $orderNumber]));
+        // return redirect()->route('view.orders')->with('success', __('messages.order.download', ['orderNumber' => $orderNumber]));
+        return redirect()->route('send.mail');
     }
 }

@@ -144,9 +144,15 @@ return [
     'mail' => 'info@artitex.nl',
     'phone' => '030 207 2488',
   ],
+  'mail' => [
+    'success' => 'Mail has been sent successfully',
+    'opener' => 'Dear',
+    'closer' => 'Kind regards',
+  ],
   'error' => [
     'logged_out' => 'U need to be logged in to be able to order',
     'wrong_credentials' => 'Your provided login details cannot be verified.',
     'cart_empty' => 'Your shopping cart is empty',
+    'mail_err' => 'Something went wrong, we couldnt send you a confirmation mail',
   ],
 ];
