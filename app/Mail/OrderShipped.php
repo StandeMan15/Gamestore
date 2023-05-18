@@ -3,10 +3,12 @@
 namespace App\Mail;
 
 use App\Models\Order;
+use App\Models\UserOrder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
 
 class OrderShipped extends Mailable
 {
@@ -18,6 +20,7 @@ class OrderShipped extends Mailable
      * @var \App\Models\Order
      */
     public $order;
+    public $orderDetails;
 
     /**
      * Create a new message instance.
@@ -25,11 +28,17 @@ class OrderShipped extends Mailable
      * @param  \App\Models\Order  $order
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order, Collection $orderDetails)
     {
         $this->order = $order;
+        $this->orderDetails = $orderDetails;
     }
 
+    public function build()
+    {
+        $subject = 'Gameshop Order';
+        return $this->subject($subject)->view('emails.orders.shipped');
+    }
     /**
      * Get the message content definition.
      *

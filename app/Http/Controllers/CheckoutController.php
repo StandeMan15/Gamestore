@@ -36,7 +36,9 @@ class CheckoutController extends Controller
     public function preparePayment()
     {
         $total = session('cart.price') + (session('cart.price') * config('config.BTW'));
+        $total = number_format($total, 2, '.', '');
         $total = strval($total);
+        //dd($total);
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => "EUR",
