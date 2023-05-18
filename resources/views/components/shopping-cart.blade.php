@@ -76,7 +76,12 @@ $total += $details['price'] * $details['quantity'];
 																	<input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" min="0" />
 																</div>
 																<div>
-																	<p data-th="Price">€&nbsp;{{ $details['price'] * $details['quantity']}}</p>
+																	@php
+																	$product_total = $details['price'] * $details['quantity'];
+																	$product_total = number_format($product_total, 2, '.');
+																	@endphp
+
+																	<p data-th="Price">€&nbsp;{{ $product_total}}</p>
 																</div>
 															</div>
 															<div class="actions" data-th="">
@@ -97,6 +102,9 @@ $total += $details['price'] * $details['quantity'];
 
 									<div class="border-t border-gray-200 px-4 py-6 sm:px-6">
 										<div class="flex justify-between text-base font-medium text-gray-900">
+											@php
+											$total = number_format($total, 2, '.');
+											@endphp
 											<p>{{ __('messages.admin.order.subtotal') }}</p>
 											<p>€&nbsp;{{ $total }}</p>
 										</div>
@@ -131,29 +139,42 @@ $total += $details['price'] * $details['quantity'];
 </html>
 
 <script type="text/javascript">
-	var langButton = document.querySelector('.lang-button');
-	var langContainer = document.querySelector('.lang-container');
+	$(".update-cart").change(function(e) {
+		e.preventDefault();
 
-	langButton.addEventListener('click', function() {
-		langContainer.classList.remove('hidden');
-		document.body.classList.add('blur');
+		var ele = $(this);
+
+		$.ajax({
+			url: 'update-cart',
+			method: "patch",
+			data: {
+				_token: '{{ csrf_token() }}',
+				id: ele.parents("tr").attr("data-id"),
+				quantity: ele.parents("tr").find(".quantity").val()
+			},
+			success: function(response) {
+				window.location.reload();
+			}
+		});
 	});
 
-	var langForm = document.querySelector('.lang-content form');
-	langForm.addEventListener('submit', function(event) {
-		event.preventDefault();
-		var selectedLang = document.querySelector('input[name="lang"]:checked').value;
-		var langSelect = document.querySelector('#lang-select');
-		langSelect.value = selectedLang;
-		langSelect.dispatchEvent(new Event('change'));
-		langContainer.classList.add('hidden');
-		document.body.classList.remove('blur');
-	});
+	$(".remove-from-cart").click(function(e) {
+		e.preventDefault();
 
-	document.addEventListener('click', function(event) {
-		if (!langContainer.contains(event.target) && event.target !== langButton) {
-			langContainer.classList.add('hidden');
-			document.body.classList.remove('blur');
+		var ele = $(this);
+
+		if (confirm("Are you sure want to remove?")) {
+			$.ajax({
+				url: '{{route("remomefromcart")}}',
+				method: "DELETE",
+				data: {
+					_token: '{{ csrf_token() }}',
+					id: ele.parents("tr").attr("data-id")
+				},
+				success: function(response) {
+					window.location.reload();
+				}
+			});
 		}
 	});
 </script>

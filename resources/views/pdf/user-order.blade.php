@@ -176,12 +176,16 @@ $subtotal = 0;
       <tr align="center">
         @php
         $subtotal += $details->price;
+        $subtotal = number_format($subtotal, 2, '.');
         $producttotal = $details->price * $details->quantity;
+        if(!str_contains($details->price, '.')) {
+        $details->price = number_format($details->price, 2, '.');
+        }
         @endphp
         <td>{{$details->name}}</td>
-        <td>{{$details->price}}</td>
+        <td>€{{$details->price}}</td>
         <td>{{$details->quantity}}</td>
-        <td>{{$subtotal}}</td>
+        <td>€{{$subtotal}}</td>
       </tr>
       @endforeach
 
@@ -196,13 +200,15 @@ $subtotal = 0;
             </div>
             @php
             $tax = $subtotal * config('config.BTW');
-            $tax = round($tax, 2);
+            $tax = number_format($tax, 2, '.');
+
             $total = $tax + $subtotal;
+            $total = number_format($total, 2, '.')
             @endphp
             <div class="total-right w-15 float-left text-bold" align="right">
-              <p>{{$subtotal}}</p>
-              <p>{{$tax}}</p>
-              <p>{{$total}}</p>
+              <p>€{{$subtotal}}</p>
+              <p>€{{$tax}}</p>
+              <p>€{{$total}}</p>
             </div>
             <div style="clear: both;"></div>
           </div>
@@ -211,4 +217,4 @@ $subtotal = 0;
     </table>
   </div>
 
-</html>
+  </html>

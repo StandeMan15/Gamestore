@@ -51,7 +51,7 @@
                     </div>
                 </a>
             </td>
-            <td data-th="Price">€{{ $details['price'] }}</td>
+            <td data-th="Price">€{{ $details['price'] }}0000000</td>
             <td data-th="Quantity">
                 <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" min="0" />
                 @php $items += $details['quantity'] @endphp
@@ -145,6 +145,7 @@
         var ele = $(this);
 
         if (confirm("Are you sure want to remove?")) {
+            
             $.ajax({
                 url: 'remove-from-cart',
                 method: "DELETE",

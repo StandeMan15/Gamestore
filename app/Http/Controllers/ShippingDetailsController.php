@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ShippingDetailsFormRequest;
 use App\Models\ShippingDetails;
+use Clockwork\Request\Request;
 
 class ShippingDetailsController extends Controller
 {
@@ -21,5 +22,20 @@ class ShippingDetailsController extends Controller
         ]);
 
         return redirect()->route('storeorder');
+    }
+
+    public function handledelivery(Request $request)
+    {
+        $json = $request->getContent();
+        $data = json_decode($json);
+
+        // Access and extract relevant information
+        $customerName = $data->Customer->Name;
+        $customerEmail = $data->Customer->Email;
+        // ...
+
+        // Utilize the extracted data in your application logic
+
+        return response()->json(['success' => true]);
     }
 }

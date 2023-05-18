@@ -68,11 +68,12 @@ class OrderController extends Controller
 
     public function remove(Request $request)
     {
+        dd('remove controller');
         if ($request->id) {
             $cart = session()->get('cart');
             if (isset($cart[$request->id])) {
                 unset($cart[$request->id]);
-                session()->put('cart', $cart);
+                session()->forget('cart', $cart);
             }
             session()->flash('success', __('messages.cart.removed'));
         }
