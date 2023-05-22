@@ -62,8 +62,9 @@ return [
       'all_ages' => 'Suitable for all ages',
       'preorder' => 'Preorder Date',
       'preorder_now' => 'Preorder Now',
-      'available' => 'Available Soon',
+      'soon_available' => 'Available Soon',
       'img' => 'Image',
+      'ean' => 'EAN Code',
     ],
     'index' => [
       'download' => 'Download',

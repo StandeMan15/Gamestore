@@ -84,8 +84,9 @@ class OrderController extends Controller
         $totalprice = 0;
         if (count(session('cart')) > 0) {
             //dont forget to validate
-            foreach (session('cart') as $id => $items) {    
+            foreach (session('cart') as $id => $items) {
                 $productID = $items['image']->product_id;
+                
                 $orderdetails = new UserOrder();
 
                 $orderdetails->order_number = session('checkout.order_number');

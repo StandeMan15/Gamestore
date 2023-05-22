@@ -100,8 +100,18 @@
                 </label>
             </div>
 
-            <div class="col-span-1">
+            <div class="col-span-3">
                 <input class="p-2 border border-gray-200" type="file" multiple name="image[]" id="image">
+            </div>
+
+            <div class=" col-span-1">
+                <label class="mb-2 uppercase font-bold text-xs text-gray-700" for="ean_code">
+                    {{ __('messages.admin.product.ean') }}
+                </label>
+            </div>
+
+            <div class="col-span-1">
+                <input class="p-2 border border-gray-200" type="number" minlength="4" minlength="8" name="ean_code" id="ean_code">
             </div>
 
             @error('name')

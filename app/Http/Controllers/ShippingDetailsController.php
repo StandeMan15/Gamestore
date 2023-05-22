@@ -26,16 +26,15 @@ class ShippingDetailsController extends Controller
 
     public function handledelivery(Request $request)
     {
-        $json = $request->getContent();
-        $data = json_decode($json);
+        // $json = $request->getContent();
+        // $data = json_decode($json);
 
-        // Access and extract relevant information
-        $customerName = $data->Customer->Name;
-        $customerEmail = $data->Customer->Email;
-        // ...
+        // // Access and extract relevant information
+        // $customerName = $data->Customer->Name;
+        // $customerEmail = $data->Customer->Email;
 
-        // Utilize the extracted data in your application logic
+        // // Utilize the extracted data in your application logic
 
-        return response()->json(['success' => true]);
+        // return response()->json(['success' => true]);
     }
 }

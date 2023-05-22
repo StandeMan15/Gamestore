@@ -45,7 +45,7 @@
 
                     <div class="uppercase semi-bold text-xl bg-green-500 text-white p-2 m-2 rounded-xl">
                         @if ($timeNow < $product->preorder_date)
-                            <span class="uppercase semi-bold text-xl">{{ __('messages.admin.product.available') }}</span>
+                            <span class="uppercase semi-bold text-xl">{{ __('messages.admin.product.soon_available') }}</span>
                             @elseif (($timeNow > $product->preorder_date) && ($timeNow < $product->release_date))
                                 <span class="">
                                     {{ __('messages.admin.product.preorder_now') }}

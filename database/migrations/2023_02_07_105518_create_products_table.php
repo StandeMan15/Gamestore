@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->constrained();
             $table->string('slug')->unique();
+            $table->bigInteger('ean_code');
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');

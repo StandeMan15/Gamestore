@@ -61,7 +61,7 @@ class CheckoutController extends Controller
     public function handleWebhookNotification()
     {
         $orderNumber = session('checkout.order_number');
-        $payedStatus = 3; // status "betaald"
+        $payedStatus = 2; // status "betaald"
         Order::where('order_number', $orderNumber)->update(['status_id' => $payedStatus]);
 
         session()->forget(['cart']);

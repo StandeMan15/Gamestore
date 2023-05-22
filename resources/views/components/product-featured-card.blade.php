@@ -3,6 +3,7 @@
 
 @php
 $available = true;
+$date = Carbon\Carbon::parse($product->release_date);
 @endphp
 
 <article class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
@@ -31,20 +32,22 @@ $available = true;
                         </h1>
 
                         @if (isset($product->release_date))
-                        <span class="mt-2 block text-gray-400 text-xs">
-                            {{ __('messages.admin.product.release') }}: {{ $product->release_date }}
-                        </span>
+                            @if ($date->isFuture())
+                            <span class="mt-2 block text-gray-400 text-xs">
+                                {{ __('messages.admin.product.soon_available') }}
+                            </span>
+                                @php
+                                $available = false;
+                                @endphp
+                            @else
+                            <span class="mt-2 block text-gray-400 text-xs">
+                                {{ __('messages.admin.product.release') }}: {{ $product->release_date }}
+                            </span>
+                            @endif
                         @elseif (isset($product->preorder_date))
                         <span class="mt-2 block text-gray-400 text-xs">
                             {{ __('messages.admin.product.preorder') }}: {{ $product->preorder_date }}
                         </span>
-                        @else
-                        <span class="mt-2 block text-gray-400 text-xs">
-                            {{ __('messages.admin.product.available') }}
-                        </span>
-                        @php
-                        $available = false;
-                        @endphp
                         @endif
                     </div>
                 </header>

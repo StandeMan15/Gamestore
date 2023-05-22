@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Image;
-use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -143,7 +142,7 @@ class ProductsController extends Controller
     public function store(ProductFormRequest $request)
     {
         $validatedData = $request->validated();
-
+        //dd($validatedData);
         $category = Category::find($validatedData['category_id']);
 
         $product = $category->products()->create([
@@ -151,6 +150,7 @@ class ProductsController extends Controller
             'category_id' => $validatedData['category_id'],
             'title' => $validatedData['title'],
             'slug' => Str::slug($validatedData['title'], '-'),
+            'ean_code' => $validatedData['ean_code'],
             'excerpt' => $validatedData['excerpt'],
             'body' => $validatedData['body'],
             'price' => $validatedData['price'],
@@ -196,4 +196,6 @@ class ProductsController extends Controller
             'products' => Product::where('active', 0)->paginate(10)
         ]);
     }
+
+    
 }

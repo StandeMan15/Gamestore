@@ -62,8 +62,9 @@ return [
       'all_ages' => 'Geschikt voor alle leeftijden',
       'preorder' => 'Preorder Datum',
       'preorder_now' => 'Preorder Nu',
-      'available' => 'Binnenkort beschikbaar',
+      'soon_available' => 'Binnenkort beschikbaar',
       'img' => 'Afbeelding',
+      'ean' => 'EAN Code',
     ],
     'index' => [
       'download' => 'Download',
@@ -126,7 +127,7 @@ return [
     'comp_name' => 'Bedrijfsnaam',
     'psw' => 'Wachtwoord',
     'comp_id' => 'Company ID',
-    'no_acc' => 'Not registerd?',
+    'no_acc' => 'Geen account?',
   ],
   'pdf' => [
     'title' => 'Artitex | Gameshop | Bestelling',
