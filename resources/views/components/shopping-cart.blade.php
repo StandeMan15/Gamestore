@@ -111,7 +111,10 @@ $total += $details['price'] * $details['quantity'];
 										<p class="mt-0.5 text-sm text-gray-500">{{ __('messages.admin.order.shipment_cost') }}</p>
 										<div class="mt-6">
 											@if (empty(session('cart')) || !auth()->check())
-											<x-checkout-forbidden route="{{ route('orderdenied') }}" />
+											<div class="checkoutBTN">
+												<x-checkout-forbidden route="{{ route('orderdenied') }}" />
+											</div>
+											<div class="hide">You need to be logged in to order something.</div>
 											@else
 											<x-pay-button />
 											@endif
@@ -165,14 +168,15 @@ $total += $details['price'] * $details['quantity'];
 
 		if (confirm("Are you sure want to remove?")) {
 			$.ajax({
-				url: '{{route("remomefromcart")}}',
-				method: "DELETE",
+				url: 'remove-from-cart',
+				method: 'DELETE',
 				data: {
 					_token: '{{ csrf_token() }}',
-					id: ele.parents("tr").attr("data-id")
+					id: ele.parents('tr').attr('data-id')
 				},
 				success: function(response) {
-					window.location.reload();
+					console.log('success');
+					//window.location.reload();
 				}
 			});
 		}

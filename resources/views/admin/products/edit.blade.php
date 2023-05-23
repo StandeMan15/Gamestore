@@ -1,12 +1,8 @@
 <x-layout>
-    <?php //dd($product)  
-    ?>
     <form method="POST" action="{{route('updateProduct', $product->id)}}" enctype="multipart/form-data">
         @csrf
 
         <div class="grid grid-cols-12 gap-4">
-
-
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="title">
                     {{ __('messages.admin.product.title') }}
@@ -66,8 +62,6 @@
                 <input class="p-2 border border-gray-200" type="date" name="release_date" id="release_date" value="{{ $product->release_date }}">
             </div>
 
-
-
             <div class="col-start-3 col-span-1">
                 <label class="static mb-2 uppercase font-bold text-xs text-gray-700" for="excerpt">
                     {{ __('messages.admin.product.excerpt') }}
@@ -124,12 +118,10 @@
                 </p>
                 @enderror
             </div>
-
-
         </div>
 
         <div class="grid grid-cols-12 gap-4">
-            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">{{ __('messages.form.submit') }}</button>
+            <button type="submit" class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" >{{ __('messages.form.submit') }}</button>
         </div>
     </form>
 </x-layout>

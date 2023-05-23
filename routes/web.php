@@ -24,6 +24,7 @@ Route::get('', [ProductsController::class, 'index'])->name('home');
 
 Route::get('admin', [SessionsController::class, 'index']);
 
+
 Route::get('betalen', [CheckoutController::class, 'preparePayment'])->name('mollie.payment');
 Route::get('payment-succes', [CheckoutController::class, 'handleWebhookNotification'])->name('payment.success');
 Route::get('send-mail', [MailController::class, 'sendMail'])->name('send.mail');
@@ -110,7 +111,7 @@ Route::prefix('/order')->group(function () {
             Route::get('cart', 'cart')->name('cart');
             Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
             Route::patch('update-cart', 'update')->name('updatecart');
-            Route::delete('remove-from-cart', 'remove')->name('remomefromcart');
+            Route::delete('remove-from-cart', 'remove')->name('removefromcart');
             Route::get('store', 'store')->name('storeorder');
             Route::get('cart-forbidden', 'deny')->name('orderdenied');
             Route::get('download/{id}', 'createPDF')->name('download.order');
@@ -137,9 +138,10 @@ Route::prefix('')->group(function () {
 });
 
 // Product handling
+
 Route::get('{product:slug}', [ProductsController::class, 'showProduct'])->name('showProduct');
 Route::get('{categories:slug}/{product:slug}', [ProductsController::class, 'show']);
 
+Route::get('{slug}', [CategoryController::class, 'show'])->name('showcategory');
 Route::post('products/{product:slug}/comments', [ProductCommentsController::class, 'store']);
 
-Route::get('{categories:slug}', [CategoryController::class, 'show'])->name('showcategory');

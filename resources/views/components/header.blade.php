@@ -21,4 +21,13 @@
   [x-cloak] {
     display: none !important;
   }
+
+  .hide {
+    display: none;
+  }
+
+  .checkoutBTN:hover+.hide {
+    display: block;
+    color: red;
+  }
 </style>

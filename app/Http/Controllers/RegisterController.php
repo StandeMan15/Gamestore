@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'lname' => 'required|max:255',
             'username' => 'required|min:3|max:255|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:7|max:255',
+            'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
         ]);
 
         $user = User::create($attributes);

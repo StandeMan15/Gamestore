@@ -1,6 +1,7 @@
 @php
 $date = substr($order->created_at, 0, -9);
 @endphp
+
 <x-mail::message>
   # {{__('messages.admin.order.num')}}: #{{$order->order_number}}
   {{__('messages.mail.opener')}} {{$order->user->fname}} {{$order->user->addition}} {{$order->user->lname}},
@@ -12,7 +13,6 @@ $date = substr($order->created_at, 0, -9);
   <table class="min-w-full border border-gray-300">
     <thead>
       <tr>
-        <th class="py-2 px-4 border-b">Image</th>
         <th class="py-2 px-4 border-b">Name</th>
         <th class="py-2 px-4 border-b">Quantity</th>
         <th class="py-2 px-4 border-b">Price</th>
@@ -20,6 +20,13 @@ $date = substr($order->created_at, 0, -9);
     </thead>
     <tbody>
       @foreach ($orderDetails as $details)
+      @php
+      $total= $details->price + ($details->price * config('config.BTW'));
+      $total = number_format($total, 2, '.');
+
+      $btw = $details->price * config('config.BTW');
+      $btw = number_format($btw, 2, '.');
+      @endphp
       @foreach ($details->product->images as $images)
       <td class="py-2 px-4 border-b">
         <img src="{{asset($images->image)}}" alt="Product thumbnail">
@@ -34,6 +41,22 @@ $date = substr($order->created_at, 0, -9);
         <td class="py-2 px-4 border-b">€{{$details->price}}</td>
       </tr>
       @endforeach
+      <tr>
+        <td colspan="2">
+          BTW
+        </td>
+        <td>
+          €{{$btw}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          Totaal
+        </td>
+        <td>
+          €{{$total}}
+        </td>
+      </tr>
     </tbody>
   </table>
 

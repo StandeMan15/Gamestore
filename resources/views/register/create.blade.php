@@ -65,6 +65,9 @@
                     </label>
 
                     <input class="border border-gray-400 p-2 w-full" type="password" name="password" id="password" value="{{ old('password') }}" required>
+                    <li> Your password must be more than 6 characters long</li>
+                    <li>should contain at-least 1 Uppercase and Lowercase</li>
+                    <li>1 Numeric and 1 special character.</li>
                     @error('password')
                     <p class="text-red-500 text-xs mt-1">
                         {{ $message }}
@@ -78,6 +81,7 @@
                     </button>
                 </div>
 
+
                 <!-- @if ($errors->any())
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -88,6 +92,13 @@
                     </ul>
                 @endif -->
             </form>
+            <div class="mb-6">
+                <a href="/login">
+                    <button class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500">
+                        {{ __('messages.nav.login') }}
+                    </button>
+                </a>
+            </div>
         </main>
     </section>
 </x-layout>

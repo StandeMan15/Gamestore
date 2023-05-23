@@ -18,7 +18,6 @@
                             </svg>
                             {{ __('messages.admin.index.view_all') }} {{ $product->category->name }}
                         </a>
-
                         <div class="space-x-2">
                             <x-category-button :category="$product->category" />
                         </div>
