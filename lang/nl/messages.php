@@ -6,6 +6,7 @@ return [
     'privacy' => 'Ik ga akkoord met de algemene voorwaarden',
     'bil_info' => 'Deze gegevens als factuurgegevens gebruiken',
     'bil_title' => 'Factuurgegevens',
+    'back' => 'Ga Terug',
     'read_mr' => 'Lees meer',
     'from' => 'van',
     'to' => 'aan',

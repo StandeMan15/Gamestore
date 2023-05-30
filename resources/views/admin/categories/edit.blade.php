@@ -1,6 +1,4 @@
 <x-layout>
-    <?php //dd($categories)  
-    ?>
     <form method="POST" action="{{route('updateCategory', $categories->id)}}">
         @csrf
 

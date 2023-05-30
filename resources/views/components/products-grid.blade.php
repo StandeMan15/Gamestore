@@ -44,7 +44,8 @@
                                 @php
                                     $noImg = false;
                                 @endphp
-                                <x-product-card :product="$product" :image="$image->image" class="col-span-2" id="$product->id" />
+                                    <x-product-card :product="$product" :image="$image->image" class="col-span-2 m-1" id="$product->id" />
+                                
                                 @break
                             @endif
                         @endforeach
@@ -52,7 +53,7 @@
                     @php $noImg = true; @endphp
                     @endif
                     @if ($noImg)
-                        <x-product-card :product="$product" class="col-span-2" id="$product->id" />    
+                        <x-product-card :product="$product" class="col-span-2 m-1" id="$product->id" />         
                     @endif
                 @endif
             @endforeach

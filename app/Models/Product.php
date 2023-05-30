@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $with = ['category', 'author', 'images'];
+    protected $with = ['category', 'images'];
     protected $guarded = [];
     protected $table = 'products';
 

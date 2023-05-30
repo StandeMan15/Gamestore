@@ -12,7 +12,7 @@
                 @foreach ($images as $image)
                     @if ($image->product_id == $product->id)
                         <?php $imagefound = true; ?>
-                        <x-product-card :product="$product" class="col-span-3" :image="$image->image" />
+                        <x-product-card :product="$product" class="col-span-4" :image="$image->image" />
                         @break($image->product_id)
                     @else
                         <?php $imagefound = false; ?>
@@ -21,12 +21,12 @@
                 @endforeach
 
                 @if ($imagefound == false)
-                    <x-product-card :product="$product" class="col-span-3" />    
+                    <x-product-card :product="$product" class="col-span-4" />    
                 @endif
 
             @endif
         @else
-            <x-product-card :product="$product" class="col-span-3" />
+            <x-product-card :product="$product" class="col-span-4" />
         @endif
 
     @endforeach

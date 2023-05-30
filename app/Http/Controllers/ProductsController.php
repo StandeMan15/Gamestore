@@ -83,8 +83,12 @@ class ProductsController extends Controller
 
     public function update(ProductFormRequest $request, $id)
     {
-        dd('hello update');
         $validatedData = $request->validated();
+
+        if ($validatedData->fails()) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->withErrors($validatedData)->withInput();
+        }
         dd($validatedData);
         $category = Category::find($validatedData['category_id']);
         $product = Product::find($id);

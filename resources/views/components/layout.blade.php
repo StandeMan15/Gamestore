@@ -11,7 +11,10 @@
             </div>
             <x-lang-dropdown />
             <div class="relative flex items-center">
-                <x-shopping-cart class="mr-4" />
+                <div class="mr-4">
+                    <x-shopping-cart />
+                </div>
+                
 
                 @auth
                 <div class="relative w-32">

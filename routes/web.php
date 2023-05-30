@@ -138,10 +138,10 @@ Route::prefix('')->group(function () {
 });
 
 // Product handling
-
+Route::get('{categories:slug}', [CategoryController::class, 'show'])->name('showcategory');
 Route::get('{product:slug}', [ProductsController::class, 'showProduct'])->name('showProduct');
 Route::get('{categories:slug}/{product:slug}', [ProductsController::class, 'show']);
 
-Route::get('{slug}', [CategoryController::class, 'show'])->name('showcategory');
+
 Route::post('products/{product:slug}/comments', [ProductCommentsController::class, 'store']);
 

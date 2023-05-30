@@ -14,7 +14,7 @@ $total += $details['price'] * $details['quantity'];
 
 <body>
 	<div x-data="{ isOpen: sessionStorage.getItem('cartOpened') === 'true' }">
-		<button @click="isOpen = !isOpen" id="showcart" class="w-24 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+		<button @click="isOpen = !isOpen" id="showcart" class="w-24 py-3.5 bg-blue-500 text-white rounded-md hover:bg-blue-600">
 			<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 			<span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
 		</button>
@@ -32,7 +32,7 @@ $total += $details['price'] * $details['quantity'];
 										<div class="flex items-start justify-between">
 											<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">{{ __('messages.cart.title') }}</h2>
 											<div class="ml-3 flex h-7 items-center">
-												<button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+												<button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500" @click="isOpen = false">
 													<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 														<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 													</svg>

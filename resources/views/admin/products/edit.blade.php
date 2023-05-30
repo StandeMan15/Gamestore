@@ -1,5 +1,5 @@
 <x-layout>
-    <form method="POST" action="{{route('updateProduct', $product->id)}}" enctype="multipart/form-data">
+    <form method="POST" action="{{route('updateProduct', $product->id)}}">
         @csrf
 
         <div class="grid grid-cols-12 gap-4">
@@ -121,7 +121,7 @@
         </div>
 
         <div class="grid grid-cols-12 gap-4">
-            <button type="submit" class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" >{{ __('messages.form.submit') }}</button>
+            <button class="col-start-7 col-span-1 bg-green-500 text-white rounded-xl" type="submit">{{ __('messages.form.submit') }}</button>
         </div>
     </form>
 </x-layout>

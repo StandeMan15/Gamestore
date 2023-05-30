@@ -6,6 +6,7 @@ return [
     'privacy' => 'I agree to the Terms and Conditions',
     'bil_info' => 'Use this information as billing information',
     'bil_title' => 'Billing information',
+    'back' => 'Go Back',
     'read_mr' => 'Read More',
     'from' => 'from',
     'to' => 'to',

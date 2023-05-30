@@ -7,7 +7,7 @@
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-8">
                     <div class="hidden lg:flex justify-between mb-6">
-                        <a href="/{{ $product->category->slug }}" class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
+                        <a href="{{ url()->previous() }}" class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                             <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                                 <g fill="none" fill-rule="evenodd">
                                     <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
@@ -16,7 +16,7 @@
                                     </path>
                                 </g>
                             </svg>
-                            {{ __('messages.admin.index.view_all') }} {{ $product->category->name }}
+                            {{ __('messages.index.back') }}
                         </a>
                         <div class="space-x-2">
                             <x-category-button :category="$product->category" />
