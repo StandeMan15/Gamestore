@@ -27,7 +27,7 @@ class ProductFormRequest extends FormRequest
             'category_id' => 'required',
             'title' => 'string|required',
             'excerpt' => 'string|required',
-            'ean_code' => 'numeric|required',
+            'ean_code' => 'nullable',
             'body' => 'string|required',
             'price' => 'numeric|required|',
             'discount_price' => 'numeric|nullable',

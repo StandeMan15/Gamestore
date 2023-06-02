@@ -21,7 +21,7 @@ return [
     'download' => 'Uw bestelling met nummer :orderNumber is nu te downloaden',
   ],
   'cart' => [
-    'title' => 'Jouw Winkelwagente',
+    'title' => 'Jouw Winkelwagentje',
     'removed' => 'Product succesvol verwijderd',
     'update' => 'Winkelwagen succesvol aangepast',
     'added' => ':attribute zit nu in uw winkelwagentje',

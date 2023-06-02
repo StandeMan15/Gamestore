@@ -54,9 +54,9 @@
                     <td>
                         <a href="{{route('readOrdersAdmin', $order->order_number)}}" class="bg-blue-400 text-white flex rounded-md px-1">{{ __('messages.admin.index.read') }}</a>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a href="{{route('editOrdersAdmin', $order->order_number)}}" class="bg-gray-400 text-white flex rounded-md px-1 pointer-events-none">{{ __('messages.admin.index.edit') }}</a>
-                    </td>
+                    </td> -->
                 </tr>
 
                 @endforeach
