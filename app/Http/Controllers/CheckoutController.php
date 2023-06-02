@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Status;
 use App\Models\User;
 use App\Models\UserOrder;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class CheckoutController extends Controller
             }
             $order = new Order;
             $order->user_id = auth()->id();
-            $order->status_id = 1; // afwachting
+            $statuses = Status::where('title', 'like', '%af%')->firstorfail();
+            $order->status_id = $statuses->id;
             $order->order_number = str_pad($latestOrder->order_number + 1, STR_PAD_LEFT);
             $order->save();
             session()->put('checkout.order_number', $order->order_number);

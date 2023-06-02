@@ -149,13 +149,14 @@ $total += $details['price'] * $details['quantity'];
 
 		$.ajax({
 			url: 'update-cart',
-			method: "patch",
+			method: "PATCH",
 			data: {
 				_token: '{{ csrf_token() }}',
-				id: ele.parents("tr").attr("data-id"),
-				quantity: ele.parents("tr").find(".quantity").val()
+				id: ele.parents("li").attr("data-id"),
+				quantity: ele.parents("li").find(".quantity").val()
 			},
 			success: function(response) {
+				sessionStorage.setItem('cartOpened', true);
 				window.location.reload();
 			}
 		});
@@ -172,11 +173,11 @@ $total += $details['price'] * $details['quantity'];
 				method: 'DELETE',
 				data: {
 					_token: '{{ csrf_token() }}',
-					id: ele.parents('tr').attr('data-id')
+					id: ele.parents('li').attr('data-id')
 				},
 				success: function(response) {
-					console.log('success');
-					//window.location.reload();
+					sessionStorage.setItem('cartOpened', true);
+					window.location.reload();
 				}
 			});
 		}

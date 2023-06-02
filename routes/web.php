@@ -110,8 +110,6 @@ Route::prefix('/order')->group(function () {
         ->group(function () {
             Route::get('cart', 'cart')->name('cart');
             Route::get('add-to-cart/{id}', 'addtocart')->name('addtocart');
-            Route::patch('update-cart', 'update')->name('updatecart');
-            Route::delete('remove-from-cart', 'remove')->name('removefromcart');
             Route::get('store', 'store')->name('storeorder');
             Route::get('cart-forbidden', 'deny')->name('orderdenied');
             Route::get('download/{id}', 'createPDF')->name('download.order');
@@ -144,4 +142,5 @@ Route::get('{categories:slug}/{product:slug}', [ProductsController::class, 'show
 
 
 Route::post('products/{product:slug}/comments', [ProductCommentsController::class, 'store']);
-
+Route::delete('remove-from-cart', [OrderController::class, 'remove']); // ->name('removefromcart')
+Route::patch('update-cart', [OrderController::class, 'update']); // ->name('updatecart')
