@@ -34,7 +34,7 @@ class ProductFormRequest extends FormRequest
             'minimum_age' => 'numeric|nullable',
             'release_date' => 'date|nullable',
             'preorder_date' => 'date|nullable',
-            //'image' => 'nullable|image|mimes:jpeg,png,jpg'
+            //'image' => 'mimes:jpeg,png,jpg'
         ];
     }
 }

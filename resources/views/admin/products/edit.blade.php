@@ -1,5 +1,6 @@
 <x-layout>
-    <form method="POST" action="{{route('updateProduct', $product->id)}}">
+
+    <form method="POST" action="{{route('updateProduct', $product->id)}}"  enctype="multipart/form-data">
         @csrf
 
         <div class="grid grid-cols-12 gap-4">
@@ -41,8 +42,6 @@
 
             <div class="col-span-2">
                 <select class="p-2 border border-gray-200" type="text" name="category_id" id="category_id" required>
-
-
                     @foreach ( $categories as $category )
                     @if ($product->category->name == $category->name)
                     <option value="{{ $product->category->id }}" selected>{{ $product->category->name }}</option>
@@ -102,13 +101,22 @@
 
             <div class="col-start-3 col-span-1">
                 <label class="mb-2 uppercase font-bold text-xs text-gray-700" for="image">
-                    {{ __('messages.admin.product.preorder') }}
+                    {{ __('messages.admin.product.img') }}
                 </label>
             </div>
 
             <div class="col-span-3">
-                <input class="p-2 border border-gray-200" type="file" name="image" id="image">
+                <input class="p-2 border border-gray-200" type="file" multiple name="image[]" id="image">
+            </div>
 
+            <div class=" col-span-1">
+                <label class="mb-2 uppercase font-bold text-xs text-gray-700" for="ean_code">
+                    {{ __('messages.admin.product.ean') }}
+                </label>
+            </div>
+
+            <div class="col-span-1">
+                <input class="p-2 border border-gray-200" type="number" minlength="4" minlength="8" name="ean_code" id="ean_code" value="{{ $product->ean }}">
             </div>
 
             <div class="col-span-2">

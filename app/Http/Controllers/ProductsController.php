@@ -81,12 +81,11 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function update(ProductFormRequest $request, $id)
+    public function update(ProductFormRequest $request, $id, )//
     {
         $validatedData = $request->validated();
-        //dd($validatedData);
-        
-        $category = Category::find($validatedData['category_id']);
+
+        //$category = Category::find($validatedData['category_id']);
         $product = Product::find($id);
 
         if ((isset($validatedData['discount_price'])) && ($validatedData['price'] > $validatedData['discount_price'])) {
@@ -94,8 +93,7 @@ class ProductsController extends Controller
         } else {
             $validatedData['discount_price'] = NULL;
         }
-        $product = $category->products()
-            ->update([
+            $product->update([
                 'title' => $validatedData['title'],
                 'price' => $validatedData['price'],
                 'discount_price' => $validatedData['discount_price'],
@@ -106,20 +104,19 @@ class ProductsController extends Controller
                 'minimum_age' => $validatedData['minimum_age'],
                 'preorder_date' => $validatedData['preorder_date']
             ]);
-
-            if($request->hasFile('image')) {
+            
+            if($request['image']) {
                 $uploadPath = 'uploads/products/';
 
                 $i = 1;
-                foreach($request->file('image') as $imageFile) {
-                    //dd($imageFile);
+                foreach($request['image'] as $imageFile) {
                     $extention = $imageFile->extension();
                     $filename = time() . $i++ . "." . $extention;
                     $imageFile->move($uploadPath,$filename);
                     $finalImagePathName = $uploadPath . $filename;
 
-                    $product->images()->update([
-                        'product_id' => $id,
+                    $product->images()->create([
+                        'product_id' => $product->id,
                         'image' => $finalImagePathName,
                     ]);
                 }
