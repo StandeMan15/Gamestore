@@ -167,19 +167,17 @@ $total += $details['price'] * $details['quantity'];
 
 		var ele = $(this);
 
-		if (confirm("Are you sure want to remove?")) {
-			$.ajax({
-				url: 'remove-from-cart',
-				method: 'DELETE',
-				data: {
-					_token: '{{ csrf_token() }}',
-					id: ele.parents('li').attr('data-id')
-				},
-				success: function(response) {
-					sessionStorage.setItem('cartOpened', true);
-					window.location.reload();
-				}
-			});
-		}
+		$.ajax({
+			url: 'remove-from-cart',
+			method: 'DELETE',
+			data: {
+				_token: '{{ csrf_token() }}',
+				id: ele.parents('li').attr('data-id')
+			},
+			success: function(response) {
+				sessionStorage.setItem('cartOpened', true);
+				window.location.reload();
+			}
+		});
 	});
 </script>

@@ -1,15 +1,29 @@
 <x-layout>
-    <div class="grid grid-cols-6 gap-4">
+    <div class="grid grid-cols-12 gap-4">
         <div class="col-span-1">
             <x-admin-sidebar />
         </div>
+        <div class="col-start-3" @click.outside="isOpen = false">
+            <div class="z-30" x-data="{ isOpen: sessionStorage.getItem('actionsOpened') === 'true' }">
+                <button @click="isOpen = !isOpen" id="showcart" class="w-24 py-3.5 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                    Options
+                </button>
 
-        <div class="col-span-6 col-start-2">
-            <a href="{{route('createCategory')}}" class="bg-green-500 text-white rounded-md p-2">{{ __('messages.admin.index.create') }}
-            </a>
+                <div x-cloak x-show="isOpen">
+                    <div class="col-span-3 col-start-3 z-20">
+                        <div class="relative inline-block text-left">
+                            <div class="right-0 z-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    <a href="{{route('createCategory')}}" class="bg-green-500 text-white rounded-md p-2">{{ __('messages.admin.index.create') }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="col-start-2 col-span-5 m-auto">
+    <div class="col-span-6 col-start-4 m-auto">
             <table>
                 <th class="col-span-2">Categorie</th>
                 <th class="col-span-3">{{ __('messages.admin.index.actions') }}</th>
@@ -44,9 +58,8 @@
                 </tr>
                 @endforeach
             </table>
-            <div class="top-1/2 right-2/5">
-                {{ $category->links() }}
-            </div>
+        <div class="top-1/2 right-2/5">
+            {{ $category->links() }}
         </div>
     </div>
 
