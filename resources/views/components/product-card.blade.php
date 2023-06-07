@@ -9,12 +9,12 @@ $date = Carbon\Carbon::parse($product->release_date);
 
 @if ($product->active == 1)
 
-<article {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
+<article {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-200 border border-black border-opacity-100 hover:border-opacity-5 hover:bg-gray-300 rounded-xl']) }}>
     <div class="py-6 px-5">
 
         <div>
             @if (isset($image))
-            <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl h-52 w-auto">
+            <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl h-52 w-auto mix-blend-multiply">
             @else
             <img src="https://via.placeholder.com/400x300" alt="{{ $product->title }}" class="rounded-xl">
             @endif

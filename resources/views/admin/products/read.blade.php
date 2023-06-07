@@ -1,6 +1,6 @@
 <?php $timeNow = Carbon\Carbon::now(); ?>
 
-<x-layout>
+<x-admin-layout>
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-1 w-auto">
             <x-admin-sidebar />
@@ -89,7 +89,7 @@
             <div class="flex flex-wrap">
                 @foreach ( $images as $image )  
                 @if ($image->product_id == $product->id)
-                    <img src="{{ asset($image->image) }}" alt="" class="m-1 h-32 w-auto" />
+                    <img src="{{ asset($image->image) }}" alt="" class="m-1 h-32 w-auto mix-blend-multiply"  />
                 @endif
                 @endforeach
             </div>
@@ -101,4 +101,4 @@
 
 
     </div>
-</x-layout>
+</x-admin-layout>

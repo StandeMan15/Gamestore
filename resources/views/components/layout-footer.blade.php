@@ -1,5 +1,5 @@
-<footer class="bg-gray-100 text-black py-4">
-    <div class="container mx-auto flex justify-between items-center">
+<footer class="bg-gray-200 text-black py-4">
+    <div class="col container flex justify-around position-absolute">
         <div>
             <ul class="flex space-x-4">
                 <li>
@@ -7,7 +7,6 @@
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </li>
-                <!-- Add more social icons as needed -->
             </ul>
         </div>
         <div>

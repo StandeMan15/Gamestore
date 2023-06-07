@@ -1,6 +1,6 @@
 <x-header />
 
-<body style="font-family: Open Sans, sans-serif">
+<body style="font-family: Open Sans, sans-serif" class="bg-gray-200">
     <section class="px-6 py-8">
         <nav class="h-20 flex justify-between items-center">
             <div>

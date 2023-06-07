@@ -35,7 +35,7 @@
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                     @foreach ($images as $image)
                     @if ((isset($image)) && ($product->id == $image->product_id))
-                    <img src="{{ asset($image->image)}}" alt="" class="rounded-xl">
+                    <img src="{{ asset($image->image)}}" alt="" class="rounded-xl mix-blend-multiply">
                     @else
                     @continue
                     @endif

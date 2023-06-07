@@ -1,4 +1,4 @@
-<div class="relative lg:inline-flex bg-gray-100 rounded-xl">
+<div class="relative lg:inline-flex bg-gray-200 rounded-xl">
 
     <x-dropdown>
         <x-slot name="trigger">

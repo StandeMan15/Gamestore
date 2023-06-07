@@ -1,4 +1,4 @@
-<x-layout>
+<x-admin-layout>
     <div class="grid grid-cols-6 gap-4">
         <div class="col-span-1">
             <x-admin-sidebar />
@@ -55,4 +55,4 @@
         </div>
     </div>
 
-</x-layout>
+</x-admin-layout>

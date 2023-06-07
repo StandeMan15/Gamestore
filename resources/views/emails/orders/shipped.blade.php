@@ -29,7 +29,7 @@ $date = substr($order->created_at, 0, -9);
       @endphp
       @foreach ($details->product->images as $images)
       <td class="py-2 px-4 border-b">
-        <img src="{{asset($images->image)}}" alt="Product thumbnail">
+        <img src="{{asset($images->image)}}" alt="Product thumbnail" class="mix-blend-multiply">
       </td>
       @endforeach
       <tr>

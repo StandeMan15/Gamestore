@@ -5,8 +5,8 @@
 
 <x-layout>
 
-	<body class="bg-gray-100">
-		<div class="flex justify-center items-center h-96 bg-gray-100">
+	<body class="bg-gray-200">
+		<div class="flex justify-center items-center h-96 bg-gray-200">
 			<div class="w-full max-w-md bg-white p-8 rounded shadow-md">
 				<a href="{{route('edituser')}}" class="hover:no-underline hover:text-black visited:text-black text-black">
 					<table class="w-full">

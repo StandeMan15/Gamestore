@@ -1,11 +1,11 @@
-<x-layout>
+<x-admin-layout>
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-1">
             <x-admin-sidebar />
         </div>
         <div class="col-start-3" @click.outside="isOpen = false">
             <div class="z-30" x-data="{ isOpen: sessionStorage.getItem('actionsOpened') === 'true' }">
-                <button @click="isOpen = !isOpen" id="showcart" class="w-24 py-3.5 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                <button @click="isOpen = !isOpen" id="showcart" class="w-24 py-3.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 mt-32">
                     Options
                 </button>
 
@@ -63,4 +63,4 @@
         </div>
     </div>
 
-</x-layout>
+</x-admin-layout>

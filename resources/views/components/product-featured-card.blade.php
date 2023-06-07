@@ -6,14 +6,14 @@ $available = true;
 $date = Carbon\Carbon::parse($product->release_date);
 @endphp
 
-<article class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
+<article class="transition-colors duration-300 hover:bg-gray-300 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
     <div class="py-6 px-5 lg:flex">
         <a href="/{{ $product->category->slug }}/{{ $product->slug }}">
             <div class="flex-1 lg:mr-8">
                 @if (isset($image))
-                <img src="{{ asset($image)}}" alt="{{$product->title}}" class="rounded-xl h-96 w-auto">
+                <img src="{{ asset($image)}}" alt="{{$product->title}}" class="rounded-xl h-96 w-auto mix-blend-multiply mix-blend-multiply">
                 @else
-                <img src="https://via.placeholder.com/500x300" alt="{{$product->title}}" class="rounded-xl">
+                <img src="https://via.placeholder.com/500x300" alt="{{$product->title}}" class="rounded-xl mix-blend-multiply">
                 @endif
             </div>
 

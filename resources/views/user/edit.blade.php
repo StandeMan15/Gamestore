@@ -14,7 +14,7 @@
   </div>
   @endif
 
-  <body class="bg-gray-100">
+  <body class="bg-gray-200">
     <div class="max-w-md mx-auto mt-10 w-full">
       <h1 class="text-2xl font-semibold mb-6">{{ __('messages.user.change') }}</h1>
       <form action="{{ route('updateuser', $user->id) }}" method="POST" enctype="multipart/form-data">

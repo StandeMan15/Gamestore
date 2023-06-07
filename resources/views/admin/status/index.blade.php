@@ -1,14 +1,16 @@
-<x-layout>
-    <div class="grid grid-cols-6 gap-4">
+<x-admin-layout>
+    <div class="grid grid-cols-12 gap-4">
         <div class="col-span-1">
             <x-admin-sidebar />
         </div>
-        <div class="col-span-6 col-start-2">
-            <a href="{{route('createStatus')}}" class="bg-green-500 text-white rounded-md p-2">{{ __('messages.admin.index.create') }}
-            </a>
+        <div class="col-start-3">
+                <button class="mt-32 ">
+                    <a href="{{route('createStatus')}}" class="bg-green-500 text-white rounded-md p-2">{{ __('messages.admin.index.create') }}</a>
+                </button>
         </div>
+    
 
-        <div class="col-start-2 col-span-12 m-auto">
+        <div class="col-span-6 col-start-4 m-auto">
             <table>
                 <th class="col-span-2">{{ __('messages.admin.status.title') }}</th>
                 <th class="col-span-2">{{ __('messages.admin.index.actions') }}</th>
@@ -44,4 +46,4 @@
         </div>
     </div>
 
-</x-layout>
+</x-admin-layout>

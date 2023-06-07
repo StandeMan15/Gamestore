@@ -1,6 +1,18 @@
-<x-layout>
+<x-admin-layout>
     <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left">
+
+    </div>
+</x-admin-layout>
+
+<x-admin-layout>
+    <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-1 w-auto">
+            <x-admin-sidebar />
+        </div>
+
+        <div class="col-span-6 col-start-4 m-auto">
+            <div class="col-span-6 col-start-4 flex justify-around">
+        <table class="m-auto text-sm">
             <thead class="text-xs uppercase bg-gray-600">
                 <tr class="text-white">
                     <th scope="col" class="px-6 py-3">
@@ -28,5 +40,7 @@
                     </td>
                 </tr>
         </table>
+            </div>
+        </div>
     </div>
-</x-layout>
+</x-admin-layout>
