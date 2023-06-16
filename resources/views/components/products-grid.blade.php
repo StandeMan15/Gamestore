@@ -44,7 +44,7 @@
                                 @php
                                     $noImg = false;
                                 @endphp
-                                    <x-product-card :product="$product" :image="$image->image" class="col-span-2 m-1" id="$product->id" />
+                                    <x-product-card :product="$product" :image="$image->image" class="col-span-2 mr-4" id="$product->id" />
                                 
                                 @break
                             @endif

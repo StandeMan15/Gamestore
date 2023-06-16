@@ -84,7 +84,7 @@ return [
       'category' => 'Categories',
       'products' => 'Products',
       'orders' => 'Orders',
-      'status' => 'statuses',
+      'status' => 'Statuses',
       'users' => 'Users',
     ],
   ],
@@ -108,7 +108,7 @@ return [
   ],
   'nav' => [
     'admin' => 'Admin Panel',
-    'profile' => 'Your Account',
+    'profile' => 'My Account',
     'login' => 'Log in',
     'logout' => 'Log out',
     'register' => 'Register',

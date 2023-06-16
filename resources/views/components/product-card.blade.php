@@ -9,37 +9,41 @@ $date = Carbon\Carbon::parse($product->release_date);
 
 @if ($product->active == 1)
 
-<article {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-200 border border-black border-opacity-100 hover:border-opacity-5 hover:bg-gray-300 rounded-xl']) }}>
+<article {{ $attributes->merge(['class' => 'border-2 border-black border-opacity-10 col-span-2 duration-300 hover:bg-gray-200 hover:bg-gray-200 m-1 rounded-xl transition-colors transition-transform transform-gpu hover:scale-110 mix-blend-multiply']) }}>
     <div class="py-6 px-5">
         <a href="/{{ $product->category->slug }}/{{ $product->slug }}">
-            <div>
+            <div class="flex justify-around">
                 @if (isset($image))
-                <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl object-contain mix-blend-multiply">  
+                <img src="{{ asset($image)}}" alt="{{ $product->title }}" class="rounded-xl mix-blend-multiply object-fit h-40">  
                 @else
                 <img src="https://via.placeholder.com/400x300" alt="{{ $product->title }}" class="rounded-xl">
                 @endif
 
             </div>
-
-            @if (isset($product->release_date))
-                @if ($date->isFuture())
-                <span class="mt-2 block text-gray-400 text-xs">
-                    {{ __('messages.admin.product.soon_available') }}
-                </span>
-                @php
-                $available = false;
-                @endphp
-                @else
-                <span class="mt-2 block text-gray-400 text-xs">
-                    {{ __('messages.admin.product.release') }}: {{ $product->release_date }}
-                </span>
-                @endif
-                @elseif (isset($product->preorder_date))
-                <span class="mt-2 block text-gray-400 text-xs">
-                    {{ __('messages.admin.product.preorder') }}: {{ $product->preorder_date }}
-                </span>
+        </a>
+        @if (isset($product->release_date))
+            @if ($date->isFuture())
+            <span class="mt-2 block text-gray-400 text-xs">
+                {{ __('messages.admin.product.soon_available') }}
+            </span>
+            @php
+            $available = false;
+            @endphp
+            @else
+            <span class="mt-2 block text-gray-400 text-xs no-underline">
+                {{ __('messages.admin.product.release') }}: {{ $product->release_date }}
+            </span>
             @endif
-            <x-product-card-footer :product="$product" :available="$available" />
+            @elseif (isset($product->preorder_date))
+            <span class="mt-2 block text-gray-400 text-xs">
+                {{ __('messages.admin.product.preorder') }}: {{ $product->preorder_date }}
+            </span>
+        @endif
+        <a href="/{{ $product->category->slug }}/{{ $product->slug }}">
+            <div class="flex justify-start mt-2">
+                <x-category-button :category="$product->category" />
+            </div>
+            <x-product-card-footer :product="$product" :available="$available"  />          
 
             @if (isset($product->discount_price))
                 <div class="mt-2"><span class="line-through bg-red-400 p-1 mt-2 rounded-xl">€ {{ $product->price }}</span>
@@ -56,10 +60,6 @@ $date = Carbon\Carbon::parse($product->release_date);
             @endif
             <div class="mt-8 flex flex-col justify-between">
                 <header>
-                    <div class="space-x-2">
-                        <x-category-button :category="$product->category" />
-                    </div>
-
                     <div class="mt-4">
                         <h1 class="text-3xl text-black">
                             <a class="text-black" href="/{{ $product->category->slug }}/{{ $product->slug }}">

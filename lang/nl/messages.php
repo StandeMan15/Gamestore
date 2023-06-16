@@ -108,7 +108,7 @@ return [
   ],
   'nav' => [
     'admin' => 'Admin Paneel',
-    'profile' => 'Jouw Account',
+    'profile' => 'Mijn Account',
     'login' => 'Inloggen',
     'logout' => 'Uitloggen',
     'register' => 'Registeren',

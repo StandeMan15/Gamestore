@@ -126,12 +126,15 @@ class OrderController extends Controller
         
     }
 
-    public function viewall() {
+    public function viewall()
+    {
         return view('user.order', [
-            'orders' => Order::where('user_id', Auth()->user()->id)->paginate(10)
+            'orders' => Order::where('user_id', Auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10)
         ]);
-
     }
+
 
     public function createPDF($id)
     {

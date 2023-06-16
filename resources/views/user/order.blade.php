@@ -20,7 +20,7 @@
         <tr>
           <td>{{ $order->status->title }}</td>
           <td>#{{ $order->order_number }}</td>
-          @if ($order->status->id == 1)
+          @if (Str::contains(strtolower($order->status->title), 'afwa'))
           <td>
             <div class="m-2">
               <a href="{{ route('download.order', ['id' => $order->order_number]) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
