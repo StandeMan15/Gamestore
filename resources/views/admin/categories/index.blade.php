@@ -14,7 +14,7 @@
                         <div class="relative inline-block text-left">
                             <div class="right-0 z-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                 <div class="py-1" role="none">
-                                    <a href="{{route('createCategory')}}" class="bg-green-500 text-white rounded-md p-2">{{ __('messages.admin.index.create') }}</a>
+                                    <a href="{{route('createCategory')}}" class="text-gray-700 block px-4 py-2 text-sm">{{ __('messages.admin.index.create') }}</a>
                             </div>
                         </div>
                     </div>

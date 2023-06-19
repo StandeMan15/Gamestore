@@ -50,10 +50,11 @@
                                     {{ __('messages.admin.product.preorder_now') }}
                                 </span>
                                 @else
-                                {{ __('messages.admin.product.release') }}: <time>{{ date('M-Y', strtotime($product->release_date)) }}</time>
+                                {{ __('messages.admin.product.release') }}: <br>
+                                <time>{{ date('M-Y', strtotime($product->release_date)) }}</time>
                                 @endif
 
-                                <span class="flex justify-end pr-4">€{{ $product->price }}</span>
+                                <span class="flex justify-start pr-4">€{{ $product->price }}</span>
                     </div>
                 </div>
 

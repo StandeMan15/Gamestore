@@ -11,7 +11,7 @@ class ShippingDetailsController extends Controller
     public function store(ShippingDetailsFormRequest $request)
     {
         $validatedData = $request->validated();
-        ShippingDetails::create([
+        $shipmentdetails = ShippingDetails::create([
             'fname' => $validatedData['fname'],
             'lname' => $validatedData['lname'],
             'streetname' => $validatedData['streetname'],
@@ -21,7 +21,9 @@ class ShippingDetailsController extends Controller
             'order_number' => $validatedData['order_number'],
         ]);
 
-        return redirect()->route('storeorder');
+        session()->put("shipmentDetails", $shipmentdetails);
+        dump(session('shipmentDetails'));
+        //return redirect()->route('storeorder');
     }
 
     public function handledelivery(Request $request)
