@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Artitex GameShop'),
+    'name' => env('APP_NAME', 'Judo de Voltreffer'),
 
     /*
     |--------------------------------------------------------------------------

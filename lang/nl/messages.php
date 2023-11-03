@@ -2,7 +2,7 @@
 
 return [
   'index' => [
-    'title' => 'Artitex Gameshop',
+    'title' => 'Judo de Voltreffer',
     'privacy' => 'Ik ga akkoord met de algemene voorwaarden',
     'bil_info' => 'Deze gegevens als factuurgegevens gebruiken',
     'bil_title' => 'Factuurgegevens',
@@ -131,19 +131,19 @@ return [
     'no_acc' => 'Geen account?',
   ],
   'pdf' => [
-    'title' => 'Artitex | Gameshop | Bestelling',
+    'title' => 'Stans | Gameshop | Bestelling',
     'purchase' => 'Besteld op',
     'payment_mth' => 'Betaal methode',
     'shipping_mth' => 'Verzend methode',
     'product_name' => 'Product naam',
     'btw' => 'BTW (:attribute%)',
   ],
-  'artitex' => [
-    'title' => 'Artitex',
+  'Stans' => [
+    'title' => 'Stans',
     'address' => 'Zoomstede 27L',
     'postalcode' => '3431 HK Nieuwegein',
     'country' => 'Nederland',
-    'mail' => 'info@artitex.nl',
+    'mail' => 'info@Stans.nl',
     'phone' => '030 207 2488',
   ],
   'mail' => [

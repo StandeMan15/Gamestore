@@ -2,7 +2,7 @@
 
 return [
   'index' => [
-    'title' => 'Artitex Gameshop',
+    'title' => 'Judo de Voltreffer',
     'privacy' => 'I agree to the Terms and Conditions',
     'bil_info' => 'Use this information as billing information',
     'bil_title' => 'Billing information',
@@ -131,19 +131,19 @@ return [
     'no_acc' => 'Not registerd?',
   ],
   'pdf' => [
-    'title' => 'Artitex | Gameshop | Order',
+    'title' => 'Stans | Gameshop | Order',
     'purchase' => 'Order Date',
     'payment_mth' => 'Payment Method',
     'shipping_mth' => 'Shipping method',
     'product_name' => 'Product Name',
     'btw' => 'BTW (:attribute%)',
   ],
-  'artitex' => [
-    'title' => 'Artitex',
+  'Stans' => [
+    'title' => 'Stans',
     'address' => 'Zoomstede 27L',
     'postalcode' => '3431 HK Nieuwegein',
     'country' => 'Nederland',
-    'mail' => 'info@artitex.nl',
+    'mail' => 'info@Stans.nl',
     'phone' => '030 207 2488',
   ],
   'mail' => [

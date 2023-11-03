@@ -128,7 +128,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'artitex gameshop'), '_').'_session'
+        Str::slug(env('APP_NAME', 'Judo de Voltreffer'), '_').'_session'
     ),
 
     /*

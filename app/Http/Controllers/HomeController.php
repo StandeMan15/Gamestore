@@ -14,19 +14,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('lang');
+        return view('home');
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function change(Request $request)
-    {
-        $locale = $request->query('locale');
-        session()->put('locale', $locale);
-        return redirect()->back();
-    }
-
 }

@@ -1,19 +1,24 @@
-<footer class="bg-gray-200 text-black py-4">
+<footer class="bg-gray-200 text-black py-4 bottom-0">
     <div class="col container flex justify-around position-absolute">
         <div>
             <ul class="flex space-x-4">
                 <li>
-                    <a href="https://www.linkedin.com/in/stan-de-rijk-60724019a/" target="_blank" class="text-black hover:text-gray">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://www.instagram.com/judodevoltreffer/" target="_blank" class="text-black hover:text-gray">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/p/Judo-de-Voltreffer-100048927737710/" target="_blank" class="text-black hover:text-gray">
+                        <i class="fab fa-facebook"></i>
                     </a>
                 </li>
             </ul>
         </div>
         <div>
-            <p class="text-black">© <?php echo date('Y'); ?> Artitex. All rights reserved.</p>
+            <p class="text-black">© <?php echo date('Y'); ?> Judo de Voltreffer. All rights reserved.</p>
         </div>
         <div>
-            <p class="text-black">Developed by Stan de Rijk</p>
+            <p class="text-black">Gemaakt door Stan de Rijk</p>
         </div>
     </div>
 </footer>
